@@ -154,7 +154,7 @@
     <div class="info-header">
             <h2>Career interests</h2>
             <a href="#" class="edit-icon">
-                <img src="path-to-edit-icon.svg" alt="Edit">
+                <img  alt="Edit">
             </a>
         </div>
         <hr>
