@@ -1,6 +1,6 @@
 
 
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,17 +11,20 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar
     <nav class="navbar">
         <ul>
-            <!-- <li><a href="index.php">Home</a></li>
+         <li><a href="index.php">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li> -->
+            <li><a href="#">Contact</a></li> 
         </ul>
+    </nav> -->
+    <div>
+    <nav class="navbar">
+        <?php include "Navbar.php"; ?>
     </nav>
-    
-
+</div>
     <!-- Main content of the page -->
     <div class="profile-container">
     

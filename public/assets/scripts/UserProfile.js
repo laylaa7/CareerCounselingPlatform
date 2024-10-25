@@ -19,8 +19,8 @@ console.log("JavaScript file is loaded!");
 // Sample user data (replace with actual user data)
 const userData = {
     'personal-info': {
-        name: 'Layla Johnson',
-        email: 'layla.johnson@example.com',
+        name: 'Layla ',
+        email: 'layla.@example.com',
         phone: '(555) 123-4567',
         birthdate: '1990-05-15',
         location: 'New York, NY'

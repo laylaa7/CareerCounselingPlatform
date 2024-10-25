@@ -4,20 +4,50 @@
     padding: 0;
     box-sizing: border-box;
 }
+html, body {
+    overflow: hidden;
+}
+/* For larger screens (disable scrolling) */
+html, body {
+    overflow: hidden;
+}
+
+/* For smaller screens (enable scrolling) */
+@media (max-width: 768px) {
+    html, body {
+        overflow: auto;
+    }
+
+    .content-container {
+        height: auto; /* Let the content grow naturally */
+        margin-left: 0; /* Remove the sidebar margin */
+        padding-top: 70px; /* Keep some padding for the navbar */
+    }
+
+    .sidebar {
+        position: relative; /* Allow the sidebar to scroll with the content */
+        width: 100%; /* Make the sidebar full-width on smaller screens */
+        height: auto; /* Adjust sidebar height */
+    }
+}
+
 
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     line-height: 1.6;
+   
 }
 
 /* Profile Layout */
 .profile-container {
+    margin-top: 70px;
     display: flex;
     height: 100vh;
 }
 
-nav {
+
+/* nav {
     background-color: #395FCF;
     padding: 10px 0;
     text-align: center;
@@ -43,7 +73,7 @@ nav {
 
 .navbar ul li a:hover {
     background-color: #555;
-}
+} */
 
 /* Left Sidebar */
 .sidebar {
@@ -90,6 +120,7 @@ nav {
 
 .profile-links a:hover {
     color: #666;
+    font-size: 17px;
 }
 
 .profile-links a:before {
@@ -246,7 +277,7 @@ hr {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgb(20, 20, 20);
+    background-color: rgb(255, 255, 255);
     border: none;
     font-weight: 600;
     display: flex;
@@ -266,7 +297,7 @@ hr {
   }
   
   .edit-svgIcon path {
-    fill: white;
+    fill: #395FCF;
   }
   
   .edit-button:hover {
@@ -275,9 +306,11 @@ hr {
     transition-duration: 0.3s;
     background-color: #395FCF;
     align-items: center;
+    color:#fff;
   }
   
   .edit-button:hover .edit-svgIcon {
+    color:#fff;
     width: 20px;
     transition-duration: 0.3s;
     transform: translateY(60%);
