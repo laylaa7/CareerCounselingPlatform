@@ -6,16 +6,6 @@ $_SESSION['first_name'] = 'Nour';
 $_SESSION['last_name'] = 'B';
 $_SESSION['user_logo'] = 'path_to_user_logo.png';
 
-function getArticles() {
-    // Simulate an array of career counseling articles
-    return [
-        "Develop strategies for achieving their goals",
-        "Build a satisfying and successful career",
-        "Navigate the job market"
-    ];
-}
-
-$articles = getArticles();
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +19,7 @@ $articles = getArticles();
 </head>
 <body>
     <nav class="navbar">
-        <?php include "NavBar.php"; ?>
+        <?php include "Navbar.php"; ?>
     </nav>
 
     <div class="dashboard-container">
@@ -42,39 +32,51 @@ $articles = getArticles();
             <a href="#">Discussion Forum</a>
         </nav>
 
-        <main class="main-content">
-            <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['first_name']); ?>!</div>
+    <main class="main-content">
+        <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['first_name']); ?>!</div>
 
-            <div class="slider-container">
-                <?php foreach ($articles as $index => $article): ?>
-                    <div class="slide banner art<?php echo $index + 1; ?>"><?php echo htmlspecialchars($article); ?></div>
-                <?php endforeach; ?>
-                <button class="arrow-left" onclick="plusDivs(-1)">&#10094;</button>
-                <button class="arrow-right" onclick="plusDivs(1)">&#10095;</button>
-                <div class="dots-container">
-                    <?php foreach ($articles as $index => $article): ?>
-                        <span class="dot" onclick="currentDiv(<?php echo $index + 1; ?>)"></span>
-                    <?php endforeach; ?>
-                </div>
+        <!-- article sliders -->
+        <div class="slider-container">
+            <div class="slides">
+        <div class="slide banner">Develop strategies for achieving their goals</div>
+        <div class="slide banner">Build a satisfying and successful career</div>
+        <div class="slide banner">Navigate the job market</div>
             </div>
-
-            <div class="content-grid">
-                <div class="profile-completion">
-                    <h3>Complete your profile</h3>
-                    <div class="progress-bar"><div class="progress"></div></div>
-                </div>
-                <div class="activity-stream-box">
-                    <h3>Activity stream</h3>
-                </div>
+        <button class="arrow-left" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="arrow-right" onclick="plusDivs(1)">&#10095;</button>
+            <div class="dots-container">
+        <span class="dot" onclick="currentDiv(1)"></span>
+        <span class="dot" onclick="currentDiv(2)"></span>
+        <span class="dot" onclick="currentDiv(3)"></span>
             </div>
+        </div>
 
+    
+    <!-- content boxes -->
+    <div class="content-grid">
+        <div class="left-column">
+            <div class="profile-completion">
+                <h5>Complete your profile</h5>
+                <div class="progress-bar"><div class="progress"></div></div>
+            </div>
             <div class="profile-box">
-                <h3>Profile</h3>
+                <h5>Profile</h5>
+                <!-- Add profile content here -->
             </div>
-        </main>
+        </div>
+        <div class="right-column">
+            <div class="activity-stream-box">
+                <h5>Activity stream</h5>
+                <!-- Add activity stream content here -->
+            </div>
+        </div>
     </div>
+</main>
 
-    <script>
+
+
+<!-- slider script -->
+<script>
     var slideIndex = 1;
     showDivs(slideIndex);
 
@@ -101,7 +103,9 @@ $articles = getArticles();
         x[slideIndex-1].style.display = "block";  
         dots[slideIndex-1].className += " active";
     }
-    </script>
+</script>
+
+    
 </body>
 </html>
 
