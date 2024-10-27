@@ -68,7 +68,7 @@
                 
                 echo '<div class="name-email">';
                 echo '<div class="name">' . $counselor["name"];
-                if($counselor["verified"]) echo '<span class="verified-badge">✓</span>';
+                if($counselor["verified"]) echo '<img src="../../public/assets/images/verified.png" class="verified-badge">';
                 echo '</div>';
                 echo '<div class="email">' . $counselor["email"] . '</div>';
                 echo '</div>';
@@ -94,7 +94,11 @@
 
                 echo '<div class="role">' . $counselor["role"] . '</div>';
 
-                echo '<button class="book-btn">Book</button>';
+                echo '
+                <button class="book-btn">
+                  <p class="text">Book</p>
+                </button>
+                ';
 
                 echo '</div>'; 
                 echo '</div>'; 
