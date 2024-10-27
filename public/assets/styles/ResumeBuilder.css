@@ -1,0 +1,110 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #4285F4;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 90px; /* Position below the header */
+    height: calc(100% - 40px); /* Full height minus the header height */
+    overflow-y: auto; /* Enable scrolling for the sidebar if content exceeds height */
+    box-sizing: border-box;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.progress-item {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.progress-item.active::before {
+    content: '●';
+    margin-right: 10px;
+}
+
+.progress-item:not(.active)::before {
+    content: '○';
+    margin-right: 10px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 140px;
+    
+    margin-left: 250px; /* Same as sidebar width */
+    width: calc(100% - 250px);
+    overflow-y: auto; /* Allow scrolling in the main content */
+    box-sizing: border-box;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
