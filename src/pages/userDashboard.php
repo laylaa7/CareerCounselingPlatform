@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Assuming these session variables are set when the user logs in
 $_SESSION['first_name'] = 'Nour';
 $_SESSION['last_name'] = 'B';
 $_SESSION['user_logo'] = 'path_to_user_logo.png';
@@ -14,51 +13,61 @@ $_SESSION['user_logo'] = 'path_to_user_logo.png';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
-    <link rel="stylesheet" href="../../public/assets/styles/userDashboard.css">
-    <link rel="stylesheet" href="../../public/assets/vendor/bootstrap-icons/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="../../public/assets/styles/userDashboard.css"> -->
+    <style>
+        <?php include "../../public/assets/styles/userDashboard.css" ?>
+    </style>
 </head>
 <body>
-    <nav class="navbar">
+<nav class="navbar">
         <?php include "Navbar.php"; ?>
     </nav>
 
+
     <div class="dashboard-container">
-        <nav class="sidebar">
+        <div class="sidebar">
             <a href="#" class="dash">Dashboard</a>
             <a href="#" class="dash2">Progress</a>
             <a href="#">Book with Counsellors</a>
             <a href="#">Interview Guide</a>
             <a href="#">Submit CV for Review</a>
             <a href="#">Discussion Forum</a>
-        </nav>
+        </div>
 
     <main class="main-content">
         <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['first_name']); ?>!</div>
 
-        <!-- article sliders -->
-        <div class="slider-container">
-            <div class="slides">
-        <div class="slide banner">Develop strategies for achieving their goals</div>
-        <div class="slide banner">Build a satisfying and successful career</div>
-        <div class="slide banner">Navigate the job market</div>
-            </div>
-        <button class="arrow-left" onclick="plusDivs(-1)">&#10094;</button>
-        <button class="arrow-right" onclick="plusDivs(1)">&#10095;</button>
-            <div class="dots-container">
-        <span class="dot" onclick="currentDiv(1)"></span>
-        <span class="dot" onclick="currentDiv(2)"></span>
-        <span class="dot" onclick="currentDiv(3)"></span>
-            </div>
+    <!-- article sliders -->
+    <div class="slider-container">
+            <button class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</button>
+        <div class="slides">
+            <div class="slide banner">Develop strategies for achieving their goals</div>
+            <div class="slide banner">Build a satisfying and successful career</div>
+            <div class="slide banner">Navigate the job market</div>
         </div>
+        <button class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</button>
+        <div class="dots-container">
+            <span class="dot" onclick="currentDiv(1)"></span>
+            <span class="dot" onclick="currentDiv(2)"></span>
+            <span class="dot" onclick="currentDiv(3)"></span>
+        </div>
+    </div>
 
     
     <!-- content boxes -->
     <div class="content-grid">
         <div class="left-column">
+            
             <div class="profile-completion">
                 <h5>Complete your profile</h5>
-                <div class="progress-bar"><div class="progress"></div></div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="background:white;">
+                    <div class="progress" style="background: #3366cc;"></div>
+                </div>
+                <span class="progress-percentage">86%</span>
+                </div>
             </div>
+
             <div class="profile-box">
                 <h5>Profile</h5>
                 <!-- Add profile content here -->
