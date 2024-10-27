@@ -26,7 +26,7 @@
   <link href="../../public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="../../public/assets/styles/main.css" rel="stylesheet">
+  <link href="../../public/assets/styles/NavBar.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: FlexStart
