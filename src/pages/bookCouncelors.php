@@ -12,7 +12,53 @@
 <nav class="navbar">
         <?php include "Navbar.php"; ?>
     </nav>
-
+    
+    <div class="calendar-popup" id="calendarPopup">
+    <div class="calendar-content">
+        <div class="calendar-header">
+            <h2>Select a Date & Time</h2>
+            <button class="close-btn" onclick="closeCalendar()">&times;</button>
+        </div>
+        <div class="calendar-body">
+            <div class="month-selector">
+                <button onclick="previousMonth()">&lt;</button>
+                <span id="currentMonth">October 2024</span>
+                <button onclick="nextMonth()">&gt;</button>
+            </div>
+            <div class="calendar-grid">
+                <div class="weekdays">
+                    <div>SUN</div>
+                    <div>MON</div>
+                    <div>TUE</div>
+                    <div>WED</div>
+                    <div>THU</div>
+                    <div>FRI</div>
+                    <div>SAT</div>
+                </div>
+                <div id="calendar-dates" class="dates">
+                    <!-- Dates will be populated by JavaScript -->
+                </div>
+            </div>
+            <div class="time-slots">
+                <h3>Available Times</h3>
+                <div class="time-buttons">
+                    <button class="time-btn">11:00am</button>
+                    <button class="time-btn">11:30am</button>
+                    <button class="time-btn">12:00pm</button>
+                    <button class="time-btn">12:30pm</button>
+                    <button class="time-btn">1:00pm</button>
+                    <button class="time-btn">1:30pm</button>
+                </div>
+            </div>
+            <div class="timezone-selector">
+                <label>Time zone</label>
+                <select>
+                    <option>Africa/Cairo (9:50pm)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
 
     <div class="counselors-container">
         <a href="userDashboard.php" class="back-button">← Back to Dashboard</a>
@@ -106,5 +152,67 @@
             ?>
         </div>
     </div>
+
+<!--booking counselors script -->
+<script>
+    function showCalendar() {
+    document.getElementById('calendarPopup').style.display = 'block';
+}
+
+function closeCalendar() {
+    document.getElementById('calendarPopup').style.display = 'none';
+}
+
+function generateCalendar() {
+    const calendar = document.getElementById('calendar-dates');
+    calendar.innerHTML = '';
+    
+
+    const daysInMonth = 31;
+    const firstDay = 2; 
+    
+    //  empty cells for days before the 1st
+    for(let i = 0; i < firstDay; i++) {
+        const emptyDay = document.createElement('div');
+        calendar.appendChild(emptyDay);
+    }
+    
+    // calendar days
+    for(let day = 1; day <= daysInMonth; day++) {
+        const button = document.createElement('button');
+        button.className = 'date-btn';
+        button.textContent = day;
+        button.onclick = () => selectDate(day);
+        calendar.appendChild(button);
+    }
+}
+
+function selectDate(day) {
+    // Remove previous selection
+    document.querySelectorAll('.date-btn.selected').forEach(btn => {
+        btn.classList.remove('selected');
+    });
+    
+    // Add selection to clicked date
+    event.target.classList.add('selected');
+}
+
+function previousMonth() {
+    // Implement previous month logic
+}
+
+function nextMonth() {
+    // Implement next month logic
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    generateCalendar();
+    
+    document.querySelectorAll('.book-btn').forEach(btn => {
+        btn.onclick = showCalendar;
+    });
+});
+</script>
+
 </body>
 </html>
