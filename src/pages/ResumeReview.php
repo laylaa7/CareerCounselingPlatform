@@ -1,13 +1,11 @@
 
-
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Nav Bar with PHP</title>
-    <link rel="stylesheet" href="../../public/assets/styles/UserProfile.css"> 
-    
+    <link rel="stylesheet" href="../../public/assets/styles/ResumeReview.css"> 
+  
 </head>
 <body>
 
@@ -30,20 +28,17 @@
     
         <!-- Left Sidebar -->
         <div class="sidebar">
+       
             <!-- <img src="../../public/assets/images/BackButton.png" > -->
-            <div class="profile-pic">
-                
-                <img src="../../public/assets/images/default-avatar.png" alt="Profile Picture">
-            </div>
             <h2> Mohamed</h2>
 
             <hr>
 
             <ul class="profile-links">
-                <li><a href="#" data-target="personal-info">Personal info</a></li>
-                <li><a href="#" data-target="academic-background">Academic background</a></li>
-                <li><a href="#" data-target="resume">Resume</a></li>
-                <li><a href="#" data-target="career-interests">Career interests</a></li>
+                <li><a href="#" data-target="Book with our counselors">Book with our counselors</a></li>
+                <li><a href="#" data-target="interview guide">interview guide</a></li>
+                <li><a href="#" data-target="Discussions">Discussions</a></li>
+                
             </ul>
             <hr>
 
@@ -52,11 +47,43 @@
                 <a href="#">Log out</a>
             </div>
         </div>
+<!-- 
+        <button class="back-button"> > </button> ←  -->
 
         <!-- Main Profile Content -->
-<div class="profile-content">
-   
-</div>
+        <div class="profile-content">
+            <div class="container">
+                <main>
+                    <h1>Let us review your resume 👤</h1>
+                    <div class="button-container" id="initialView">
+                        <button class="button upload" id="quickUploadBtn"  onclick="showUploadView()">
+                            <span class="icon" aria-hidden="true">↑</span>
+                            Quick upload
+                        </button>
+                        <button class="button" onclick="redirectToResumeBuilder()">
+                            Fill out your resume from scratch
+                        </button>
+                    </div>
+                    <div class="button-container" id="uploadView">
+                        <button class="button upload" onclick="document.getElementById('fileInput').click()">
+                        <span class="icon" aria-hidden="true">↑</span>
+                        Quick upload
+                        </button>
+                        <input type="file" id="fileInput" accept=".pdf,.doc,.docx">
+                        <p id="fileUploaded" style="display: none; margin-top: 10px;"></p>
+                    </div>
+                    <div class="button-group">
+                    <button id="prev-btn" onclick="showInitialView()" disabled>←</button>
+                <button id="next-btn" disabled>→</button>
+            </div>
+                </main>
+
+            </div>
+           
+                    
+              
+        </div>
+    </div>
 
 
        
@@ -64,8 +91,11 @@
 
     </div>
 
-    <script src="../../public/assets/scripts/UserProfile.js"></script>
+    <script src="../../public/assets/scripts/ResumeReview.js"></script>
 
 </body>
 
 </html>
+
+<!-- 
+} -->
