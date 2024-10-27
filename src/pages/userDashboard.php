@@ -178,13 +178,16 @@ $connections = [
                 </div>
             </div>
             <?php endforeach; ?>
+            <div class="view-more">
+                <a href="#">View more <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
+            </div>
         </div>
 
 
 <div class="connections-box">
     <div class="connections-header">
         <h5>Counsellors Connections</h5>
-        <a href="#" class="view-all-counsellors">View all counsellors</a>
+        <a href="bookCouncelors.php" class="view-all-counsellors">View all counsellors <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
     </div>
     <div class="connections-container">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">&lt;</button>
@@ -205,9 +208,6 @@ $connections = [
             <?php endforeach; ?>
         </div>
         <button class="scroll-btn scroll-right" aria-label="Scroll right">&gt;</button>
-    </div>
-    <div class="view-all">
-        <a href="#">View all connections &gt;</a>
     </div>
 </div>
         
