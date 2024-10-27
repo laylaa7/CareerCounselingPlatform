@@ -171,7 +171,7 @@ h6 {
   background: var(--accent-color);
   font-size: 15px;
   padding: 8px 25px;
-  margin: 0 30px 0 30px;
+  margin: 0 0 0 10px;
   border-radius: 4px;
   transition: 0.3s;
   font-weight: 500;
@@ -2765,4 +2765,4 @@ section,
   font-size: 14px;
 }
 
-/* login popup*/
+

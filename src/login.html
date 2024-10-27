@@ -1,0 +1,61 @@
+<body>
+<link rel="stylesheet" href="../public/assets/styles/login.css">
+<button id="loginBtn" class="btn-getstarted flex-md-shrink-0">Login</button>
+
+<div class="login-popup">
+    <div class="popup-overlay"></div>
+    <div class="materialContainer">
+      
+      <!-- Login Form -->
+      <form action="login.php" method="POST"> <!-- Update action as needed -->
+        <div class="box">
+          <div class="title">LOGIN</div>
+          <div class="input">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+            <span class="spin"></span>
+          </div>
+          <div class="input">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+            <span class="spin"></span>
+          </div>
+          <div class="button login">
+            <button type="submit"><span>GO</span></button>
+          </div>
+          <!--<a href="#" class="pass-forgot">Forgot your password?</a>-->
+        </div>
+      </form>
+  
+      <!-- Register Form and Plus Button for toggling -->
+      <form action="register.php" method="POST"> <!-- Update action as needed -->
+        <div class="overbox">
+          <div class="material-button alt-2"><span class="shape"></span></div> <!-- Plus Button -->
+          <div class="title">REGISTER</div>
+          <div class="input">
+            <label for="regname">Username</label>
+            <input type="text" name="regname" id="regname" required>
+            <span class="spin"></span>
+          </div>
+          <div class="input">
+            <label for="regpass">Email</label>
+            <input type="email" name="regmail" id="regmail" required>
+            <span class="spin"></span>
+          </div>
+          <div class="input">
+            <label for="regpass">Password</label>
+            <input type="password" name="regpass" id="regpass" required>
+            <span class="spin"></span>
+          </div>
+          
+          <div class="button">
+            <button type="submit"><span>NEXT</span></button>
+          </div>
+        </div>
+      </form>
+  
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../public/assets/scripts/login.js"></script>
+</body>
