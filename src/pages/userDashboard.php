@@ -76,23 +76,27 @@ $connections = [
     </style>
 </head>
 <body>
-<nav class="navbar">
-        <?php include "Navbar.php"; ?>
+
+    <nav class="navbar">
+        <?php include "../../tests/Navbar.php"; ?>
     </nav>
 
 
-    <div class="dashboard-container">
+<div class="dashboard-container">
         <div class="sidebar">
+            <div class="pos-sidebar" >
             <a href="#" class="dash">Dashboard</a>
             <a href="#" class="dash2">Progress</a>
             <a href="#">Book with Counsellors</a>
             <a href="#">Interview Guide</a>
             <a href="#">Submit CV for Review</a>
             <a href="#">Discussion Forum</a>
-        </div>
+        </div></div>
 
     <main class="main-content">
-        <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['first_name']); ?>!</div>
+    <!-- <div class="scrollable-content"> -->
+
+        <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['name']); ?>!</div>
 
     <!-- article sliders -->
     <div class="slider-container">
@@ -116,7 +120,7 @@ $connections = [
     <div class="left-column">
             
         <div class="profile-completion">
-                <h5>Complete your profile</h5>
+                <h3>Complete your profile</h3>
             <div class="percentage-container">
                 <div class="percentage-bar" style="background: lightgray;">
                 <div class="percentage" style="background: #3366cc;"></div>
@@ -126,9 +130,9 @@ $connections = [
         </div>
 
         <div class="profile-box">
-                <h5>Profile</h5>
+                <h3>Profile</h3>
             <div class="profile-section">
-                    <h3>About</h3>
+                    <h4>About</h4>
             <div class="profile-item">
                 <img src="../../public/assets/images/profile.png" alt="Profile Icon">
                 <span><?php echo htmlspecialchars($_SESSION['name']); ?></span>
@@ -143,7 +147,7 @@ $connections = [
             </div>
             </div>
             <div class="profile-section">
-                <h3>Contacts</h3>
+                <h4>Contacts</h4>
                 <div class="profile-item">
                     <img src="../../public/assets/images/email.png" alt="Email Icon">
                     <span><?php echo htmlspecialchars($_SESSION['email']); ?></span>
@@ -159,7 +163,7 @@ $connections = [
     <div class="right-column">
 
         <div class="progress-box">
-            <h5>Career Development Tasks</h5>
+            <h3>Career Development Tasks</h3>
         <?php foreach ($tasks as $task): ?>
             <div class="task-item">
                 <div class="task-icon <?php echo $task['status'] === 'completed' ? 'completed' : ''; ?>">
@@ -186,8 +190,8 @@ $connections = [
 
 <div class="connections-box">
     <div class="connections-header">
-        <h5>Counsellors Connections</h5>
-        <a href="bookCouncelors.php" class="view-all-counsellors">View all counsellors <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
+        <h3>Counsellors Connections</h3>
+        <a href="bookCounselors.php" class="view-all-counsellors">View all counsellors <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
     </div>
     <div class="connections-container">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">&lt;</button>
@@ -211,12 +215,10 @@ $connections = [
     </div>
 </div>
         
-
+        </div>
 
     </div>
-
-
-</div>
+<!-- </div> -->
 </main>
 
 
