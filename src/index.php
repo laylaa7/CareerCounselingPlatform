@@ -1515,6 +1515,7 @@ mysqli_close($con);
 session_start();
 $con = mysqli_connect("localhost", "root", "", "users");
 
+
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }
