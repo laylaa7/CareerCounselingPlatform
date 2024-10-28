@@ -9,23 +9,29 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href=".\assets\images\favicon.png" rel="icon">
+  <link href=".\assets\images\apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https:\\fonts.googleapis.com" rel="preconnect">
+  <link href="https:\\fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https:\\fonts.googleapis.com\css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="public/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../public/assets/vendor/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
 
+  <link href="../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  
+  <link href="../public/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   <!-- Main CSS File -->
-  <link href="public/assets/styles/main.css" rel="stylesheet">
+  <link href="../public/assets/styles/main.css" rel="stylesheet">
+  <link rel="stylesheet" href="../public/assets/styles/login.css">
+  <style>
+        <?php include "../public/assets/styles/login.css" ?>
+  </style>
+  
 
   <!-- =======================================================
   * Template Name: FlexStart
@@ -43,7 +49,7 @@
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="assets/img/logo.png" alt="">
+        <img src="../public/assets/images/logo.png" alt="">
         <h1 class="sitename">Career Counseling</h1>
       </a>
 
@@ -106,63 +112,11 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
       
-      <a class="btn-getstarted flex-md-shrink-0" href="index.html#about">Get Started  </a>
+      <button id="loginBtn" class="btn-getstarted flex-md-shrink-0 auth-btn">Login </button>
     
-      <a href="index.html#about" class="text-link flex-md-shrink-0">Login</a>
-      
-    </div>
-  </header>
-<div class="materialContainer">
-    <div class="box">
-       <div class="title">LOGIN</div>
- 
-       <div class="input">
-          <label for="name">Username</label>
-          <input type="text" name="name" id="name">
-          <span class="spin"></span>
-       </div>
- 
-       <div class="input">
-          <label for="pass">Password</label>
-          <input type="password" name="pass" id="pass">
-          <span class="spin"></span>
-       </div>
- 
-       <div class="button login">
-          <button><span>GO</span> <i class="fa fa-check"></i></button>
-       </div>
- 
-       <a href="" class="pass-forgot">Forgot your password?</a>
-    </div>
- 
-    <div class="overbox">
-       <div class="material-button alt-2"><span class="shape"></span></div>
- 
-       <div class="title">REGISTER</div>
- 
-       <div class="input">
-          <label for="regname">Username</label>
-          <input type="text" name="regname" id="regname">
-          <span class="spin"></span>
-       </div>
- 
-       <div class="input">
-          <label for="regpass">Password</label>
-          <input type="password" name="regpass" id="regpass">
-          <span class="spin"></span>
-       </div>
- 
-       <div class="input">
-          <label for="reregpass">Repeat Password</label>
-          <input type="password" name="reregpass" id="reregpass">
-          <span class="spin"></span>
-       </div>
- 
-       <div class="button">
-          <button><span>NEXT</span></button>
-       </div>
-    </div>
- </div> 
+
+    
+      </header>
 
   <main class="main">
 
@@ -180,7 +134,7 @@
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-            <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+            <img src="../public/assets/images/hero-img.png" class="img-fluid animated" alt="">
           </div>
         </div>
       </div>
@@ -210,7 +164,7 @@
           </div>
 
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="../public/assests/images/about.jpg" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -233,7 +187,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card">
-              <img src="assets/img/values-1.png" class="img-fluid" alt="">
+              <img src="../public/assests/images/values-1.png" class="img-fluid" alt="">
               <h3>Ad cupiditate sed est odio</h3>
               <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
             </div>
@@ -241,7 +195,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
-              <img src="assets/img/values-2.png" class="img-fluid" alt="">
+              <img src="../public/assests/images/values-2.png" class="img-fluid" alt="">
               <h3>Voluptatem voluptatum alias</h3>
               <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
             </div>
@@ -249,7 +203,7 @@
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="card">
-              <img src="assets/img/values-3.png" class="img-fluid" alt="">
+              <img src="../public/assests/images/values-3.png" class="img-fluid" alt="">
               <h3>Fugit cupiditate alias nobis.</h3>
               <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
             </div>
@@ -328,7 +282,7 @@
         <div class="row gy-5">
 
           <div class="col-xl-6" data-aos="zoom-out" data-aos-delay="100">
-            <img src="assets/img/features.png" class="img-fluid" alt="">
+            <img src=".\assests\images\features.png" class="img-fluid" alt="">
           </div>
 
           <div class="col-xl-6 d-flex">
@@ -449,7 +403,7 @@
           </div>
 
           <div class="col-xl-5 d-flex align-items-center order-1 order-xl-2" data-aos="fade-up" data-aos-delay="100">
-            <img src="assets/img/alt-features.png" class="img-fluid" alt="">
+            <img src=".\assests\images\alt-features.png" class="img-fluid" alt="">
           </div>
 
         </div>
@@ -726,16 +680,16 @@
             <li data-filter=".filter-branding">Branding</li>
             <li data-filter=".filter-books">Books</li>
           </ul><!-- End Portfolio Filters -->
-
+         
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\app-1.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>App 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\app-1.jpg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -743,11 +697,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\product-1.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Product 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\product-1.jpg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -755,11 +709,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\branding-1.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Branding 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\branding-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -767,11 +721,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\books-1.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Books 1</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -779,11 +733,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\app-2.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>App 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\app-2.jpg" title="App 2" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -791,11 +745,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\product-2.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Product 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\product-2.jpg" title="Product 2" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -803,11 +757,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\branding-2.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Branding 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\branding-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -815,11 +769,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
+                <img src=".\assests\images\portfolio\books-2.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Books 2</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href=".\assests\images\portfolio\books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -827,11 +781,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/portfolio/app-3.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>App 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="public/assets/images/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -839,11 +793,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/portfolio/product-3.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Product 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="public/assets/images/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -851,11 +805,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/portfolio/branding-3.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Branding 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="public/assets/images/portfolio/branding-3.jpg" title="Branding 2" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -863,11 +817,11 @@
 
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-books">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/portfolio/books-3.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Books 3</h4>
                   <p>Lorem ipsum, dolor sit amet consectetur</p>
-                  <a href="assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="public/assets/images/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div>
@@ -929,7 +883,7 @@
                   Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                  <img src="public/assets/images/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
                   <h3>Saul Goodman</h3>
                   <h4>Ceo &amp; Founder</h4>
                 </div>
@@ -945,7 +899,7 @@
                   Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                  <img src="public/assets/images/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
                   <h3>Sara Wilsson</h3>
                   <h4>Designer</h4>
                 </div>
@@ -961,7 +915,7 @@
                   Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                  <img src="public/assets/images/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
                   <h3>Jena Karlis</h3>
                   <h4>Store Owner</h4>
                 </div>
@@ -977,7 +931,7 @@
                   Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                  <img src="public/assets/images/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
                   <h3>Matt Brandon</h3>
                   <h4>Freelancer</h4>
                 </div>
@@ -993,7 +947,7 @@
                   Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
                 </p>
                 <div class="profile mt-auto">
-                  <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                  <img src="public/assets/images/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
                   <h3>John Larson</h3>
                   <h4>Entrepreneur</h4>
                 </div>
@@ -1024,7 +978,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/team/team-1.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -1043,7 +997,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/team/team-2.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -1062,7 +1016,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/team/team-3.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -1081,7 +1035,7 @@
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
             <div class="team-member">
               <div class="member-img">
-                <img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/team/team-4.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -1149,14 +1103,14 @@
             }
           </script>
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-8.png" class="img-fluid" alt=""></div>
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -1182,7 +1136,7 @@
             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
 
               <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-1.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/blog/blog-1.jpg" class="img-fluid" alt="">
                 <span class="post-date">December 12</span>
               </div>
 
@@ -1213,7 +1167,7 @@
             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
 
               <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-2.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/blog/blog-2.jpg" class="img-fluid" alt="">
                 <span class="post-date">July 17</span>
               </div>
 
@@ -1244,7 +1198,7 @@
             <div class="post-item position-relative h-100">
 
               <div class="post-img position-relative overflow-hidden">
-                <img src="assets/img/blog/blog-3.jpg" class="img-fluid" alt="">
+                <img src="public/assets/images/blog/blog-3.jpg" class="img-fluid" alt="">
                 <span class="post-date">September 05</span>
               </div>
 
@@ -1457,17 +1411,141 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../public/assets/vendor/php-email-form/validate.js"></script>
+<script src="../public/assets/vendor/aos/aos.js"></script>
+<script src="../public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="../public/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="../public/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+<script src="../public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="../public/assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+<!-- Main JS File -->
+<script src="../public/assets/scripts/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../public/assets/scripts/login.js"></script>
+
+<div id="loginPopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2 class="login-title">Login</h2>
+        <form id="loginForm" action="index.php" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" class="input" name="username" required><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" class="input" name="password" required><br><br>
+            <input type="submit" value="Login">
+            <span class="signup-link">Don't have an account? <a href="#" id="signupLink">Sign Up</a></span>
+        </form>
+    </div>
+</div>
+
+<div id="signupPopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2 class="login-title">Sign Up</h2>
+        <form id="signupForm" action="index.php" method="POST">
+            <label for="signupUsername">Username:</label>
+            <input type="text" id="signupUsername" class="input" name="signupUsername" required><br><br>
+            <label for="signupEmail">Email:</label>
+            <input type="email" id="signupEmail" class="input" name="signupEmail" required><br><br>
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" class="input" name="signupPassword" required><br><br>
+            <input type="submit" value="Sign Up">
+            <span class="login-link">Already have an account? <a href="#" id="loginLink">Login</a></span>
+        </form>
+    </div>
+</div>
+
+            <div id="otpPopup" class="popup" style="display: none;">
+                <div class="popup-content">
+                    <span class="close">&times;</span>
+                    <h2 class="login-title">Verify OTP</h2>
+                    <form id="otpForm" action="/verify-otp" method="post">
+                        <label for="otp">OTP:</label>
+                        <input id="otp" name="otp" type="text" placeholder="Enter OTP" required />
+                        <input id="signupemail" name="signupemail" type="hidden" value="user@example.com" /> <!-- Add hidden email field -->
+                        <span id="otp_error" class="error"></span>
+                        <button class="btnmoka" type="submit" id="verify-otp-bt">Verify OTP</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+//LOGIN PHPP
+
+<?php
+session_start();
+$con = mysqli_connect("localhost", "root", "", "users");
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($con, $_POST["username"]);
+    $password = $_POST["password"]; 
+
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        if (password_verify($password, $row["Password"])) {
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["Email"] = $row["Email"];
+            header("Location: index.php?login=success");
+            exit();
+        } else {
+            echo "Invalid username or password";
+        }
+    } else {
+        echo "Invalid username or password";
+    }
+}
+
+mysqli_close($con);
+?>
+ 
+
+ //SIGN UPPPPPP PHPPP
+ <?php
+session_start();
+$con = mysqli_connect("localhost", "root", "", "users");
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($con, $_POST["signupUsername"]);
+    $email = mysqli_real_escape_string($con, $_POST["signupEmail"]);
+    $password = mysqli_real_escape_string($con, $_POST["signupPassword"]);
+
+    // Check if username or email already exists
+    $check_sql = "SELECT * FROM users WHERE username = '$username' OR Email = '$email'";
+    $check_result = mysqli_query($con, $check_sql);
+
+    if (mysqli_num_rows($check_result) > 0) {
+        echo "Username or email already exists";
+    } else {
+        $sql = "INSERT INTO users (username, Email, Password) VALUES ('$username', '$email', '$password')";
+        
+        if (mysqli_query($con, $sql)) {
+            $_SESSION["username"] = $username;
+            $_SESSION["Email"] = $email;
+            $_SESSION["Password"] = $password;
+            
+            header("Location: index.php?signup=success");
+            exit();
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+    }
+}
+?>
 
 </body>
 
