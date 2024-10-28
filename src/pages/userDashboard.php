@@ -96,13 +96,13 @@ $connections = [
 
     <!-- article sliders -->
     <div class="slider-container">
-            <button class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</button>
+            <span class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</span>
         <div class="slides">
-            <div class="slide banner"> <img src="../../public/assets/images/article1.png" alt="article1"></div>
-            <div class="slide banner"> <img src="../../public/assets/images/article2.png" alt="article2"></div>
-            <div class="slide banner"> <img src="../../public/assets/images/article3.png" alt="article3"></div>
+            <div class="slide banner">Develop strategies for achieving their goals</div>
+            <div class="slide banner">Build a satisfying and successful career</div>
+            <div class="slide banner">Navigate the job market</div>
         </div>
-        <button class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</button>
+        <span class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</span>
         <div class="dots-container">
             <span class="dot" onclick="currentDiv(1)"></span>
             <span class="dot" onclick="currentDiv(2)"></span>

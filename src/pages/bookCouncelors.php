@@ -68,11 +68,11 @@
             <?php
             $counselors = array(
                 array(
-                    "name" => "Amanda Harvey",
-                    "email" => "amanda@site.com",
+                    "name" => "Salma Khalil",
+                    "email" => "salma@gmail.com",
                     "position" => "Director",
                     "department" => "Human resources",
-                    "location" => "United Kingdom",
+                    "location" => "Germany",
                     "status" => "active",
                     "completion" => "72",
                     "role" => "Employee",
