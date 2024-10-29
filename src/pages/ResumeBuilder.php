@@ -1,3 +1,24 @@
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root"; // Update with your DB username
+$password = ""; // Update with your DB password
+$dbname = "trial#1";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch skills
+$sql = "SELECT skill_name, category, proficiency_level FROM skills";
+$result = $conn->query($sql);
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,10 +79,6 @@
                     <input type="text" id="School-name" required>
                 </div>
                 <div class="form-group">
-                    <label for="School-location">Schoolname *</label>
-                    <input type="text" id="School-name" required>
-                </div>
-                <div class="form-group">
                     <label for="Degree">Degree</label>
                     <input type="text" id="Degree">
                 </div>
@@ -107,9 +124,42 @@
                 </div>
             </div>
 
-            <div id="skills" class="section">
+            <div id="skills" class="section skills-container">
                 <h1>Skills</h1>
                 <!-- Add skills fields here -->
+                <div class="skill-input-container">
+            <input type="text" id="skill-input" placeholder="Type a skill...">
+            <button id="add-skill-btn" class="add-btn">Add Skill</button>
+        </div>
+
+        <!-- Predefined skills dropdown -->
+        <div class="predefined-skills">
+            <h3>Or choose from common skills:</h3>
+            <div id="predefined-skills-list">
+            <!-- <?php
+            // Generate HTML for each student
+            // if ($result->num_rows > 0) {
+            //     while($skills = $result->fetch_assoc()) {
+            //         echo '
+            //         <div class="student-name">' . htmlspecialchars($skills['skill_name']) . '</div>
+            //                 <div class="student-description">' . htmlspecialchars($skills['category']) . '</div>';
+            //             }
+            //         } else {
+            //             echo "<p>No students found.</p>";
+            //         }
+            //         $conn->close();
+                    ?> -->
+                <!-- Will be populated from database -->
+            </div>
+        </div>
+        
+        <!-- Selected skills display -->
+        <div class="selected-skills">
+            <h3>Your Skills:</h3>
+            <div id="selected-skills-list" class="skills-list">
+                <!-- Selected skills will appear here -->
+            </div>
+        </div>
             </div>
             <div id="overview" class="section">
                 <h1>Overview</h1>

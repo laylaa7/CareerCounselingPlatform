@@ -72,9 +72,9 @@
                         <input type="file" id="fileInput" accept=".pdf,.doc,.docx">
                         <p id="fileUploaded" style="display: none; margin-top: 10px;"></p>
                     </div>
-                    <div class="button-group">
-                    <button id="prev-btn" onclick="showInitialView()" disabled>←</button>
-                <button id="next-btn" disabled>→</button>
+                    <div class="navigation-buttons ">
+                    <button  class="nav-button" id="prev-btn" onclick="showInitialView()" disabled>←</button>
+                    <button class="nav-button" id="next-btn" onclick="reviewconfirmation()" disabled>send to review</button>  
             </div>
                 </main>
 
@@ -98,4 +98,6 @@
 </html>
 
 <!-- 
+
+→
 } -->
