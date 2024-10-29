@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Career Counselors</title>
     <style>
-        <?php include "../../public/assets/styles/bookCouncelors.css"; ?>
+        <?php include "../../public/assets/styles/bookCounselors.css"; ?>
     </style>
 </head>
 <body class="body">
@@ -26,47 +26,65 @@ $errorMessage = "";
 
 // Handle Add or Update Counselor
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['add_counselor'])) {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $userRole = $_POST['userRole'];
+    $username = trim($_POST['username']);
+    $email = trim($_POST['email']);
+    $userRole = trim($_POST['userRole']);
 
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->bind_param("s", $username);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        // Prepare the SQL statement using placeholders
-        if ($result->num_rows > 0) {
-            // Username already exists
-            $errorMessage = "Username already exists. Please choose a different username.";
+    if (isset($_POST['add_user'])) {
+        // Validate input fields
+        if (empty($username) || empty($email) || empty($userRole)) {
+            $errorMessage = "All fields are required.";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errorMessage = "Please enter a valid email address.";
         } else {
-            // Prepare the SQL statement using placeholders
-            $stmt = $conn->prepare("INSERT INTO users (username, Email, userRole) VALUES (?, ?, ?)");
-            // Bind parameters: s = string
-            $stmt->bind_param("sss", $username, $email, $userRole);
+            // Check if username already exists
+            try {
+                $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+                $stmt->bind_param("s", $username);
+                $stmt->execute();
+                $result = $stmt->get_result();
 
-            // Execute the statement
-            if ($stmt->execute()) {
-                // Optional: you can echo a success message here
-            } else {
-                // Optional: log the error instead of displaying it
+                if ($result->num_rows > 0) {
+                    $errorMessage = "The username already exists. Please choose a different one.";
+                } else {
+                    // Insert new user
+                    $stmt = $conn->prepare("INSERT INTO users (username, email, userRole) VALUES (?, ?, ?)");
+                    $stmt->bind_param("sss", $username, $email, $userRole);
+                    $stmt->execute();
+                    $successMessage = "User added successfully!";
+                }
+                $stmt->close();
+            } catch (mysqli_sql_exception $e) {
+                $errorMessage = "Error adding user: " . $e->getMessage();
             }
         }
-
-        $stmt->close();
-    } elseif (isset($_POST['edit_counselor'])) {
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $userRole = $_POST['userRole'];
-
-        // SQL statement to update counselor using unique username
-        $sql = "UPDATE users SET email='$email', userRole='$userRole' WHERE username='$username'";
-
-        // Execute query
-        if (mysqli_query($conn, $sql)) {
-            // Optional: echo a success message here
+    } elseif (isset($_POST['edit_user'])) {
+        $original_username = trim($_POST['original_username']);
+        
+        if (empty($username) || empty($email) || empty($userRole)) {
+            $errorMessage = "All fields are required.";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errorMessage = "Please enter a valid email address.";
         } else {
-            echo "Error updating counselor: " . mysqli_error($conn);
+            // Check if new username already exists
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND username != ?");
+            $stmt->bind_param("ss", $username, $original_username);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $errorMessage = "The username already exists. Please choose a different one.";
+            } else {
+                // Update user information
+                $stmt = $conn->prepare("UPDATE users SET username=?, email=?, userRole=? WHERE username=?");
+                $stmt->bind_param("ssss", $username, $email, $userRole, $original_username);
+                if ($stmt->execute()) {
+                    $successMessage = "User updated successfully!";
+                } else {
+                    $errorMessage = "Error updating user: " . $stmt->error;
+                }
+                $stmt->close();
+            }
         }
     }
 }
@@ -98,12 +116,14 @@ if ($result->num_rows > 0) {
     <!-- Add/Edit Form -->
     <form method="POST" class="counselor-form">
         <input type="hidden" name="id" id="counselorId">
+        <input type="hidden" name="original_username" id="originalUsername" value="">
         <input type="text" name="username" id="username" placeholder="Username" required>
         <input type="email" name="email" id="email" placeholder="Email" required>
         <input type="text" name="userRole" id="userRole" placeholder="User Role" required>
 
-        <button type="submit" name="add_counselor" class="book-btn add-btn">Add</button>
-        <button type="submit" name="edit_counselor" class="book-btn edit-btn" style="display:none;">Done</button> <!-- Initially hidden -->
+        <button type="submit" name="add_user" class="book-btn add-btn">Add</button>
+        <button type="submit" name="edit_user" class="book-btn edit-btn" style="display:none;">Done</button>
+
     </form>
 
     <!-- Display Counselors -->
@@ -126,10 +146,31 @@ if ($result->num_rows > 0) {
 </div>
 
 <script>
+function validateForm() {
+    let username = document.getElementById('username').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let userRole = document.getElementById('userRole').value.trim();
+
+    if (!username || !email || !userRole) {
+        alert("All fields are required.");
+        return false;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    return true;
+}
+
+
 function editCounselor(counselor) {
     document.getElementById('username').value = counselor.username;
     document.getElementById('email').value = counselor.Email;
     document.getElementById('userRole').value = counselor.userRole;
+    document.getElementById('originalUsername').value = counselor.username;
 
     // Change button visibility and labels
     document.querySelector('.add-btn').style.display = 'none';
