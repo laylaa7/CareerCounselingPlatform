@@ -73,7 +73,7 @@ body {
 .slider-container {
     position: relative;
     overflow: hidden;
-    background-color: #0c2f74b1; 
+    background-color: white; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -84,15 +84,17 @@ body {
     margin-bottom: 70px;
     margin-top: 35px;
     margin-left: 125px;
+
 }
 .slides {
     display: flex;
-    transition: transform 10s ease;
-}
-.slide {
+    transition: transform 10s ease;   
     font-size: 20px;
     color: white;
     text-align: center;
+    width: 100%;
+}
+.slide img{
     width: 100%;
 }
 .arrow {
@@ -100,7 +102,7 @@ body {
     top: 50%;
     transform: translateY(-50%);
     border: none;
-    color: black;
+    color: white;
     font-size: 24px;
     cursor: pointer;
     padding: 10px;

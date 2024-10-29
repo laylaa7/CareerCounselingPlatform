@@ -102,10 +102,9 @@ $connections = [
     <div class="slider-container">
             <span class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</span>
         <div class="slides">
-            <div class="slide banner">Develop strategies for achieving their goals</div>
-            <!--  <img src="../../public/assets/styles/article4.png" alt="art5">-->
-            <div class="slide banner">Build a satisfying and successful career</div>
-            <div class="slide banner">Navigate the job market</div>
+            <div class="slide banner"><img src="../../public/assets/images/article1.png" alt="art1"></div>
+                <div class="slide banner"><img src="../../public/assets/images/article2.png" alt="art2"></div>
+            <div class="slide banner"><img src="../../public/assets/images/article3.png" alt="art3"></div>
         </div>
         <span class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</span>
         <div class="dots-container">
