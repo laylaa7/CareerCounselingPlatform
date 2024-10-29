@@ -188,7 +188,16 @@ body {
     font-weight: 600;
     color: #1a1a1a;
 }
-
+.back-button {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: #4285F4;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 20px;
+}
 /* Cool Input Fields */
 .coolinput {
     display: flex;

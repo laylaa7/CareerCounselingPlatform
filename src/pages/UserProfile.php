@@ -22,7 +22,7 @@
     </nav> -->
     <div>
     <nav class="navbar">
-        <?php include "Navbar.php"; ?>
+        <?php include "../../tests/Navbar.php"; ?>
     </nav>
 </div>
     <!-- Main content of the page -->
@@ -30,12 +30,13 @@
     
         <!-- Left Sidebar -->
         <div class="sidebar">
+        <button class="back-button"> <a href="userDashboard.php"> ← </a></button>  
             <!-- <img src="../../public/assets/images/BackButton.png" > -->
             <div class="profile-pic">
                 
                 <img src="../../public/assets/images/default-avatar.png" alt="Profile Picture">
             </div>
-            <h2> Mohamed</h2>
+            <h2> Nour B</h2>
 
             <hr>
 

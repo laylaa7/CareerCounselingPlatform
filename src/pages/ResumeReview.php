@@ -20,23 +20,24 @@
     </nav> -->
     <div>
     <nav class="navbar">
-        <?php include "Navbar.php"; ?>
+        <?php include "../../tests/Navbar.php"; ?>
     </nav>
 </div>
     <!-- Main content of the page -->
+    
     <div class="profile-container">
     
         <!-- Left Sidebar -->
         <div class="sidebar">
-       
+        <button class="back-button"> <a href="userDashboard.php"> ← </a></button>  
             <!-- <img src="../../public/assets/images/BackButton.png" > -->
-            <h2> Mohamed</h2>
+            <h2> Nour B</h2>
 
             <hr>
 
             <ul class="profile-links">
-                <li><a href="#" data-target="Book with our counselors">Book with our counselors</a></li>
-                <li><a href="#" data-target="interview guide">interview guide</a></li>
+                <li><a href="bookCounselors.php" data-target="Book with our counselors">Book with our counselors</a></li>
+                <li><a href="InterviewSimulator.php" data-target="interview guide">interview guide</a></li>
                 <li><a href="#" data-target="Discussions">Discussions</a></li>
                 
             </ul>

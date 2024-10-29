@@ -31,7 +31,7 @@ $result = $conn->query($sql);
 <header>
     <div>
     <nav class="navbar">
-        <?php include "Navbar.php"; ?>
+        <?php include "../../tests/Navbar.php"; ?>
     </nav>
 </div>
     </header>

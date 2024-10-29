@@ -35,7 +35,7 @@ nextBtn.addEventListener('click', () => {
             updateSection(currentSectionIndex + 1);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
-            alert('Form submitted!');
+            alert('Cv downloaded');
         }
     } else {
         const firstInvalidField = document.querySelector('.section.active .invalid');

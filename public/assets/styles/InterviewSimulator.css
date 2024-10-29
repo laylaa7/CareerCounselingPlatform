@@ -13,6 +13,7 @@ body {
 
 .profile-container {
     display: flex;
+    flex-direction: row;
     min-height: calc(100vh - 60px); /* Adjust based on navbar height */
     margin-top: 60px; /* Adjust based on navbar height */
 }
@@ -83,24 +84,23 @@ body {
 .progress {
     display: flex;
     align-items: center;
-   
     margin-bottom: 1rem;
     color: #666;
-    gap: 1rem; /* Add space between elements */
+    gap: 1rem;
 }
 
 .progress-bar {
-    display: block; /* Show the progress bar */
-    width: 200px; /* Set a fixed width */
+    display: block;
+    width: 200px;
     height: 4px;
     background-color: #e0e0e0;
     border-radius: 2px;
-    overflow: hidden; /* Ensure the fill stays within */
+    overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
-    width: 20%; /* Initial width for first question */
+    width: 20%;
     background-color: #0a66c2;
     border-radius: 2px;
     transition: width 0.3s ease;
@@ -151,18 +151,62 @@ body {
     cursor: not-allowed;
 }
 
-@media (max-width: 768px) {
+/* Responsive adjustments */
+@media (max-width: 1024px) {
     .profile-container {
         flex-direction: column;
     }
 
     .sidebar {
         width: 100%;
+        padding: 10px;
         border-right: none;
         border-bottom: 1px solid #e0e0e0;
     }
 
     .Interview-content {
         padding: 1rem;
+    }
+
+    .container h1 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .progress-bar {
+        width: 150px;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .question {
+        font-size: 1rem;
+    }
+
+    .answer-input {
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        display: none; /* Hide sidebar on very small screens */
+    }
+
+    .Interview-content {
+        padding: 1rem;
+    }
+
+    .next {
+        width: 100%;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .progress-bar {
+        width: 100%;
     }
 }

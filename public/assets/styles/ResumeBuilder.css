@@ -19,7 +19,7 @@ body, html {
     padding: 20px;
     position: fixed;
     left: 0;
-    top: 90px; /* Position below the header */
+    top: 70px; /* Position below the header */
     height: calc(100% - 40px); /* Full height minus the header height */
     overflow-y: auto; /* Enable scrolling for the sidebar if content exceeds height */
     box-sizing: border-box;

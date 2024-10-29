@@ -171,7 +171,7 @@ session_start();
     <div class="left-nav-section ">
         <div class="logo">
             <span class="logo-icon">☰</span>
-            Career Counseling
+            Compass
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
@@ -188,7 +188,7 @@ session_start();
             <span class="dropdown-arrow">▼</span>
             <div class="dropdown-content">
                 <a href="../../src/pages/UserProfile.php">Edit Profile</a>
-                <a href="logout.php" id="logout-link">Log Out</a>
+                <a id="logout-link" >Log Out</a>
             </div>
         </div>
     </div>
@@ -225,7 +225,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Logout confirmation
     document.querySelector('#logout-link')?.addEventListener('click', function(e) {
         if (confirm('Are you sure you want to log out?')) {
-            return true;
+             
+             return window.location.href = '../index.php';
         }
         e.preventDefault();
         return false;

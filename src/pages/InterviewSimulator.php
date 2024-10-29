@@ -10,17 +10,19 @@
 <body>
 <div>
     <nav class="navbar">
-        <?php include "Navbar.php"; ?>
+        <?php include "../../tests/Navbar.php"; ?>
     </nav>
 </div>
     <!-- Main content of the page -->
     <div class="profile-container">
+        
         <div class="sidebar">
-            <h2>Mohamed</h2>
+        <button class="back-button"> <a href="userDashboard.php"> ← </a></button>  
+            <h2>Nour B</h2>
             <hr>
             <ul class="profile-links">
-                <li><a href="#" data-target="Book with our counselors">Book with our counselors</a></li>
-                <li><a href="#" data-target="interview guide">interview guide</a></li>
+                <li><a href="bookCounselors.php" data-target="Book with our counselors">Book with our counselors</a></li>
+                <li><a href="ResumeReview.php" data-target="Resume guide">Resume Guide</a></li>
                 <li><a href="#" data-target="Discussions">Discussions</a></li>
             </ul>
             <hr>
