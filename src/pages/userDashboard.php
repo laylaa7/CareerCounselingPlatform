@@ -12,7 +12,7 @@ $_SESSION['phone'] = isset($_POST['phone']) ? $_POST['phone'] : '+1 (609) 972-22
 $tasks = [
     [
         'icon' => '1',
-        'title' => 'Complete Career Assessment',
+        'title' => 'CV Assessment',
         'description' => 'Your Psychometric Assessment is yet to be completed. Head over now to get one step ahead in your career planning journey',
         'status' => 'pending'
     ],
@@ -24,8 +24,8 @@ $tasks = [
     ],
     [
         'icon' => '3',
-        'title' => 'Virtual Internship Program',
-        'description' => 'Take multiple careers for a test-drive and understand the inner workings of each profession',
+        'title' => 'Interview Simulation Program',
+        'description' => 'Take multiple interviews with professtonal counselor and understand the inner workings of recruitment progress',
         'status' => 'pending'
     ],
     [
@@ -183,9 +183,9 @@ $connections = [
                 </div>
             </div>
             <?php endforeach; ?>
-            <div class="view-more">
+            <!-- <div class="view-more">
                 <a href="#">View more <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
-            </div>
+            </div> -->
         </div>
 
 

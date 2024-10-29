@@ -22,7 +22,7 @@ session_start();
         height: 60px;
         z-index: 1000;
     }
-    .left-section {
+    .left-nav-section {
         display: flex;
         align-items: center;
         gap: 2rem;
@@ -69,7 +69,7 @@ session_start();
         border-color: #3949ab;
         background-color: white;
     }
-    .profile-section {
+    .profile-nav-section {
         display: flex;
         align-items: center;
         justify-content:center;
@@ -79,13 +79,11 @@ session_start();
         padding: 0;
         gap: 1rem;
     }
-    .profile-img {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        object-fit: cover;
+    .dropdown img {
+        width: 35px;
+        height: 35px;
     }
-    .profile-name {
+    .profile-nav-name {
         margin-right: 0.5rem;
     }
     .dropdown {
@@ -170,7 +168,7 @@ session_start();
 </style>
 
 <nav class="navbar">
-    <div class="left-section">
+    <div class="left-nav-section ">
         <div class="logo">
             <span class="logo-icon">☰</span>
             Career Counseling
@@ -183,10 +181,10 @@ session_start();
         </ul>
     </div>
     
-    <div class="profile-section">
-        <span class="profile-name"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
+    <div class="profile-nav-section">
+        <span class="profile-nav-name"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
         <div class="dropdown" id="profile-dropdown">
-            <img src="<?php echo htmlspecialchars($_SESSION['user']['profile_image'] ?? '../../public/assets/images/profile.png'); ?>" alt="Profile" class="profile-img">
+            <img src="../../public/assets/images/profile.png" alt="Profile" class="profile-img">
             <span class="dropdown-arrow">▼</span>
             <div class="dropdown-content">
                 <a href="../../src/pages/UserProfile.php">Edit Profile</a>
