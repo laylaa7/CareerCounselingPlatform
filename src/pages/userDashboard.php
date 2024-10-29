@@ -103,6 +103,7 @@ $connections = [
             <span class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</span>
         <div class="slides">
             <div class="slide banner">Develop strategies for achieving their goals</div>
+            <!--  <img src="../../public/assets/styles/article4.png" alt="art5">-->
             <div class="slide banner">Build a satisfying and successful career</div>
             <div class="slide banner">Navigate the job market</div>
         </div>
