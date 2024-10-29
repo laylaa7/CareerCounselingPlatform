@@ -32,21 +32,25 @@ const totalQuestionsSpan = document.getElementById('total-questions');
 function updateQuestion() {
     const question = questions[currentQuestionIndex];
     questionText.textContent = question.question;
-    
-    // Add overview if it exists
+
+    // Remove existing overview
     const existingOverview = document.querySelector('.overview');
     if (existingOverview) {
         existingOverview.remove();
     }
-    
+
+    // Add new overview
     const overview = document.createElement('div');
     overview.className = 'overview';
     overview.textContent = question.overview;
     document.querySelector('.question-container').appendChild(overview);
 
-    // Update progress
+    // Calculate and set progress width
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
     progressFill.style.width = `${progress}%`;
+    console.log(`Progress: ${progress}%`); // Debugging line to confirm progress
+
+    // Update question number display
     currentQuestionSpan.textContent = currentQuestionIndex + 1;
     totalQuestionsSpan.textContent = questions.length;
 
@@ -54,9 +58,7 @@ function updateQuestion() {
     answerInput.value = '';
 
     // Update button text for last question
-    if (currentQuestionIndex === questions.length - 1) {
-        nextButton.textContent = 'Finish';
-    }
+    nextButton.textContent = currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next Question';
 }
 
 nextButton.addEventListener('click', () => {
