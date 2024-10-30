@@ -12,7 +12,7 @@
 		<a href="<?php echo WEB_ROOT; ?>views/?v=USERS"><i class="fa fa-users"></i><span>Counselor List</span></a>
 	</li>
 	<li class="treeview"> 
-		<a href="<?php echo WEB_ROOT; ?>views/?v=USERS"><i class="fa fa-users"></i><span>Counselor List</span></a>
+		<a href="<?php echo WEB_ROOT; ?>../src/pages/Interviewpreview.php"><i class="fa fa-users"></i><span>Interview Preview</span></a>
 	</li>
 	<?php 
 	$type = $_SESSION['calendar_fd_user']['type'];
