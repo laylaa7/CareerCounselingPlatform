@@ -188,7 +188,16 @@ body {
     font-weight: 600;
     color: #1a1a1a;
 }
-
+.back-button {
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: #4285F4;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 20px;
+}
 /* Cool Input Fields */
 .coolinput {
     display: flex;
@@ -210,6 +219,13 @@ body {
 }
 
 .coolinput input {
+    padding: 11px 10px;
+    font-size: 0.75rem;
+    border: 2px solid #395FCF;
+    border-radius: 5px;
+    width: 100%;
+}
+.coolinput select{
     padding: 11px 10px;
     font-size: 0.75rem;
     border: 2px solid #395FCF;
@@ -342,9 +358,9 @@ hr {
 .info-content button {
     font-family: inherit;
     font-size: 10px;
-    background: #395FCF;
+    background:#fff ;
     color: #395FCF;
-    fill: rgb(255,255,255);
+    fill: #395FCF;
     padding: 0.7em 1em;
     padding-left: 0.9em;
     display: flex;
@@ -390,4 +406,13 @@ hr {
     transform: scale(0.95);
   }
   
+
+  .coolinput.error input {
+    border: 2px solid red;
+}
+
+.coolinput.error label {
+    color: red;
+}
+
  

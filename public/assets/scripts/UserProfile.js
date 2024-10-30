@@ -20,16 +20,21 @@ console.log("JavaScript file is loaded!");
 const userData = {
     'personal-info': {
         name: 'Layla ',
-        email: 'layla.@example.com',
-        phone: '(555) 123-4567',
+        email: 'layla@gmail.com',
+        phone: '+201128300501',
         birthdate: '1990-05-15',
-        location: 'New York, NY'
+        location: 'Cairo, NY'
     },
     'academic-background': {
         degree: 'Bachelor of Science',
         major: 'Computer Science',
         university: 'Tech University',
         graduationYear: '2012'
+
+    },
+    'resume': {
+        
+        
     }
 };
 
@@ -84,11 +89,189 @@ function toggleEditMode(infoContent, editContent) {
 
 function saveUserData(sectionId, infoContent, editContent) {
     const inputs = editContent.querySelectorAll('input');
+    let valid = true; // Initialize a variable to track validation status
+
+    // Clear previous error styles
     inputs.forEach(input => {
-        userData[sectionId][input.name] = input.value;
+        input.parentElement.classList.remove('error');
     });
-    displayUserData(sectionId, infoContent);
-    toggleEditMode(infoContent, editContent);
+
+    // Iterate through each input field to validate
+    inputs.forEach(input => {
+        const value = input.value.trim();
+        const name = input.name;
+
+        // Check for empty values
+        if (!value) {
+            valid = false;
+            input.parentElement.classList.add('error');
+        }
+
+        // Email validation
+        if (name === 'email') {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(value)) {
+                valid = false;
+                input.parentElement.classList.add('error');
+            }
+        }
+
+        // Phone validation
+        if (name === 'phone') {
+            const phonePattern = /^\+201[0-9]{9}$/; // Must start with +20 and followed by 10 digits
+            if (!phonePattern.test(value)) {
+                valid = false;
+                input.parentElement.classList.add('error');
+            }
+        }
+
+        // Birthdate validation
+        if (name === 'birthdate') {
+            const birthdatePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+            if (!birthdatePattern.test(value)) {
+                valid = false; 
+                input.parentElement.classList.add('error'); // Highlight if the format is incorrect
+            } else {
+                const date = new Date(value);
+                const today = new Date();
+
+                // Ensure the date is valid and not in the future
+                if (isNaN(date.getTime()) || date > today) {
+                    valid = false; // Highlight if the date is invalid or in the future
+                    input.parentElement.classList.add('error'); 
+                }
+            }
+        }
+    });
+
+    // If valid, save the data and toggle to info mode
+    if (valid) {
+        inputs.forEach(input => {
+            userData[sectionId][input.name] = input.value;
+        });
+        displayUserData(sectionId, infoContent);
+        toggleEditMode(infoContent, editContent);
+    } else {
+        showValidationAlert(); // Call function to show alert
+    }
+}
+
+let alertShown = false; // Track if alert has been shown
+
+function showValidationAlert() {
+    if (!alertShown) {
+        alert("Validation failed. Please check your inputs.");
+        alertShown = true; // Set flag to true to avoid repeating
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initForms);
+
+// Form validation on submit
+document.addEventListener("DOMContentLoaded", function () {
+    function validateForm(event) {
+        event.preventDefault(); // Prevent form submission
+        let alertShown = false; // Initialize alertShown for this call
+    
+        const form = event.target; // Use the target of the event to get the form
+        if (!form) {
+            console.error('Form not found');
+            return; // Exit if form not found
+        }
+    
+        const inputs = form.querySelectorAll('.coolinput input');
+        let valid = true;
+    
+        // Clear previous error styles
+        inputs.forEach(input => {
+            input.parentElement.classList.remove('error');
+        });
+    
+        // Iterate through each input field
+        inputs.forEach(input => {
+            const value = input.value.trim();
+            const name = input.name;
+    
+            // Check for empty values
+            if (!value) {
+                valid = false;
+                input.parentElement.classList.add('error');
+            }
+    
+            // Email validation
+            if (name === 'email') {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(value)) {
+                    valid = false;
+                    input.parentElement.classList.add('error');
+                }
+            }
+    
+            // Phone validation
+            if (name === 'phone') {
+                const phonePattern = /^\+201[0-9]{9}$/; // Must start with +20 and followed by 10 digits
+                if (!phonePattern.test(value)) {
+                    valid = false;
+                    input.parentElement.classList.add('error');
+                }
+            }
+    
+            // Birthdate validation
+            if (name === 'birthdate') {
+                const birthdatePattern = /^\d{4}-\d{2}-\d{2}$/;
+
+                if (!birthdatePattern.test(value)) {
+                    valid = false; 
+                    input.parentElement.classList.add('error'); // Highlight if the format is incorrect
+                } else {
+                    const date = new Date(value);
+                    const today = new Date();
+
+                    // Ensure the date is valid and not in the future
+                    if (isNaN(date.getTime()) || date > today) {
+                        valid = false; // Highlight if the date is invalid or in the future
+                        input.parentElement.classList.add('error'); 
+                    }
+                }
+            }
+        });
+    
+        // If all fields are valid, submit the form
+        if (valid) {
+            console.log("Form submitted!");
+            // Uncomment the line below to enable actual form submission
+            // form.submit();
+    
+            // Toggle to non-edit mode only if valid
+            const infoContent = form.closest('.info-content:not(.edit-mode)');
+            const editContent = form.closest('.info-content.edit-mode');
+            toggleEditMode(infoContent, editContent); // Call this only if valid
+        } else {
+            console.log("Validation failed. Please check your inputs.");
+            showValidationAlert(); // Call function to show alert
+        }
+    }
+
+    // Attach the validation function to the form's submit event
+    const personalForm = document.getElementById('personalDetailsForm');
+    const academicForm = document.getElementById('AcademicDetailsForm');
+    const ResumeForm = document.getElementById('ResumeForm');
+
+    if (personalForm) {
+        personalForm.addEventListener('submit', validateForm);
+    } else {
+        console.error('Personal Details Form not found');
+    }
+
+    if (academicForm) {
+        academicForm.addEventListener('submit', validateForm);
+    } else {
+        console.error('Academic Details Form not found');
+    }
+    if (ResumeForm) {
+        ResumeForm.addEventListener('submit', validateForm);
+    } else {
+        console.error('Resume Form not found');
+    }
+});

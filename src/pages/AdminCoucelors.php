@@ -11,11 +11,11 @@
 <body class="body">
 
 <nav class="navbar">
-    <?php include "Navbar.php"; ?>
+    <?php include "../../tests/Navbar.php"; ?>
 </nav>
 
 <?php
-session_start();
+
 $conn = mysqli_connect("localhost", "root", "", "users");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -150,7 +150,7 @@ if ($result->num_rows > 0) {
                     <div class="phone"><?= htmlspecialchars($counselor["phone"]) ?></div>
                     <div class="activity"><?= htmlspecialchars($counselor["Activity"]) ?></div>
                     <button class="edit-btn book-btn" onclick="editCounselor(<?= htmlspecialchars(json_encode($counselor)) ?>)">Edit</button>
-                    <a href="?delete=<?= $counselor['username'] ?>" class="delete-btn book-btn" onclick="return confirm('Are you sure you want to delete this counselor?')">Delete</a>
+                    <a href="?delete=<?= $counselor['username'] ?>" class=" book-btn"  style= " height: 6.5vh; width: 12vh;" onclick="return confirm('Are you sure you want to delete this counselor?')">Delete</a>
                 </div>
             </div>
         <?php endforeach; ?>
@@ -202,4 +202,4 @@ function editCounselor(counselor) {
 </script>
 
 </body>
-</html>
+</html>    

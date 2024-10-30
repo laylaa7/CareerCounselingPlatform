@@ -22,7 +22,7 @@
     </nav> -->
     <div>
     <nav class="navbar">
-        <?php include "Navbar.php"; ?>
+        <?php include "../../tests/Navbar.php"; ?>
     </nav>
 </div>
     <!-- Main content of the page -->
@@ -30,12 +30,13 @@
     
         <!-- Left Sidebar -->
         <div class="sidebar">
+        <button class="back-button"> <a href="userDashboard.php"> ← </a></button>  
             <!-- <img src="../../public/assets/images/BackButton.png" > -->
             <div class="profile-pic">
                 
                 <img src="../../public/assets/images/default-avatar.png" alt="Profile Picture">
             </div>
-            <h2> Mohamed</h2>
+            <h2> Nour B</h2>
 
             <hr>
 
@@ -84,6 +85,7 @@
     </div>
 
     <div  class="info-content edit-mode" id="personal-info-edit">
+    <form id="personalDetailsForm">
         <div class="grid-container" >
             <div class="coolinput">
                 <label for="name" class="text">Name:</label>
@@ -103,10 +105,11 @@
             </div>
             <div class="coolinput">
                 <label for="location" class="text">Location:</label>
-                <input type="text" id="location" placeholder="Write here..." name="location" class="input">
+                <a></a>
+                <input  id="location" placeholder="Write here..." name="location" class="input">
             </div>
         </div>
-        <button>
+        <button  type="submit">
             <div class="svg-wrapper-1">
     <div class="svg-wrapper">
       <svg
@@ -124,7 +127,7 @@
   </div>
   
 </button>
-
+</form>
     </div>
 </div>
 
@@ -140,11 +143,13 @@
     </div>
     <hr>
     <div class="info-content">
+        
         <div class="grid-container">
             <!-- This will be populated by JavaScript -->
         </div>
     </div>
     <div class="info-content edit-mode">
+    <form id="AcademicDetailsForm">
         <div class="grid-container">
             <div class="coolinput">
                 <label for="degree" class="text">Degree:</label>
@@ -163,6 +168,7 @@
                 <input type="text" id="graduationYear" name="graduationYear" placeholder="Write here..." class="input">
             </div>
         </div>
+        
         <button>
             <div class="svg-wrapper-1">
                 <div class="svg-wrapper">
@@ -172,6 +178,7 @@
                 </div>
             </div>
         </button>
+</form>
     </div>
 </div>
 
@@ -186,7 +193,32 @@
                 </button>
         </div>
         <hr>
-        <p>Resume information here...</p>
+        <div class="info-content">
+        
+        <div class="grid-container">
+            <!-- This will be populated by JavaScript -->
+        </div>
+    </div>
+    <div class="info-content edit-mode">
+    <form id="ResumeForm">
+        <div class="grid-container">
+        <div class="coolinput">
+            <label for="resumeUpload" class="text">Upload Resume (PDF):</label>
+            <input type="file" id="resumeUpload" name="resumeUpload" accept="application/pdf" class="input" onchange="displayResumeLink(event)">
+            <span id="resumeLink" class="resume-link">
+            </span></div>
+</br>
+        <button>
+            <div class="svg-wrapper-1">
+                <div class="svg-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30" height="30" class="icon">
+                        <path d="M22,15.04C22,17.23 20.24,19 18.07,19H5.93C3.76,19 2,17.23 2,15.04C2,13.07 3.43,11.44 5.31,11.14C5.28,11 5.27,10.86 5.27,10.71C5.27,9.33 6.38,8.2 7.76,8.2C8.37,8.2 8.94,8.43 9.37,8.8C10.14,7.05 11.13,5.44 13.91,5.44C17.28,5.44 18.87,8.06 18.87,10.83C18.87,10.94 18.87,11.06 18.86,11.17C20.65,11.54 22,13.13 22,15.04Z"></path>
+                    </svg>
+                </div>
+            </div>
+        </button>
+</form>
+    </div>
     </div>
 
     <div id="career-interests" class="profile-section" style="display:none;">

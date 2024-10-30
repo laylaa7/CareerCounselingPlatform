@@ -12,7 +12,7 @@ $_SESSION['phone'] = isset($_POST['phone']) ? $_POST['phone'] : '+1 (609) 972-22
 $tasks = [
     [
         'icon' => '1',
-        'title' => 'Complete Career Assessment',
+        'title' => 'CV Assessment',
         'description' => 'Your Psychometric Assessment is yet to be completed. Head over now to get one step ahead in your career planning journey',
         'status' => 'pending'
     ],
@@ -24,8 +24,8 @@ $tasks = [
     ],
     [
         'icon' => '3',
-        'title' => 'Virtual Internship Program',
-        'description' => 'Take multiple careers for a test-drive and understand the inner workings of each profession',
+        'title' => 'Interview Simulation Program',
+        'description' => 'Take multiple interviews with professtonal counselor and understand the inner workings of recruitment progress',
         'status' => 'pending'
     ],
     [
@@ -87,9 +87,9 @@ $connections = [
             <div class="pos-sidebar" >
             <a href="#" class="dash">Dashboard</a>
             <a href="#" class="dash2">Progress</a>
-            <a href="#">Book with Counsellors</a>
-            <a href="#">Interview Guide</a>
-            <a href="#">Submit CV for Review</a>
+            <a href="bookCounselors.php">Book with Counsellors</a>
+            <a href="InterviewSimulator.php">Interview Guide</a>
+            <a href="ResumeReview.php">Submit CV for Review</a>
             <a href="#">Discussion Forum</a>
         </div></div>
 
@@ -102,9 +102,9 @@ $connections = [
     <div class="slider-container">
             <span class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</span>
         <div class="slides">
-            <div class="slide banner">Develop strategies for achieving their goals</div>
-            <div class="slide banner">Build a satisfying and successful career</div>
-            <div class="slide banner">Navigate the job market</div>
+            <div class="slide banner"><img src="../../public/assets/images/article1.png" alt="art1"></div>
+                <div class="slide banner"><img src="../../public/assets/images/article2.png" alt="art2"></div>
+            <div class="slide banner"><img src="../../public/assets/images/article3.png" alt="art3"></div>
         </div>
         <span class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</span>
         <div class="dots-container">
@@ -182,9 +182,9 @@ $connections = [
                 </div>
             </div>
             <?php endforeach; ?>
-            <div class="view-more">
+            <!-- <div class="view-more">
                 <a href="#">View more <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
-            </div>
+            </div> -->
         </div>
 
 
