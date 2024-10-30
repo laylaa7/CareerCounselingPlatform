@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav class="navbar">
-    <?php include "CareerCounselingPlatform/tests/Navbar.php"; ?>
+    <?php include "../../tests/Navbar.php"; ?>
 </nav>
 <div class="dashboard-container">
         <div class="sidebar">
