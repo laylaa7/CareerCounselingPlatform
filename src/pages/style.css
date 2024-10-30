@@ -7,71 +7,9 @@ body {
     overflow-x: hidden; /* Prevent horizontal overflow for the entire body */
 }
 
-/* Navbar styling */
-.navbar {
-    background-color: lightgray;
-    color: #333;
-    padding: 5px 20px;
-    height: 40px;
-    text-align: left;
-    position: fixed;
-    width: calc(100% - 200px);
-    top: 0;
-    left: 200px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    z-index: 1000;
-}
+/* Updated Main content area styling */
 
-.navbar h1 {
-    margin: 0;
-}
 
-/* Side dashboard styling */
-.dashboard {
-    background-color: #007bff;
-    width: 200px;
-    height: 100vh;
-    position: fixed;
-    top: 40px;
-    left: 0;
-    padding-top: 20px;
-}
-
-.dashboard ul {
-    list-style: none;
-    padding: 0;
-}
-
-.dashboard ul li {
-    padding: 15px;
-    margin: 10px 0;
-}
-
-.dashboard ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    display: block;
-}
-
-.dashboard ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-}
-
-/* Main content area styling */
-.content {
-    margin-left: 200px;
-    padding: 20px;
-    margin-top: 40px;
-    width: calc(100% - 200px);
-    background-color: rgba(255, 255, 255, 0.9); /* More transparent background */
-    min-height: 100vh;
-}
-
-/* Forum Container Styling */
 .forum-container {
     background-color: rgba(204, 204, 204, 0.4); /* More transparent background */
     border-radius: 30px;
