@@ -78,8 +78,8 @@ $connections = [
 </head>
 <body>
 <nav class="navbar">
-        <?php include "Navbar.php"; ?>
-    </nav>
+    <?php include "../../tests/Navbar.php"; ?>
+</nav>
 
 
     <div class="dashboard-container">
@@ -95,7 +95,7 @@ $connections = [
         <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['username']); ?>!</div>
 
     <!-- article sliders -->
-    <div class="slider-container">
+    <!-- <div class="slider-container">
             <button class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</button>
         <div class="slides">
             <div class="slide banner"> <img src="../../public/assets/images/article1.png" alt="article1"></div>
@@ -108,7 +108,7 @@ $connections = [
             <span class="dot" onclick="currentDiv(2)"></span>
             <span class="dot" onclick="currentDiv(3)"></span>
         </div>
-    </div>
+    </div> -->
 
     
 <!-- content boxes -->
@@ -139,22 +139,22 @@ $connections = [
             </div>
             <div class="profile-item">
                 <img src="../../public/assets/images/location.png" alt="Location Icon">
-                <span><?php echo htmlspecialchars($_SESSION['address']); ?></span>
+                <span>Cairo</span>
             </div>
             </div>
             <div class="profile-section">
                 <h3>Contacts</h3>
                 <div class="profile-item">
                     <img src="../../public/assets/images/email.png" alt="Email Icon">
-                    <span><?php echo htmlspecialchars($_SESSION['email']); ?></span>
+                    <span>Admin@gmail.com</span>
                 </div>
                 <div class="profile-item">
                     <img src="../../public/assets/images/phone.png" alt="Phone Icon">
-                    <span><?php echo htmlspecialchars($_SESSION['phone']); ?></span>
+                    <span>01115071166</span>
                 </div>
             </div>
         </div>
-    </div>
+    
 
  
 
@@ -193,71 +193,6 @@ $connections = [
 
 </div>
 </main>
-
-
-
-<!-- slider script -->
-<script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
-
-    function plusDivs(n) {
-        showDivs(slideIndex += n);
-    }
-
-    function currentDiv(n) {
-        showDivs(slideIndex = n);
-    }
-
-    function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("slide");
-        var dots = document.getElementsByClassName("dot");
-        if (n > x.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = x.length}
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";  
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        x[slideIndex-1].style.display = "block";  
-        dots[slideIndex-1].className += " active";
-    }
-
-
-// connections script 
-document.addEventListener('DOMContentLoaded', function() {
-    const list = document.querySelector('.connections-list');
-    const scrollLeftBtn = document.querySelector('.scroll-left');
-    const scrollRightBtn = document.querySelector('.scroll-right');
-    const connectBtns = document.querySelectorAll('.connect-btn');
-
-    scrollLeftBtn.addEventListener('click', () => {
-        list.scrollBy({ left: -200, behavior: 'smooth' });
-    });
-
-    scrollRightBtn.addEventListener('click', () => {
-        list.scrollBy({ left: 200, behavior: 'smooth' });
-    });
-
-    connectBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            if (this.dataset.status !== 'connected') {
-                this.dataset.status = 'connected';
-                this.textContent = '✓';
-                this.style.backgroundColor = '#4caf50';
-            } else {
-                this.dataset.status = 'not-connected';
-                this.textContent = '+';
-                this.style.backgroundColor = '#2196f3';
-            }
-        });
-    });
-});
-
-</script>
-
     
 </body>
 </html>

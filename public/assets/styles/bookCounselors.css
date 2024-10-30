@@ -13,6 +13,7 @@
     background-color: white; 
     z-index: 1000;
 } 
+
 .body {
     width: 100%;
     margin: 0; 
@@ -160,6 +161,24 @@
 }
 .book-btn:hover .text {
     color: #3366cc;
+}
+book-btn {
+    outline: 3px lightgray solid;
+    outline-offset: -3px;
+    border: none;
+    cursor: pointer;
+    transition: 400ms;
+    padding: 8px 20px; 
+    background-color: #3366cc;
+    color: white;
+    border-radius: 6px;
+    margin-left: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.book-btn:hover {
+    background-color: white; 
+    color: black; 
 }
 .calendar-popup {
     display: none;
