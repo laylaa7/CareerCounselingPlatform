@@ -1,0 +1,205 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(244, 244, 244, 0.9);
+    overflow-x: hidden;
+}
+
+/* Forum Container Styling */
+.forum-container {
+    background-color: rgba(204, 204, 204, 0.6);
+    border-radius: 30px;
+    padding: 40px;
+    width: 90%;
+    max-width: 1200px;
+    height: 400px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-align: left;
+}
+
+.forum-container h2 {
+    color: #333;
+    font-size: 28px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.forum-container h2::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 2px;
+    background-color: #808bbf;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+.public-discussions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding-left: 70px; /* Added padding for alignment */
+}
+
+.public-discussions {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+}
+
+.submitted-private-discussions-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding-left: 70px; /* Added padding for alignment */
+}
+
+.submitted-private-discussions {
+    font-size: 24px; 
+    margin: 0; 
+    color: #333; 
+}
+
+/* Divider styling */
+.divider {
+    border: none;
+    height: 2px;
+    background-color:#3366cc;
+    margin: 20px 0;
+    margin-left: 70px;
+}
+
+/* Squares Container Styling */
+.squares-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.square {
+    background-color: rgba(220, 220, 220, 0.4);
+    border-radius: 15px;
+    padding: 15px;
+    width: calc(30% - 20px);
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.circle img {
+    width: 100%;
+    height: auto;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.username {
+    font-size: 14px;
+    color: #555;
+}
+
+.view-comments-btn, .add-comment-btn {
+    background-color: #3366cc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+.view-comments-btn:hover, .add-comment-btn:hover {
+    background-color:#3366cc;
+}
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    text-align: left;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+.reply-btn{
+    background-color: #3366cc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 5px 0;
+
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.modal-header img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.comment p {
+    margin: 5px 0;
+}
+
+.comment .counselor-name {
+    font-weight: bold;
+    color: #333;
+}
