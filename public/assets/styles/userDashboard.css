@@ -19,6 +19,13 @@ body {
     z-index: 1030;
     background-color: #fff;  
 } */
+.main-content .greeting{
+    margin-top: 30px;
+}
+.main-content{
+    overflow-y: auto;
+
+}
 
 /* side menu */
 .dashboard-container {
@@ -26,11 +33,15 @@ body {
     min-height: calc(100vh - 70px);
     padding-top: 60px; 
 } 
+
 .sidebar {
     background-color: #3366cc;
     color: white;
     width: 220px;
     padding: 20px;    
+}
+.pos-sidebar{
+    position:fixed ;
 }
 .sidebar a {
     display: block;
@@ -62,7 +73,7 @@ body {
 .slider-container {
     position: relative;
     overflow: hidden;
-    background-color: #0c2f74b1; 
+    background-color: white; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -73,28 +84,28 @@ body {
     margin-bottom: 70px;
     margin-top: 35px;
     margin-left: 125px;
+
 }
 .slides {
     display: flex;
-    transition: transform 10s ease;
-}
-.slide {
+    transition: transform 10s ease;   
     font-size: 20px;
     color: white;
     text-align: center;
+    width: 100%;
+}
+.slide img{
     width: 100%;
 }
 .arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-   
     border: none;
     color: white;
     font-size: 24px;
     cursor: pointer;
     padding: 10px;
-    border-radius: 50%;
 }
 .arrow-left {
     left: 10px;
@@ -134,13 +145,13 @@ body {
 }
 .content-grid {
     display: flex;
-    gap: 20px;
+    gap: 70px;
     margin-bottom: 20px;
     flex-grow: 1;
 }
 .profile-completion, .progress-box, .profile-box, .connections-box {
     background-color: rgb(246, 246, 246);
-    padding: 20px;
+    padding: 5px 20px 20px 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
@@ -150,9 +161,10 @@ body {
     margin-bottom: 25px;
     border-bottom: 1px solid black ;
 }
-.profile-completion h5 {
+.profile-completion h3 {
     margin-bottom: 15px;
     border-bottom: 1px solid #e0e0e0;
+    color: #00355f;
 }
 .percentage-container {
     display: flex;
@@ -183,16 +195,15 @@ body {
     flex-shrink: 0;
     border-bottom: 1px solid black ;
 }
-.profile-box h5 {
-    margin-top: 0;
+.profile-box h3 {
     margin-bottom: 25px;
     border-bottom: 1px solid #e0e0e0;
+    color: #00355f;
 }
 .profile-section {
     margin-bottom: 20px;
 }
-.profile-section h3 {
-    font-size: 14px;
+.profile-section h4 {
     color: #888;
     margin-bottom: 10px;
     text-transform: uppercase;
@@ -218,14 +229,14 @@ body {
     height: calc(100vh - 150px); 
     overflow-y: auto; 
     border-bottom: 1px solid black ; 
-    max-width: 650px;
+    max-width: 570px;
     margin: 0 auto;
     margin-bottom: 25px;
 }
-.progress-box  h5 {
-    margin-top: 0;
-    margin-bottom: 20px;
+.progress-box  h3 {
+    margin-bottom: 30px;
     border-bottom: 1px solid #e0e0e0;
+    color: #00355f;
 }
 .task-item {
     display: flex;
@@ -289,6 +300,7 @@ body {
 .view-more img, .view-all-counsellors img{
     width: 20px;
     height: 20px;
+    /* justify-content: center; */
 }
 .view-more a, .view-all-counsellors {
     color: #2196f3;
@@ -304,7 +316,7 @@ body {
 
 .connections-box {
     width: 100%;
-    max-width: 106vh;
+    max-width: 570px;
     height: calc(100vh - 350px);
     margin: 0 auto;
     overflow: hidden;
@@ -317,8 +329,9 @@ body {
     padding: 15px;
     border-bottom: 1px solid #e0e0e0;
 }
-.connections-header h5 {
+.connections-header h3 {
     margin: 0;
+    color: #00355f;
 }
 .view-all-counsellors {
     color: #2196f3;
@@ -436,7 +449,7 @@ body {
     .dashboard-container {
         flex-direction: column;
     }  
-  .sidebar {
+    .sidebar {
         position: static;
         width: 100%;
     }

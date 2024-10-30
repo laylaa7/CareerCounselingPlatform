@@ -1,40 +1,40 @@
 <?php
 session_start();
-
+$_SESSION['username'] = 'Nour';
 // Simulating data retrieval from login/signup form
-$_SESSION['name'] = isset($_POST['name']) ? $_POST['name'] : 'Nour Bassem';
-$_SESSION['address'] = isset($_POST['address']) ? $_POST['address'] : 'El Sherouk';
-$_SESSION['email'] = isset($_POST['email']) ? $_POST['email'] : 'nour@gmail.com';
-$_SESSION['department'] = isset($_POST['department']) ? $_POST['department'] : 'No department';
-$_SESSION['phone'] = isset($_POST['phone']) ? $_POST['phone'] : '+1 (609) 972-22-22';
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+$age = isset($_SESSION['age']) ? $_SESSION['age'] : 'Not provided';
+$phone = isset($_SESSION['phone']) ? $_SESSION['phone'] : 'Not provided';
+$LinkedIn = isset($_SESSION['LinkedIn']) ? $_SESSION['LinkedIn'] : 'Not provided'; 
+$Activity = isset($_SESSION['Activity']) ? $_SESSION['Activity'] : 'Not provided';
 
 // Simulating data for career development tasks
-$tasks = [
-    [
-        'icon' => '1',
-        'title' => 'CV Assessment',
-        'description' => 'Your Psychometric Assessment is yet to be completed. Head over now to get one step ahead in your career planning journey',
-        'status' => 'pending'
-    ],
-    [
-        'icon' => '✓',
-        'title' => 'Fill Profile Details',
-        'description' => 'Complete your Profile Details to help us customize your guidance program',
-        'status' => 'completed'
-    ],
-    [
-        'icon' => '3',
-        'title' => 'Interview Simulation Program',
-        'description' => 'Take multiple interviews with professtonal counselor and understand the inner workings of recruitment progress',
-        'status' => 'pending'
-    ],
-    [
-        'icon' => '4',
-        'title' => 'Evaluate Profile',
-        'description' => 'Evaluate and enhance your profile to increase your chances of getting into your dream college',
-        'status' => 'pending'
-    ]
-];
+// $tasks = [
+//     [
+//         'icon' => '1',
+//         'title' => 'Complete Career Assessment',
+//         'description' => 'Your Psychometric Assessment is yet to be completed. Head over now to get one step ahead in your career planning journey',
+//         'status' => 'pending'
+//     ],
+//     [
+//         'icon' => '✓',
+//         'title' => 'Fill Profile Details',
+//         'description' => 'Complete your Profile Details to help us customize your guidance program',
+//         'status' => 'completed'
+//     ],
+//     [
+//         'icon' => '3',
+//         'title' => 'Virtual Internship Program',
+//         'description' => 'Take multiple careers for a test-drive and understand the inner workings of each profession',
+//         'status' => 'pending'
+//     ],
+//     [
+//         'icon' => '4',
+//         'title' => 'Evaluate Profile',
+//         'description' => 'Evaluate and enhance your profile to increase your chances of getting into your dream college',
+//         'status' => 'pending'
+//     ]
+// ];
 
 $connections = [
     [
@@ -62,6 +62,7 @@ $connections = [
         'status' => 'pending'
     ]
 ];
+
 ?>
 
 <!DOCTYPE html>
@@ -76,37 +77,32 @@ $connections = [
     </style>
 </head>
 <body>
-
-    <nav class="navbar">
-        <?php include "../../tests/Navbar.php"; ?>
+<nav class="navbar">
+        <?php include "Navbar.php"; ?>
     </nav>
 
 
-<div class="dashboard-container">
+    <div class="dashboard-container">
         <div class="sidebar">
-            <div class="pos-sidebar" >
             <a href="#" class="dash">Dashboard</a>
-            <a href="#" class="dash2">Progress</a>
-            <a href="bookCounselors.php">Book with Counsellors</a>
-            <a href="InterviewSimulator.php">Interview Guide</a>
-            <a href="ResumeReview.php">Submit CV for Review</a>
-            <a href="#">Discussion Forum</a>
-        </div></div>
+            <a href="#" class="dash2">Insights</a>
+            <a href="AdminCoucelors.php">Counsellors List</a>
+            <a href="AdminUserList.php">Student List</a>
+           
+        </div>
 
     <main class="main-content">
-    <!-- <div class="scrollable-content"> -->
-
-        <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['name']); ?>!</div>
+        <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['username']); ?>!</div>
 
     <!-- article sliders -->
     <div class="slider-container">
-            <span class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</span>
+            <button class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</button>
         <div class="slides">
-            <div class="slide banner"><img src="../../public/assets/images/article1.png" alt="art1"></div>
-                <div class="slide banner"><img src="../../public/assets/images/article2.png" alt="art2"></div>
-            <div class="slide banner"><img src="../../public/assets/images/article3.png" alt="art3"></div>
+            <div class="slide banner"> <img src="../../public/assets/images/article1.png" alt="article1"></div>
+            <div class="slide banner"> <img src="../../public/assets/images/article2.png" alt="article2"></div>
+            <div class="slide banner"> <img src="../../public/assets/images/article3.png" alt="article3"></div>
         </div>
-        <span class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</span>
+        <button class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</button>
         <div class="dots-container">
             <span class="dot" onclick="currentDiv(1)"></span>
             <span class="dot" onclick="currentDiv(2)"></span>
@@ -117,29 +113,29 @@ $connections = [
     
 <!-- content boxes -->
 <div class="content-grid">
-    <div class="left-column">
+    <!-- <div class="left-column">
             
-        <div class="profile-completion">
-                <h3>Complete your profile</h3>
-            <div class="percentage-container">
-                <div class="percentage-bar" style="background: lightgray;">
-                <div class="percentage" style="background: #3366cc;"></div>
-            </div>
-                <span class="complete-percentage">86%</span>
-                </div>
-        </div>
+        // <div class="profile-completion">
+        //         <h5>Complete your profile</h5>
+        //     <div class="percentage-container">
+        //         <div class="percentage-bar" style="background: lightgray;">
+        //         <div class="percentage" style="background: #3366cc;"></div>
+        //     </div>
+        //         <span class="complete-percentage">86%</span>
+        //         </div>
+        // </div> -->
 
         <div class="profile-box">
-                <h3>Profile</h3>
+                <h5>Profile</h5>
             <div class="profile-section">
-                    <h4>About</h4>
+                    <h3>About</h3>
             <div class="profile-item">
                 <img src="../../public/assets/images/profile.png" alt="Profile Icon">
                 <span><?php echo htmlspecialchars($_SESSION['name']); ?></span>
             </div>
             <div class="profile-item">
                 <img src="../../public/assets/images/department.png" alt="Department Icon">
-                <span><?php echo htmlspecialchars($_SESSION['department']); ?></span>
+                <span>Admin</span>
             </div>
             <div class="profile-item">
                 <img src="../../public/assets/images/location.png" alt="Location Icon">
@@ -147,7 +143,7 @@ $connections = [
             </div>
             </div>
             <div class="profile-section">
-                <h4>Contacts</h4>
+                <h3>Contacts</h3>
                 <div class="profile-item">
                     <img src="../../public/assets/images/email.png" alt="Email Icon">
                     <span><?php echo htmlspecialchars($_SESSION['email']); ?></span>
@@ -160,38 +156,13 @@ $connections = [
         </div>
     </div>
 
-    <div class="right-column">
-
-        <div class="progress-box">
-            <h3>Career Development Tasks</h3>
-        <?php foreach ($tasks as $task): ?>
-            <div class="task-item">
-                <div class="task-icon <?php echo $task['status'] === 'completed' ? 'completed' : ''; ?>">
-                    <?php echo htmlspecialchars($task['icon']); ?>
-                </div>
-                <div class="task-content">
-                    <div class="task-title"><?php echo htmlspecialchars($task['title']); ?></div>
-                    <div class="task-description"><?php echo htmlspecialchars($task['description']); ?></div>
-                    <div class="task-status">
-                        <?php if ($task['status'] === 'completed'): ?>
-                            Completed
-                        <?php else: ?>
-                            <button class="start-now-btn">Start Now</button>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-            <?php endforeach; ?>
-            <!-- <div class="view-more">
-                <a href="#">View more <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
-            </div> -->
-        </div>
+ 
 
 
 <div class="connections-box">
     <div class="connections-header">
-        <h3>Counsellors Connections</h3>
-        <a href="bookCounselors.php" class="view-all-counsellors">View all counsellors <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
+        <h5>Counsellors Connections</h5>
+        <a href="AdminCoucelors.php" class="view-all-counsellors">View all counsellors <img src="../../public/assets/images/right-arrow.png" alt="arrow Icon"></a>
     </div>
     <div class="connections-container">
         <button class="scroll-btn scroll-left" aria-label="Scroll left">&lt;</button>
@@ -215,10 +186,12 @@ $connections = [
     </div>
 </div>
         
-        </div>
+
 
     </div>
-<!-- </div> -->
+
+
+</div>
 </main>
 
 
