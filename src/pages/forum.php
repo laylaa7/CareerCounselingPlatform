@@ -1,8 +1,3 @@
-
-<?php
-session_start();
-$_SESSION['name'] = isset($_POST['name']) ? $_POST['name'] : 'Nour B';
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,29 +6,28 @@ $_SESSION['name'] = isset($_POST['name']) ? $_POST['name'] : 'Nour B';
     <title>Career Counselling Forum</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../../public/assets/styles/userDashboard.css">
+
 </head>
 <body>
 <nav class="navbar">
-    <?php include "../../tests/Navbar.php"; ?>
+    <?php include "CareerCounselingPlatform/tests/Navbar.php"; ?>
 </nav>
-
 <div class="dashboard-container">
-    <div class="sidebar">
-        <div class="pos-sidebar">
-            <a href="userDashboard.php" class="dash">Dashboard</a>
-            <a href="progress.php" class="dash2">Progress</a>
-            <a href="bookCounselors.php">Book with Counsellors</a>
-            <a href="InterviewSimulator.php">Interview Guide</a>
-            <a href="ResumeReview.php">Submit CV for Review</a>
-            <a href="forum.php" class="active">Discussion Forum</a>
+        <div class="sidebar">
+            <div class="pos-sidebar">
+                <a href="userDashboard.php" class="dash">Dashboard</a>
+                <a href="progress.php" class="dash2">Progress</a>
+                <a href="bookCounselors.php">Book with Counsellors</a>
+                <a href="InterviewSimulator.php">Interview Guide</a>
+                <a href="ResumeReview.php">Submit CV for Review</a>
+                <a href="forum.php" class="active">Discussion Forum</a>
+            </div>
         </div>
-    </div>
-
-    <div class="forum-container">
-        <h2>Career Counselling and Guidance</h2>
-        <p>No matter where you are on your career journey, let us help you define a path towards professional fulfillment with our career counseling appointments. Our mission is to empower you with the confidence and clarity to make informed decisions, unlock your true potential, and achieve long-term success and satisfaction in your career.</p>
-        <button class="forum-btn">Book Now!</button>
-    </div>
+        <div class="content">
+<div class="forum-container">
+    <h2>Career Counselling and Guidance</h2>
+    <p>No matter where you are on your career journey, let us help you define a path towards professional fulfillment with our career counseling appointments. Our mission is to empower you with the confidence and clarity to make informed decisions, unlock your true potential, and achieve long-term success and satisfaction in your career.</p>
+    <button class="forum-btn">Book Now!</button>
 </div>
 
 <!-- Public Discussions Section -->
@@ -99,9 +93,10 @@ $_SESSION['name'] = isset($_POST['name']) ? $_POST['name'] : 'Nour B';
         <button id="submit-private-discussion" class="forum-btn">Send</button>
     </div>
 </div>
-
+</div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        
         const addSquareButton = document.getElementById('add-square');
         const addSquareForm = document.getElementById('add-square-form');
         const submitPostButton = document.getElementById('submit-post');
@@ -219,6 +214,7 @@ $_SESSION['name'] = isset($_POST['name']) ? $_POST['name'] : 'Nour B';
             }
         });
 
+        // Fetch discussions from the server
         fetch('fetch_discussions.php')
             .then(response => {
                 if (!response.ok) {
