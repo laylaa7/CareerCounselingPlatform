@@ -2,6 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
+// [TODO] change to the new and final database name 
 $dbname = "comment_system";
 
 // Create connection

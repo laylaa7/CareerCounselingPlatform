@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php';
+include '../helpers/db_connect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? 'Anonymous';
