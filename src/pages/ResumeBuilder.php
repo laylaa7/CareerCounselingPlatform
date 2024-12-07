@@ -15,166 +15,170 @@ if ($conn->connect_error) {
 // Fetch skills
 $sql = "SELECT skill_name, category, proficiency_level FROM skills";
 $result = $conn->query($sql);
-
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Builder</title>
-    <link rel="stylesheet" href="../../public/assets/styles/ResumeBuilder.css"> 
-
+    <link rel="stylesheet" href="../../public/assets/styles/ResumeBuilder.css">
 </head>
+<body>
 <header>
-    <div>
     <nav class="navbar">
         <?php include "../../tests/Navbar.php"; ?>
     </nav>
-</div>
-    </header>
-<body>
+</header>
 
+<div class="container">
+    <!-- Sidebar for navigation -->
+    <div class="sidebar">
+        <button class="back-button">←</button>
+        <div class="progress-item active" data-section="personal-info">Personal Info</div>
+        <div class="progress-item" data-section="education">Education</div>
+        <div class="progress-item" data-section="work-history">Work History</div>
+        <div class="progress-item" data-section="skills">Skills</div>
+        <div class="progress-item" data-section="overview">Overview</div>
+    </div>
 
-    <div class="container">
-        <div class="sidebar">
-            <button class="back-button">←</button>
-            <div class="progress-item active" data-section="personal-info">Personal info</div>
-            <div class="progress-item" data-section="education">Education</div>
-            <div class="progress-item" data-section="work-history">Work history</div>
-            <div class="progress-item" data-section="skills">Skills</div>
-            <div class="progress-item" data-section="overview">Overview</div>
-        </div>
-        <div class="main-content">
-            <div id="personal-info" class="section active">
-                <h1>Provide your employers with your contact info:</h1>
-                <div class="form-group">
-                    <label for="first-name">First name *</label>
-                    <input type="text" id="first-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="surname">Surname *</label>
-                    <input type="text" id="surname" required>
-                </div>
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" id="title">
-                </div>
-                <div class="form-group">
-                    <label for="city">City</label>
-                    <input type="text" id="city">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone number</label>
-                    <input type="text" id="phone">
-                </div>
+    <!-- Main content area -->
+    <div class="main-content">
+    <form action="ResumeGenerator.php" method="POST" enctype="multipart/form-data">
+        <!-- Personal Info Section -->
+        <div id="personal-info" class="section active">
+            <h1>Provide your contact information:</h1>
+            <div class="form-group">
+                <label for="first-name">First Name *</label>
+                <input type="text" id="first-name" name="first-name" required>
             </div>
-            <div id="education" class="section">
-                <h1>Education</h1>
-                <h5>Enter your education experience so far, even if you are a current student or did not graduate:</h5>
-                <div class="form-group">
-                    <label for="School-name">School name *</label>
-                    <input type="text" id="School-name" required>
-                </div>
-                <div class="form-group">
-                    <label for="Degree">Degree</label>
-                    <input type="text" id="Degree">
-                </div>
-                <div class="form-group">
-                    <label for="Field-of-study">Field of study</label>
-                    <input type="text" id="Field-of-study">
-                </div>
-                <div class="form-group">
-                    <label for="graduation-date">graduation date</label>
-                    <input type="text" id="graduation-date">
-                </div>
+            <div class="form-group">
+                <label for="surname">Surname *</label>
+                <input type="text" id="surname" name="surname" required>
             </div>
-            <div id="work-history" class="section">
-                <h1>Work History</h1>
-                <h5>Tell us about your most recent job:</h5>
-                <div class="form-group">
-                    <label for="Job-Title">Job Title *</label>
-                    <input type="text" id="Job-Title" required>
-                </div>
-                <div class="form-group">
-                    <label for="employer">employer *</label>
-                    <input type="text" id="employer" required>
-                </div>
-                <div class="form-group">
-                    <label for="location">location</label>
-                    <input type="text" id="location">
-                </div>
-                <div class="form-group">
-                    <label for="remote">remote</label> <!-- radio button-->
-                    <input type="text" id="location">
-                </div>
-                <div class="form-group">
-                    <label for="start-date">start date</label>
-                    <input type="text" id="start-date">
-                </div>
-                <div class="form-group">
-                    <label for="End-date">End date</label>
-                    <input type="text" id="End-date">
-                </div>
-                <div class="form-group">
-                    <label for="status">Do you currently work here?</label>  <!-- radio button-->
-                    <input type="text" id="status">
-                </div>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
             </div>
-
-            <div id="skills" class="section skills-container">
-                <h1>Skills</h1>
-                <!-- Add skills fields here -->
-                <div class="skill-input-container">
-            <input type="text" id="skill-input" placeholder="Type a skill...">
-            <button id="add-skill-btn" class="add-btn">Add Skill</button>
+            <div class="form-group">
+                <label for="city">City</label>
+                <input type="text" id="city" name="city">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="text" id="phone" name="phone">
+            </div>
         </div>
 
-        <!-- Predefined skills dropdown -->
-        <div class="predefined-skills">
-            <h3>Or choose from common skills:</h3>
-            <div id="predefined-skills-list">
-            <!-- <?php
-            // Generate HTML for each student
-            // if ($result->num_rows > 0) {
-            //     while($skills = $result->fetch_assoc()) {
-            //         echo '
-            //         <div class="student-name">' . htmlspecialchars($skills['skill_name']) . '</div>
-            //                 <div class="student-description">' . htmlspecialchars($skills['category']) . '</div>';
-            //             }
-            //         } else {
-            //             echo "<p>No students found.</p>";
-            //         }
-            //         $conn->close();
-                    ?> -->
-                <!-- Will be populated from database -->
+        <!-- Education Section -->
+        <div id="education" class="section">
+            <h1>Education</h1>
+            <p>Enter your education experience so far, even if you're a current student or did not graduate:</p>
+            <div class="form-group">
+                <label for="school-name">School Name *</label>
+                <input type="text" id="school-name" name="school-name" required>
+            </div>
+            <div class="form-group">
+                <label for="degree">Degree</label>
+                <input type="text" id="degree" name="degree">
+            </div>
+            <div class="form-group">
+                <label for="field-of-study">Field of Study</label>
+                <input type="text" id="field-of-study" name="field-of-study">
+            </div>
+            <div class="form-group">
+                <label for="graduation-date">Graduation Date</label>
+                <input type="date" id="graduation-date" name="graduation-date">
             </div>
         </div>
-        
-        <!-- Selected skills display -->
-        <div class="selected-skills">
-            <h3>Your Skills:</h3>
-            <div id="selected-skills-list" class="skills-list">
-                <!-- Selected skills will appear here -->
+
+        <!-- Work History Section -->
+        <div id="work-history" class="section">
+            <h1>Work History</h1>
+            <p>Tell us about your most recent job:</p>
+            <div class="form-group">
+                <label for="job-title">Job Title *</label>
+                <input type="text" id="job-title" name="job-title" required>
+            </div>
+            <div class="form-group">
+                <label for="employer">Employer *</label>
+                <input type="text" id="employer" name="employer" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" name="location">
+            </div>
+            <div class="form-group">
+                <label for="start-date">Start Date</label>
+                <input type="date" id="start-date" name="start-date">
+            </div>
+            <div class="form-group">
+                <label for="end-date">End Date</label>
+                <input type="date" id="end-date" name="end-date">
+            </div>
+            <div class="form-group">
+                <label>Do you currently work here?</label>
+                <input type="radio" id="status-yes" name="status" value="yes">
+                <label for="status-yes">Yes</label>
+                <input type="radio" id="status-no" name="status" value="no">
+                <label for="status-no">No</label>
             </div>
         </div>
+
+        <!-- Skills Section -->
+        <div id="skills" class="section">
+            <h1>Skills</h1>
+            <div class="skill-input-container">
+                <input type="text" id="skill-input" placeholder="Type a skill...">
+                <button id="add-skill-btn" class="add-btn">Add Skill</button>
             </div>
-            <div id="overview" class="section">
-                <h1>Overview</h1>
-                <div class="overview-pic">
-                
+
+            <!-- Predefined skills dropdown -->
+            <div class="predefined-skills">
+                <h3>Or choose from common skills:</h3>
+                <div id="predefined-skills-list">
+                    <?php
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo '<button class="predefined-skill" data-skill="' . htmlspecialchars($row['skill_name']) . '">' 
+                            . htmlspecialchars($row['skill_name']) . '</button>';
+                        }
+                    } else {
+                        echo "<p>No predefined skills found.</p>";
+                    }
+                    $conn->close();
+                    ?>
+                </div>
+            </div>
+
+            <!-- Selected skills display -->
+            <div class="selected-skills">
+                <h3>Your Skills:</h3>
+                <div id="selected-skills-list" class="skills-list">
+                    <!-- Selected skills will appear here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="section">
+            <h1>Overview</h1>
+            <div class="overview-pic">
                 <img src="../../public/assets/images/ResumeOverview.png" alt="Profile Picture">
             </div>
-            </div>
-            <div class="button-group">
-                <button id="prev-btn" disabled>Previous</button>
-                <button id="next-btn">Next</button>
-            </div>
         </div>
-    </div>
-    <script src="../../public/assets/scripts/ResumeBuilder.js"></script>
 
+        <!-- Navigation Buttons -->
+        <div class="button-group">
+            <button id="prev-btn" disabled>Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
+    </form>
+    </div>
+
+</div>
+
+<script src="../../public/assets/scripts/ResumeBuilder.js"></script>
 </body>
 </html>

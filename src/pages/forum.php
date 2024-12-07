@@ -16,11 +16,11 @@
         <div class="sidebar">
             <div class="pos-sidebar">
                 <a href="userDashboard.php" class="dash">Dashboard</a>
-                <a href="progress.php" class="dash2">Progress</a>
+                <a href="userDashboard.php" >Progress</a>
                 <a href="bookCounselors.php">Book with Counsellors</a>
                 <a href="InterviewSimulator.php">Interview Guide</a>
                 <a href="ResumeReview.php">Submit CV for Review</a>
-                <a href="forum.php" class="active">Discussion Forum</a>
+                <a href="forum.php"  class="dash2">Discussion Forum</a>
             </div>
         </div>
         <div class="content">

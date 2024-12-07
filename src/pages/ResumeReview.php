@@ -38,7 +38,7 @@
             <ul class="profile-links">
                 <li><a href="bookCounselors.php" data-target="Book with our counselors">Book with our counselors</a></li>
                 <li><a href="InterviewSimulator.php" data-target="interview guide">interview guide</a></li>
-                <li><a href="#" data-target="Discussions">Discussions</a></li>
+                <li><a href="forum.php" data-target="Discussions">Discussions</a></li>
                 
             </ul>
             <hr>
