@@ -1,205 +1,187 @@
-body, html {
-    margin: 0;
-    padding: 0;
+body {
     font-family: Arial, sans-serif;
-    height: 100%;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+/* Sidebar styling */
+/* Prevent overlap with the fixed navbar */
+.profile-container {
+    margin-top: 80px; /* Adjust this value based on navbar height */
 }
 
-.container {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
-    position: relative;
+.profile-container {
+    
+    display: flex; /* Makes sidebar and container sit side by side */
+    gap: 20px; /* Adds space between sidebar and form */
 }
 
 .sidebar {
-    width: 250px;
-    background-color: #4285F4;
-    color: white;
+    width: 150px;
+    background-color: #f8f9fa; /* Light gray background */
     padding: 20px;
-    position: fixed;
-    left: 0;
-    top: 70px; /* Position below the header */
-    height: calc(100% - 40px); /* Full height minus the header height */
-    overflow-y: auto; /* Enable scrolling for the sidebar if content exceeds height */
-    box-sizing: border-box;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: fit-content;
 }
 
+.sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.sidebar hr {
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.profile-links {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-links li {
+    margin: 10px 0;
+}
+
+.profile-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.profile-links a:hover {
+    color: #007BFF;
+}
+
+.logout a {
+    display: block;
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+}
 .back-button {
+    align-self: flex-start;
     background: none;
     border: none;
-    color: white;
+    color: #4285F4;
     font-size: 24px;
     cursor: pointer;
-    margin-bottom: 30px;
-}
-
-.progress-item {
+    padding: 10px;
     margin-bottom: 20px;
-    display: flex;
-    align-items: center;
+}
+.back-button a {
+    display: block;
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-.progress-item.active::before {
-    content: '●';
-    margin-right: 10px;
+/* Main form container styling */
+.container {
+    flex-grow: 1; /* Ensures form container takes the remaining space */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.progress-item:not(.active)::before {
-    content: '○';
-    margin-right: 10px;
-}
-
-.main-content {
-    flex-grow: 1;
-    padding: 140px;
-    
-    margin-left: 250px; /* Same as sidebar width */
-    width: calc(100% - 250px);
-    overflow-y: auto; /* Allow scrolling in the main content */
-    box-sizing: border-box;
-}
 
 h1 {
-    margin-bottom: 30px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4285F4;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
+    text-align: center;
+    color: #333;
 }
 
 .section {
-    display: none;
-}
-
-.section.active {
-    display: block;
-}
-
-
-/* ResumeBuilder.css */
-.invalid {
-    border: 2px solid red;
-    background-color: #ffe6e6; /* Optional: light red background */
-}
-
-
-.section input{
-    color:blue;
-}
-
-
-.skills-container {
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.skill-input-container {
-    display: flex;
-    gap: 10px;
     margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
 }
 
-#skill-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input, 
+.form-group textarea, 
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
     border-radius: 4px;
 }
 
-.add-btn {
-    padding: 10px 20px;
-    background-color: #4070f4;
+button {
+    background-color: #084d93;
     color: white;
     border: none;
+    padding: 10px 15px;
     border-radius: 4px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
-.add-btn:hover {
-    background-color: #3060e0;
+.actions button:hover {
+    background-color: #0a66c2;
 }
 
-.predefined-skills {
-    margin-bottom: 20px;
+#addEducation, #addWork, #addSkill {
+    background-color: #0a66c2;
 }
 
-#predefined-skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
+#addEducation:hover, #addWork:hover, #addSkill:hover {
+    background-color: #1d86f0;
 }
 
-.skill-suggestion {
-    padding: 5px 15px;
-    background-color: #f0f0f0;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
 }
 
-.skill-suggestion:hover {
-    background-color: #e0e0e0;
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
 }
 
-.skills-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.skill-item {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px 15px;
-    background-color: #4070f4;
-    color: white;
-    border-radius: 20px;
-}
-
-.remove-skill {
-    cursor: pointer;
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    padding: 0 5px;
+    cursor: pointer;
 }
 
-.remove-skill:hover {
-    color: #ff4444;
+.close:hover {
+    color: black;
+}
+
+.preview-section {
+    margin-bottom: 15px;
 }
