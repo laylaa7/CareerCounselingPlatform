@@ -97,6 +97,7 @@ $connections = [
 
     <!-- article sliders -->
     <!-- <div class="slider-container">
+    <!-- <div class="slider-container">
             <button class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</button>
         <div class="slides">
             <div class="slide banner"> <img src="../../public/assets/images/article1.png" alt="article1"></div>
@@ -140,14 +141,14 @@ $connections = [
             </div>
             <div class="profile-item">
                 <img src="../../public/assets/images/location.png" alt="Location Icon">
-                <span><?php echo htmlspecialchars($_SESSION['address']); ?></span>
+                <span>Cairo</span>
             </div>
             </div>
             <div class="profile-section">
                 <h3>Contacts</h3>
                 <div class="profile-item">
                     <img src="../../public/assets/images/email.png" alt="Email Icon">
-                    <span><?php echo htmlspecialchars($_SESSION['email']); ?></span>
+                    <span>Admin@gmail.com</span>
                 </div>
                 <div class="profile-item">
                     <img src="../../public/assets/images/phone.png" alt="Phone Icon">
@@ -155,9 +156,11 @@ $connections = [
                 </div>
             </div>
         </div>
-    <!-- </div> -->
+    </div>
 
  
+
+
 
 
 <div class="connections-box">
@@ -199,7 +202,33 @@ $connections = [
 
 <!-- slider script -->
 <script>
-   
+    var slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("slide");
+        var dots = document.getElementsByClassName("dot");
+        if (n > x.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = x.length}
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        x[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+    }
+
 
 // connections script 
 document.addEventListener('DOMContentLoaded', function() {

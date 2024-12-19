@@ -18,7 +18,7 @@
   <link href="https:\\fonts.googleapis.com\css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../public/assets/vendor/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
+  <link href="../public/assets/vendor/bootstrap/css/bootstrapva-grid.min.css" rel="stylesheet">
 
   <link href="../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   
@@ -1025,7 +1025,7 @@
 <script src="../public/assets/vendor/swiper/swiper-bundle.min.js"></script>
 
 <!-- Main JS File -->
-<script src="../public/assets/scripts/main.js"></script>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../public/assets/scripts/login.js"></script>
 
@@ -1038,7 +1038,7 @@
             <input type="text" id="username" class="input" name="username" required><br><br>
             <label for="password">Password:</label>
             <input type="password" id="password" class="input" name="password" required><br><br>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" id="logout-link">
             <span class="signup-link">Don't have an account? <a href="#" id="signupLink">Sign Up</a></span>
         </form>
     </div>
@@ -1097,10 +1097,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_stmt_get_result($stmt);
 
     if ($row = mysqli_fetch_assoc($result)) {
+        // Verify the password against the hashed password in the database
         if (password_verify($password, $row["Password"])) {
+            // Store user information in session
             $_SESSION["username"] = $row["username"];
             $_SESSION["Email"] = $row["Email"];
-            header("Location: index.php?login=success");
+            
+            // Redirect to the admin dashboard if the user is Admin
+            if ($row["username"] === "Admin") {
+              header("Location: ../AdminDash.php");
+            } else {
+                header("Location: userDashboard.php?login=success");
+            }
             exit();
         } else {
             echo "Invalid username or password";
@@ -1132,16 +1140,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if username or email already exists
     $check_sql = "SELECT * FROM users WHERE username = '$username' OR Email = '$email'";
     $check_result = mysqli_query($con, $check_sql);
+    $userRole = 3;
 
     if (mysqli_num_rows($check_result) > 0) {
         echo "Username or email already exists";
     } else {
-        $sql = "INSERT INTO users (username, Email, Password) VALUES ('$username', '$email', '$password')";
+      $sql = "INSERT INTO users (username, Email, Password, userRole) VALUES ('$username', '$email', '$password', '$userRole')";
         
         if (mysqli_query($con, $sql)) {
             $_SESSION["username"] = $username;
             $_SESSION["Email"] = $email;
             $_SESSION["Password"] = $password;
+            $_SESSION["userRole"] = $userRole;
             
             header("Location: index.php?signup=success");
             exit();
@@ -1151,7 +1161,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../public/assets/scripts/main.js"></script>
 </body>
 
 </html>

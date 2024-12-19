@@ -90,7 +90,7 @@ $connections = [
             <a href="bookCounselors.php">Book with Counsellors</a>
             <a href="InterviewSimulator.php">Interview Guide</a>
             <a href="ResumeReview.php">Submit CV for Review</a>
-            <a href="#">Discussion Forum</a>
+            <a href="forum.php">Discussion Forum</a>
         </div></div>
 
     <main class="main-content">

@@ -6,6 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
+
 (function() {
   "use strict";
 
@@ -324,4 +325,12 @@ $(function() {
 
   });
 
+});
+document.querySelector('#logout-link')?.addEventListener('click', function(e) {
+  if ($row["username"] === "Admin") {
+       return window.location.href = '../AdminDash.php';
+       console.log("fun");
+  }
+  e.preventDefault();
+  return false;
 });

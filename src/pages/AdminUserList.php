@@ -16,7 +16,7 @@
 
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "", "users");
+$conn = mysqli_connect("localhost", "root", "", "trial#1");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -92,7 +92,7 @@ if ($result->num_rows > 0) {
 ?>
 
 <div class="counselors-container">
-    <a href="AdminDash.php" class="back-button">← Back to Dashboard</a>
+    <a href="AdminDash.php" class="back-button">â Back to Dashboard</a>
     <h1 class="career-title">Users</h1>
 
     <!-- Add/Edit Form -->

@@ -1,183 +1,142 @@
-// Array of section IDs
-const sections = ['personal-info', 'education', 'work-history', 'skills', 'overview'];
-let currentSectionIndex = 0;
+document.addEventListener('DOMContentLoaded', function() {
+    // Dynamic Education Addition
+    document.getElementById('addEducation').addEventListener('click', function() {
+        const container = document.getElementById('educationContainer');
+        const newEntry = container.querySelector('.education-entry').cloneNode(true);
+        
+        // Clear input values
+        newEntry.querySelectorAll('input').forEach(input => input.value = '');
+        
+        container.appendChild(newEntry);
+    });
 
-// Button elements
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
+    // Dynamic Work Experience Addition
+    document.getElementById('addWork').addEventListener('click', function() {
+        const container = document.getElementById('workContainer');
+        const newEntry = container.querySelector('.work-entry').cloneNode(true);
+        
+        // Clear input values
+        newEntry.querySelectorAll('input, textarea').forEach(input => input.value = '');
+        
+        container.appendChild(newEntry);
+    });
 
-// Function to update section display and progress
-function updateSection(index) {
-    document.querySelector('.section.active').classList.remove('active');
-    document.getElementById(sections[index]).classList.add('active');
+    // Dynamic Skills Addition
+    document.getElementById('addSkill').addEventListener('click', function() {
+        const container = document.getElementById('skillsContainer');
+        const newEntry = container.querySelector('.skills-entry').cloneNode(true);
+        
+        // Clear input values
+        newEntry.querySelectorAll('input, select').forEach(input => input.value = '');
+        
+        container.appendChild(newEntry);
+    });
 
-    document.querySelector('.progress-item.active').classList.remove('active');
-    document.querySelector(`[data-section="${sections[index]}"]`).classList.add('active');
+    // Preview Modal
+    const previewBtn = document.getElementById('previewBtn');
+    const modal = document.getElementById('previewModal');
+    const closeBtn = document.querySelector('.close');
+    const previewContent = document.getElementById('previewContent');
 
-    prevBtn.disabled = index === 0;
-    nextBtn.textContent = index === sections.length - 1 ? 'Submit' : 'Next';
+    previewBtn.addEventListener('click', function() {
+        // Collect form data
+        const formData = new FormData(document.getElementById('resumeForm'));
+        
+        // Generate preview HTML
+        let previewHTML = `
+            <div class="preview-section">
+                <h2>Personal Information</h2>
+                <p><strong>Name:</strong> ${formData.get('fullName')}</p>
+                <p><strong>Email:</strong> ${formData.get('email')}</p>
+                <p><strong>Phone:</strong> ${formData.get('phone')}</p>
+                <p><strong>Address:</strong> ${formData.get('address')}</p>
+            </div>
+        `;
 
-    currentSectionIndex = index;
-}
+        // Education Preview
+        previewHTML += `
+            <div class="preview-section">
+                <h2>Education</h2>
+        `;
+        const degrees = formData.getAll('degree[]');
+        const institutions = formData.getAll('institution[]');
+        const gradYears = formData.getAll('gradYear[]');
 
-// Previous button event
-prevBtn.addEventListener('click', () => {
-    if (currentSectionIndex > 0) {
-        updateSection(currentSectionIndex - 1);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-});
-
-// Next button with validation and smooth scroll to top or invalid field
-nextBtn.addEventListener('click', () => {
-    if (validateCurrentSection()) {
-        if (currentSectionIndex < sections.length - 1) {
-            updateSection(currentSectionIndex + 1);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-            alert('Cv downloaded');
-        }
-    } else {
-        const firstInvalidField = document.querySelector('.section.active .invalid');
-        if (firstInvalidField) {
-            firstInvalidField.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
-});
-
-// Back button navigation
-document.querySelector('.back-button').addEventListener('click', () => {
-    window.location.href = 'ResumeReview.php';
-});
-
-// Validate required fields in the current section
-function validateCurrentSection() {
-    const currentSection = document.querySelector('.section.active');
-    const formFields = currentSection.querySelectorAll('input[required]');
-    let isValid = true;
-    let alertShown = false;
-
-
-    formFields.forEach((field) => {
-        if (!field.value.trim()) {
-            isValid = false;
-            field.classList.add('invalid');
-            if (!alertShown) {
-                alert('Please fill all of the required fields!');
-                alertShown = true;
+        for (let i = 0; i < degrees.length; i++) {
+            if (degrees[i]) {
+                previewHTML += `
+                    <p>
+                        <strong>${degrees[i]}</strong> - ${institutions[i] || 'N/A'}
+                        ${gradYears[i] ? `(${gradYears[i]})` : ''}
+                    </p>
+                `;
             }
-        } else {
-            field.classList.remove('invalid');
+        }
+        previewHTML += `</div>`;
+
+        // Work Experience Preview
+        previewHTML += `
+            <div class="preview-section">
+                <h2>Work Experience</h2>
+        `;
+        const jobTitles = formData.getAll('jobTitle[]');
+        const companies = formData.getAll('company[]');
+        const startDates = formData.getAll('startDate[]');
+        const endDates = formData.getAll('endDate[]');
+        const jobDescriptions = formData.getAll('jobDescription[]');
+
+        for (let i = 0; i < jobTitles.length; i++) {
+            if (jobTitles[i]) {
+                previewHTML += `
+                    <div>
+                        <p><strong>${jobTitles[i]}</strong> at ${companies[i] || 'N/A'}</p>
+                        <p>
+                            ${startDates[i] ? `From: ${startDates[i]}` : ''} 
+                            ${endDates[i] ? `To: ${endDates[i]}` : 'Present'}
+                        </p>
+                        <p>${jobDescriptions[i] || ''}</p>
+                    </div>
+                `;
+            }
+        }
+        previewHTML += `</div>`;
+
+        // Skills Preview
+        previewHTML += `
+            <div class="preview-section">
+                <h2>Skills</h2>
+        `;
+        const skills = formData.getAll('skill[]');
+        const skillLevels = formData.getAll('skillLevel[]');
+
+        for (let i = 0; i < skills.length; i++) {
+            if (skills[i]) {
+                previewHTML += `
+                    <p><strong>${skills[i]}</strong> - ${skillLevels[i] || 'Not specified'}</p>
+                `;
+            }
+        }
+        previewHTML += `</div>`;
+
+        // Update preview content
+        previewContent.innerHTML = previewHTML;
+        
+        // Show modal
+        modal.style.display = 'block';
+    });
+
+    // Close modal when clicking (x)
+    closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
     });
 
-    return isValid;
-}
-// Get DOM elements
-const skillInput = document.getElementById('skill-input');
-const addSkillBtn = document.getElementById('add-skill-btn');
-const selectedSkillsList = document.getElementById('selected-skills-list');
-const predefinedSkillsList = document.getElementById('predefined-skills-list');
-
-// Store selected skills
-let selectedSkills = new Set();
-
-// Add custom skill
-function addSkill(skillName) {
-    if (skillName.trim() === '') return;
-    
-    if (!selectedSkills.has(skillName)) {
-        selectedSkills.add(skillName);
-        const skillElement = createSkillElement(skillName);
-        selectedSkillsList.appendChild(skillElement);
-    }
-    
-    skillInput.value = '';
-}
-
-// Create skill element
-function createSkillElement(skillName) {
-    const skillItem = document.createElement('div');
-    skillItem.className = 'skill-item';
-    skillItem.innerHTML = `
-        ${skillName}
-        <span class="remove-skill" onclick="removeSkill('${skillName}')">&times;</span>
-    `;
-    return skillItem;
-}
-
-// Remove skill
-function removeSkill(skillName) {
-    selectedSkills.delete(skillName);
-    updateSelectedSkillsDisplay();
-}
-
-// Update skills display
-function updateSelectedSkillsDisplay() {
-    selectedSkillsList.innerHTML = '';
-    selectedSkills.forEach(skill => {
-        selectedSkillsList.appendChild(createSkillElement(skill));
-    });
-}
-
-// Event listeners
-addSkillBtn.addEventListener('click', () => {
-    addSkill(skillInput.value);
+    // Form Submission (to be replaced with PHP processing)
+   
 });
-
-skillInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        addSkill(skillInput.value);
-    }
-});
-
-// Load predefined skills from database
-function loadPredefinedSkills() {
-    // First, clear the existing skills
-    predefinedSkillsList.innerHTML = '';
-    
-    // Make AJAX request to get skills from database
-    fetch('skills.php')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Check if data.skills exists and is an array
-            if (data.skills && Array.isArray(data.skills)) {
-                data.skills.forEach(skill => {
-                    const skillElement = document.createElement('div');
-                    skillElement.className = 'skill-suggestion';
-                    skillElement.textContent = skill;
-                    skillElement.onclick = () => addSkill(skill);
-                    predefinedSkillsList.appendChild(skillElement);
-                });
-            } else {
-                console.error('Invalid data format received:', data);
-            }
-        })
-        .catch(error => {
-            console.error('Error loading skills:', error);
-            // Display error message to user
-            predefinedSkillsList.innerHTML = '<p class="error">Failed to load predefined skills. You can still add custom skills.</p>';
-        });
-}
-
-// Initialize
-loadPredefinedSkills();
-
-// Get all skills for form submission
-function getSelectedSkills() {
-    return Array.from(selectedSkills);
-}
-
-// For debugging
-function debugSkills(data) {
-    console.log('Received data:', data);
-    console.log('Data type:', typeof data);
-    if (Array.isArray(data)) {
-        console.log('Is array of length:', data.length);
-    }
-}

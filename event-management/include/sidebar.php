@@ -11,12 +11,21 @@
 	<li class="treeview"> 
 		<a href="<?php echo WEB_ROOT; ?>views/?v=USERS"><i class="fa fa-users"></i><span>Counselor List</span></a>
 	</li>
+	<li class="treeview"> 
+		<a href="<?php echo WEB_ROOT; ?>../src/pages/Interviewpreview.php"><i class="fa fa-users"></i><span>Interview Preview</span></a>
+	</li>
+	<li class="treeview"> 
+		<a href="<?php echo WEB_ROOT; ?>../src/pages/Resumepreview.php"><i class="fa fa-users"></i><span>Resume Preview</span></a>
+	</li>
 	<?php 
 	$type = $_SESSION['calendar_fd_user']['type'];
 	if($type == 'admin') {
 	?>
 	<li class="treeview"> 
 		<a href="<?php echo WEB_ROOT; ?>views/?v=HOLY"><i class="fa fa-plane"></i><span>Holidays List</span></a>
+	</li>
+	<li class="treeview"> 
+		<a href="../src/pages/counselor.php"><i class="fa fa-users"></i><span>Counselor List</span></a>
 	</li>
 	<?php
 	}
