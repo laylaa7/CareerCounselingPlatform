@@ -49,9 +49,18 @@ document.addEventListener('DOMContentLoaded', function() {
       // Implement your login logic here
   });
 
-  document.getElementById('signupForm').addEventListener('submit', function(e) {
-   
-      console.log('Signup form submitted');
-      // Implement your signup logic here
-  });
+  $('#signupForm').on('submit', function (e) {
+    e.preventDefault();
+
+    const formData = $(this).serialize();
+    $.post('signup.php', formData, function (response) {
+        console.log(response); // Debug response
+        if (response.trim() === 'OTP_SENT') {
+            $('#signupPopup').removeClass('active'); // Hide Signup Popup
+            $('#otpPopup').addClass('active'); // Show OTP Popup
+        } else {
+            alert(response); // Handle any signup error
+        }
+    });
 });
+})

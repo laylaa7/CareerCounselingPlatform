@@ -334,3 +334,22 @@ document.querySelector('#logout-link')?.addEventListener('click', function(e) {
   e.preventDefault();
   return false;
 });
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+      
+  console.log('Login form submitted');
+  // Implement your login logic here
+});
+
+$('#signupForm').on('submit', function (e) {
+e.preventDefault();
+
+const formData = $(this).serialize();
+$.post('signup.php', formData, function (response) {
+    if (response.trim() === 'OTP_SENT') {
+        $('#signupPopup').removeClass('active'); // Hide Signup Popup
+        $('#otpPopup').addClass('active'); // Show OTP Popup
+    } else {
+        alert(response); // Handle any signup error
+    }
+});
+});

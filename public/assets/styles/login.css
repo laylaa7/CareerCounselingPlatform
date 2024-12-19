@@ -4,21 +4,20 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent overlay */
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 0;
+  opacity: 0; /* Hidden by default */
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
   z-index: 100;
 }
 
 .popup.active {
-  opacity: 1;
+  opacity: 1; /* Visible when active */
   visibility: visible;
 }
-
 .popup-content {
   background-color: #fff;
   padding: 2rem;
