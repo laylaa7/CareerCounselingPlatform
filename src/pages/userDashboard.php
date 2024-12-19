@@ -94,7 +94,6 @@ $connections = [
         </div></div>
 
     <main class="main-content">
-    <!-- <div class="scrollable-content"> -->
 
         <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['name']); ?>!</div>
 

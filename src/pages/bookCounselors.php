@@ -1,43 +1,35 @@
 <?php
 session_start();
 
-// Simulating data for counselors
-$counselors = array(
-    array(
-        "name" => "Salma Khalil",
-        "email" => "salma@gmail.com",
-        "position" => "Director",
-        "department" => "Human resources",
-        "location" => "Germany",
-        "status" => "active",
-        "completion" => "72",
-        "role" => "Employee",
-        "verified" => true,
-    ),
-    array(
-        "name" => "Anne Richard",
-        "email" => "anne@site.com",
-        "position" => "Seller",
-        "department" => "Branding products",
-        "location" => "United States",
-        "status" => "pending",
-        "completion" => "24",
-        "role" => "Employee",
-        "verified" => false,
-    ),
-    array(
-        "name" => "Nour bassem",
-        "email" => "nour@gmail.com",
-        "position" => "Developer",
-        "department" => "Web developer",
-        "location" => "Egypt",
-        "status" => "suspended",
-        "completion" => "100",
-        "role" => "Employee",
-        "verified" => true,
-    ),
-);
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "careercounseling";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Fetch counselors from the database
+$sql = "SELECT CounselorID, position, specialization, location, status, verified, No_of_Connections AS completion 
+        FROM counselors";
+$result = $conn->query($sql);
+
+$counselors = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $counselors[] = $row;
+    }
+}
+
+$conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -109,43 +101,41 @@ $counselors = array(
         <a href="userDashboard.php" class="back-button">← Back to Dashboard</a>
         <h1 class="career-title">Career Counselors</h1>
 
-        <div class="counselors-list">
-            <?php foreach($counselors as $counselor): ?>
-                <div class="counselor-row">
-                    <img src="../../public/assets/images/profile.png" class="profile-img" alt="Profile">
-                    <div class="counselor-info">
-                        <div class="name-email">
-                            <div class="name">
-                                <?php echo htmlspecialchars($counselor["name"]); ?>
-                                <?php if($counselor["verified"]): ?>
-                                    <img src="../../public/assets/images/verified.png" class="verified-badge" alt="Verified">
-                                <?php endif; ?>
-                            </div>
-                            <div class="email"><?php echo htmlspecialchars($counselor["email"]); ?></div>
-                        </div>
-                        <div class="position">
-                            <div><?php echo htmlspecialchars($counselor["position"]); ?></div>
-                            <div class="department"><?php echo htmlspecialchars($counselor["department"]); ?></div>
-                        </div>
-                        <div class="location"><?php echo htmlspecialchars($counselor["location"]); ?></div>
-                        <div class="status">
-                            <span class="status-dot <?php echo $counselor["status"]; ?>"></span>
-                            <?php echo ucfirst($counselor["status"]); ?>
-                        </div>
-                        <div class="completion">
-                            <?php echo $counselor["completion"]; ?>%
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: <?php echo $counselor["completion"]; ?>%"></div>
-                            </div>
-                        </div>
-                        <div class="role"><?php echo  htmlspecialchars($counselor["role"]); ?></div>
-                        <button class="book-btn" onclick="showCalendar('<?php echo htmlspecialchars($counselor["name"]); ?>')">
-                            <span class="text">Book</span>
-                        </button>
+       <div class="counselors-list">
+    <?php foreach ($counselors as $counselor): ?>
+        <div class="counselor-row">
+            <img src="../../public/assets/images/profile.png" class="profile-img" alt="Profile">
+            <div class="counselor-info">
+                <div class="name">
+                    <?php echo htmlspecialchars("Counselor #" . $counselor["CounselorID"]); ?>
+                    <?php if ($counselor["verified"]): ?>
+                        <img src="../../public/assets/images/verified.png" class="verified-badge" alt="Verified">
+                    <?php endif; ?>
+                </div>
+                <div class="position">
+                    <div><?php echo htmlspecialchars($counselor["position"]); ?></div>
+                </div>
+                <div class="specialization">
+                    <div><?php echo htmlspecialchars($counselor["specialization"]); ?></div>
+                </div>
+                <div class="location"><?php echo htmlspecialchars($counselor["location"]); ?></div>
+                <div class="status">
+                    <span class="status-dot <?php echo $counselor["status"]; ?>"></span>
+                    <?php echo ucfirst($counselor["status"]); ?>
+                </div>
+                <div class="completion">
+                    <?php echo $counselor["completion"]; ?>%
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: <?php echo $counselor["completion"]; ?>%;"></div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <button class="book-btn" onclick="showCalendar('Counselor #<?php echo $counselor["CounselorID"]; ?>')">
+                    <span class="text">Book</span>
+                </button>
+            </div>
         </div>
+    <?php endforeach; ?>
+</div>
     </div>
 
 <script>

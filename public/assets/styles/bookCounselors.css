@@ -3,31 +3,28 @@
     padding: 0;
     font-family: Arial, sans-serif;
 }
-.header {
-    height: 12vh;
-    margin-top: 0px;
-    position: fixed;
-    white-space: nowrap;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    width: 100%; 
-    background-color: white; 
-    z-index: 1000;
-} 
 
-.body {
-    width: 100%;
-    margin: 0; 
-    padding: 0; 
-    overflow-x: hidden;
+body {
     background-color: #f5f5f5;
 }
-.counselors-container {
-    padding-top: 65px;
-    width: 100%; 
-    max-width: 1300px; 
-    margin: 0 auto; 
-    box-sizing: border-box; 
+
+.header {
+    height: 12vh;
+    position: fixed;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
 }
+
+.counselors-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 65px;
+}
+
 .back-button {
     display: inline-block;
     padding: 10px 20px;
@@ -35,151 +32,123 @@
     color: #333;
     text-decoration: none;
     border-radius: 5px;
-    margin: 20px;
+    margin-bottom: 20px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+
 .career-title {
-    font-size: 34px;
-    margin-bottom: 15px;
-    padding: 15px;
+    font-size: 24px;
+    margin-bottom: 20px;
     color: #333;
 }
+
 .counselors-list {
-    width: 100%;
-    padding: 0 20px;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
+
 .counselor-row {
     display: flex;
     align-items: center;
-    padding: 15px;
-    margin-bottom: 10px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
 .profile-img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 15px;
+    margin-right: 16px;
 }
+
 .counselor-info {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.name-email {
-    flex: 2;
+
+.name-role {
+    display: flex;
+    flex-direction: column;
 }
+
 .name {
     font-weight: bold;
-    margin-bottom: 5px;
-}
-.verified-badge {
-    width: 15px;
-    height: 15px;
-    margin-left: 2px;
-}
-.email {
-    color: #666;
-    font-size: 0.9em;
-}
-.position {
-    flex: 1;
-}
-.department {
-    color: #666;
-    font-size: 0.9em;
-}
-.location {
-    flex: 1;
-    color: #444;
-}
-.status {
-    flex: 1;
     display: flex;
     align-items: center;
 }
+
+.verified-badge {
+    width: 16px;
+    height: 16px;
+    margin-left: 4px;
+}
+
+.role {
+    color: #666;
+    font-size: 14px;
+}
+
+.location {
+    color: #666;
+    font-size: 14px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+}
+
 .status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    margin-right: 5px;
+    margin-right: 6px;
 }
+
 .status-dot.active { background-color: #4CAF50; }
 .status-dot.pending { background-color: #FFC107; }
 .status-dot.suspended { background-color: #F44336; }
+
 .completion {
-    flex: 1;
-    color: #666;
     display: flex;
     align-items: center;
-    margin-right: 15px;
-    gap: 7px;
+    width: 120px;
 }
+
 .progress-bar {
-    width: 100px;
-    height: 6px;
-    border-radius: 3px;
-    background-color: lightgray;
+    flex: 1;
+    height: 4px;
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-right: 8px;
 }
+
 .progress-fill {
     height: 100%;
     background-color: #2196F3;
-    border-radius: 3px;
 }
-.role {
-    flex: 1;
-    color: #666;
-}
+
 .book-btn {
-    outline: 3px lightgray solid;
-    outline-offset: -3px;
-    border: none;
-    cursor: pointer;
-    transition: 400ms;
-    height: 6.5vh;
-    width: 12vh;
-    padding: 8px 20px;
     background-color: #3366cc;
     color: white;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-left: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-}
-.book-btn .text {
-    color: white;
-    font-size: 1em;
-    transition: 400ms;
-    align-items: center;
-}
-.book-btn:hover {
-    background-color: white;
-}
-.book-btn:hover .text {
-    color: #3366cc;
-}
-book-btn {
-    outline: 3px lightgray solid;
-    outline-offset: -3px;
     border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
     cursor: pointer;
-    transition: 400ms;
-    padding: 8px 20px; 
-    background-color: #3366cc;
-    color: white;
-    border-radius: 6px;
-    margin-left: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s;
 }
 
 .book-btn:hover {
-    background-color: white; 
-    color: black; 
+    background-color: #254e9e;
 }
+
+/* Calendar Popup Styles */
 .calendar-popup {
     display: none;
     position: fixed;
@@ -190,6 +159,7 @@ book-btn {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
+
 .calendar-content {
     position: absolute;
     top: 50%;
@@ -201,12 +171,14 @@ book-btn {
     width: 90%;
     max-width: 800px;
 }
+
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
+
 .back-btn, .close-btn {
     background: none;
     border: none;
@@ -214,24 +186,29 @@ book-btn {
     cursor: pointer;
     color: #3366cc;
 }
+
 .calendar-body {
     display: flex;
     gap: 20px;
 }
+
 .calendar-left {
     flex: 1;
     padding-right: 20px;
     border-right: 1px solid #e6e6e6;
 }
+
 .calendar-right {
     flex: 2;
 }
+
 .month-selector {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
 }
+
 .month-selector button {
     background: none;
     border: none;
@@ -239,9 +216,11 @@ book-btn {
     cursor: pointer;
     color: #3366cc;
 }
+
 .calendar-grid {
     margin-bottom: 20px;
 }
+
 .weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -249,11 +228,13 @@ book-btn {
     font-weight: bold;
     margin-bottom: 10px;
 }
+
 .dates {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
 }
+
 .date-btn {
     padding: 10px;
     border: none;
@@ -261,25 +242,31 @@ book-btn {
     cursor: pointer;
     border-radius: 50%;
 }
+
 .date-btn:hover:not(:disabled) {
     background-color: #e6e6e6;
 }
+
 .date-btn.selected {
     background-color: #3366cc;
     color: white;
 }
+
 .date-btn.disabled {
     color: #ccc;
     cursor: not-allowed;
 }
+
 .time-slots {
     margin-bottom: 20px;
 }
+
 .time-buttons {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
+
 .time-btn {
     padding: 10px;
     border: 1px solid #e6e6e6;
@@ -287,17 +274,21 @@ book-btn {
     border-radius: 4px;
     cursor: pointer;
 }
+
 .time-btn:hover {
     background-color: #f5f5f5;
 }
+
 .time-btn.selected {
     background-color: #3366cc;
     color: white;
     border-color: #3366cc;
 }
+
 .timezone-selector {
     margin-top: 20px;
 }
+
 .timezone-selector select {
     width: 100%;
     padding: 8px;
@@ -305,6 +296,7 @@ book-btn {
     border: 1px solid #e6e6e6;
     border-radius: 4px;
 }
+
 .book-button {
     display: block;
     width: 100%;
@@ -317,14 +309,38 @@ book-btn {
     margin-top: 20px;
     font-size: 16px;
 }
+
 .book-button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
+
 @media (max-width: 768px) {
+    .counselor-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .counselor-info {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .completion {
+        margin-top: 12px;
+    }
+
+    .book-btn {
+        margin-top: 12px;
+        width: 100%;
+    }
+
     .calendar-body {
         flex-direction: column;
     }
+
     .calendar-left {
         border-right: none;
         border-bottom: 1px solid #e6e6e6;
