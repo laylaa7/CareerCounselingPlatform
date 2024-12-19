@@ -11,8 +11,9 @@
 <body class="body">
 
 <nav class="navbar">
-    <?php include "Navbar.php"; ?>
+    <?php include "../../tests/Navbar.php"; ?>
 </nav>
+
 
 <?php
 session_start();

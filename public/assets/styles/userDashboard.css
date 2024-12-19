@@ -462,4 +462,110 @@ body {
 }
 
 
-    
+/* responsive */
+body {
+    font-size: 16px;
+}
+@media (max-width: 1024px) {
+    .dashboard-container {
+        flex-direction: column;
+        padding-top: 0;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 10px;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .slider-container {
+        width: 100%;
+        height: auto;
+        margin: 20px 0;
+    }
+
+    .content-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .profile-box, .progress-box, .connections-box {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .connections-box {
+        max-width: 100%;
+    }
+
+    .connection-item {
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar a {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .slider-container {
+        height: auto;
+    }
+
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-icon {
+        margin-bottom: 10px;
+    }
+
+    .connections-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .connection-item {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        padding: 5px;
+    }
+
+    .sidebar a {
+        font-size: 12px;
+        padding: 5px;
+    }
+
+    .slider-container {
+        width: 100%;
+    }
+
+    .task-content {
+        font-size: 14px;
+    }
+
+    .connect-btn {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+
+    .scroll-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+    }
+}
