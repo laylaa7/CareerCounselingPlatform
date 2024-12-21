@@ -34,7 +34,7 @@ class AppointmentsController {
     }
 
     // Handle retrieving all appointments with student info
-    public function getAppointments($counselor_id = 0) {
+    public function getAppointments($counselor_id = 0) { 
         $appointments = $this->model->getAppointments($counselor_id);
         return json_encode($appointments);
     }
@@ -64,11 +64,13 @@ class AppointmentsController {
     }
 
     // Handle deleting an appointment
-    public function deleteAppointment($id) {
-        if ($this->model->deleteAppointment($id)) {
-            echo json_encode(['message' => 'Appointment deleted successfully.']);
+    public function deleteAppointment($appointment_id) {
+        echo $appointment_id;
+        $appointment_id = (int) $appointment_id;
+        if ($this->model->deleteAppointment($appointment_id)) {
+            return json_encode(['message' => 'Appointment deleted successfully.']);
         } else {
-            echo json_encode(['error' => 'Failed to delete appointment.']);
+            return json_encode(['error' => 'Failed to delete appointment.']);
         }
     }
 
@@ -93,7 +95,6 @@ class AppointmentsController {
         $counselor_id = (int)$counselor_id;
         $appointments = $this->model->fetchAppointments($counselor_id, isset($searchTerm) ? $searchTerm : "", isset($filterStatus) ? $filterStatus : "*");
         return json_encode($appointments);
-        
+
     }
 }
-

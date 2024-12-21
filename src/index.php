@@ -1,121 +1,3 @@
-<?php
-session_start(); // Ensure session_start is at the very top, before any output
-
-$con = mysqli_connect("localhost", "root", "", "users");
-
-if (!$con) {
-    die("Connection failed: " . mysqli_connect_error());
-}
-
-// Handle login
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
-    $username = mysqli_real_escape_string($con, $_POST["username"] ?? "");
-    $password = $_POST["password"] ?? ""; 
-
-    if ($username === "" || $password === "") {
-        echo "Username and password are required.";
-        exit();
-    }
-
-    $sql = "SELECT * FROM users WHERE username = ?";
-    $stmt = mysqli_prepare($con, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $username);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    if ($row = mysqli_fetch_assoc($result)) {
-        if (password_verify($password, $row["Password"])) {
-            $_SESSION["username"] = $row["username"];
-            $_SESSION["Email"] = $row["Email"];
-            
-            if ($row["username"] === "Admin") {
-                header("Location: ../AdminDash.php");
-            } else {
-                header("Location: userDashboard.php?login=success");
-            }
-            exit();
-        } else {
-            echo "Invalid username or password.";
-        }
-    } else {
-        echo "Invalid username or password.";
-    }
-}
-
-// Handle signup
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
-    $username = mysqli_real_escape_string($con, $_POST["signupUsername"] ?? "");
-    $email = mysqli_real_escape_string($con, $_POST["signupEmail"] ?? "");
-    $password = mysqli_real_escape_string($con, $_POST["signupPassword"] ?? "");
-
-    if ($username === "" || $email === "" || $password === "") {
-        echo "All fields are required.";
-        exit();
-    }
-
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-    $check_sql = "SELECT * FROM users WHERE username = ? OR Email = ?";
-    $stmt = mysqli_prepare($con, $check_sql);
-    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-
-    if (mysqli_num_rows($result) > 0) {
-        echo "Username or email already exists.";
-    } else {
-        $otp = rand(100000, 999999);
-        $_SESSION["otp"] = $otp;
-        $_SESSION["temp_username"] = $username;
-        $_SESSION["temp_email"] = $email;
-        $_SESSION["temp_password"] = $hashedPassword;
-
-        $subject = "Your OTP Code";
-        $message = "Your OTP for signup verification is: $otp";
-        $headers = "From: noreply@example.com";
-
-        if (mail($email, $subject, $message, $headers)) {
-            echo "OTP_SENT";
-        } else {
-            echo "Error sending OTP. Please try again.";
-        }
-    }
-}
-
-// Handle OTP verification
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["verifyOtp"])) {
-    $entered_otp = $_POST["otp"] ?? "";
-
-    if ($entered_otp == $_SESSION["otp"]) {
-        $username = $_SESSION["temp_username"];
-        $email = $_SESSION["temp_email"];
-        $password = $_SESSION["temp_password"];
-        $userRole = 3;
-
-        $sql = "INSERT INTO users (username, Email, Password, userRole) VALUES (?, ?, ?, ?)";
-        $stmt = mysqli_prepare($con, $sql);
-        mysqli_stmt_bind_param($stmt, "sssi", $username, $email, $password, $userRole);
-
-        if (mysqli_stmt_execute($stmt)) {
-            unset($_SESSION["otp"]);
-            unset($_SESSION["temp_username"]);
-            unset($_SESSION["temp_email"]);
-            unset($_SESSION["temp_password"]);
-
-            header("Location: studentDashboard.php");
-            exit();
-        } else {
-            echo "Error: " . mysqli_error($con);
-        }
-    } else {
-        echo "Invalid OTP. Please try again.";
-    }
-}
-
-mysqli_close($con);
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -136,7 +18,7 @@ mysqli_close($con);
   <link href="https:\\fonts.googleapis.com\css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../public/assets/vendor/bootstrap/css/bootstrapva-grid.min.css" rel="stylesheet">
+  <link href="../public/assets/vendor/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
 
   <link href="../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   
@@ -605,7 +487,7 @@ mysqli_close($con);
                   Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
                 </p>
                 <div class="profile mt-auto">
-                 
+                  <img src="public/assets/images/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
                   <h3>Saul Goodman</h3>
                   <h4>Ceo &amp; Founder</h4>
                 </div>
@@ -621,7 +503,7 @@ mysqli_close($con);
                   Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
                 </p>
                 <div class="profile mt-auto">
-                  
+                  <img src="public/assets/images/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
                   <h3>Sara Wilsson</h3>
                   <h4>Designer</h4>
                 </div>
@@ -637,7 +519,7 @@ mysqli_close($con);
                   Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
                 </p>
                 <div class="profile mt-auto">
-                  
+                  <img src="public/assets/images/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
                   <h3>Jena Karlis</h3>
                   <h4>Store Owner</h4>
                 </div>
@@ -653,7 +535,7 @@ mysqli_close($con);
                   Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
                 </p>
                 <div class="profile mt-auto">
-                  
+                  <img src="public/assets/images/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
                   <h3>Matt Brandon</h3>
                   <h4>Freelancer</h4>
                 </div>
@@ -669,7 +551,7 @@ mysqli_close($con);
                   Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
                 </p>
                 <div class="profile mt-auto">
-                  
+                  <img src="public/assets/images/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
                   <h3>John Larson</h3>
                   <h4>Entrepreneur</h4>
                 </div>
@@ -700,7 +582,7 @@ mysqli_close($con);
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="team-member">
               <div class="member-img">
-        
+                <img src="public/assets/images/team/team-1.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -719,7 +601,7 @@ mysqli_close($con);
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="team-member">
               <div class="member-img">
-             
+                <img src="public/assets/images/team/team-2.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -738,7 +620,7 @@ mysqli_close($con);
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
             <div class="team-member">
               <div class="member-img">
-                
+                <img src="public/assets/images/team/team-3.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -757,7 +639,7 @@ mysqli_close($con);
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
             <div class="team-member">
               <div class="member-img">
-                
+                <img src="public/assets/images/team/team-4.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter-x"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -780,11 +662,111 @@ mysqli_close($con);
     </section><!-- /Team Section -->
 
     <!-- Clients Section -->
-    
-    <!-- Recent Posts Section -->
-  
+    <section id="clients" class="clients section">
 
-     
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Clients</h2>
+        <p>We work with best clients<br></p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 2,
+                  "spaceBetween": 40
+                },
+                "480": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 60
+                },
+                "640": {
+                  "slidesPerView": 4,
+                  "spaceBetween": 80
+                },
+                "992": {
+                  "slidesPerView": 6,
+                  "spaceBetween": 120
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-1.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-2.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-3.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-4.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-5.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-6.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-7.png" class="img-fluid" alt=""></div>
+            <div class="swiper-slide"><img src="public/assets/images/clients/client-8.png" class="img-fluid" alt=""></div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Clients Section -->
+
+    <!-- Recent Posts Section -->
+    <section id="recent-posts" class="recent-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Recent Posts</h2>
+        <p>Recent posts form our Blog</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-5">
+
+          <div class="col-xl-4 col-md-6">
+            <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="100">
+
+              <div class="post-img position-relative overflow-hidden">
+                <img src="public/assets/images/blog/blog-1.jpg" class="img-fluid" alt="">
+                <span class="post-date">December 12</span>
+              </div>
+
+              <div class="post-content d-flex flex-column">
+
+                <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis</h3>
+
+                <div class="meta d-flex align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-person"></i> <span class="ps-2">Julia Parker</span>
+                  </div>
+                  <span class="px-3 text-black-50">/</span>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                  </div>
+                </div>
+
+                <hr>
+
+                <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+
+              </div>
+
+            </div>
+          </div><!-- End post item -->
+
           <div class="col-xl-4 col-md-6">
             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
 
@@ -1094,10 +1076,93 @@ mysqli_close($con);
             </div>
         </div>
 
-       
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../public/assets/scripts/main.js"></script>
-<script src="../public/assets/scripts/login.js"></script>
+//LOGIN PHPP
+
+<?php
+session_start();
+$con = mysqli_connect("localhost", "root", "", "users");
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($con, $_POST["username"]);
+    $password = $_POST["password"]; 
+
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        // Verify the password against the hashed password in the database
+        if (password_verify($password, $row["Password"])) {
+            // Store user information in session
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["Email"] = $row["Email"];
+            
+            // Redirect to the admin dashboard if the user is Admin
+            if ($row["username"] === "Admin") {
+              header("Location: ../AdminDash.php");
+            } else {
+                header("Location: userDashboard.php?login=success");
+            }
+            exit();
+        } else {
+            echo "Invalid username or password";
+        }
+    } else {
+        echo "Invalid username or password";
+    }
+}
+
+mysqli_close($con);
+?>
+ 
+
+ //SIGN UPPPPPP PHPPP
+ <?php
+session_start();
+$con = mysqli_connect("localhost", "root", "", "users");
+
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($con, $_POST["signupUsername"]);
+    $email = mysqli_real_escape_string($con, $_POST["signupEmail"]);
+    $password = mysqli_real_escape_string($con, $_POST["signupPassword"]);
+
+    // Check if username or email already exists
+    $check_sql = "SELECT * FROM users WHERE username = '$username' OR Email = '$email'";
+    $check_result = mysqli_query($con, $check_sql);
+    $userRole = 3;
+
+    if (mysqli_num_rows($check_result) > 0) {
+        echo "Username or email already exists";
+    } else {
+      $sql = "INSERT INTO users (username, Email, Password, userRole) VALUES ('$username', '$email', '$password', '$userRole')";
+        
+        if (mysqli_query($con, $sql)) {
+            $_SESSION["username"] = $username;
+            $_SESSION["Email"] = $email;
+            $_SESSION["Password"] = $password;
+            $_SESSION["userRole"] = $userRole;
+            
+            header("Location: index.php?signup=success");
+            exit();
+        } else {
+          echo "Error: " . mysqli_error($con);
+        }
+      }
+    }
+    ?>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../public/assets/scripts/main.js"></script>
 </body>
 
 </html>
