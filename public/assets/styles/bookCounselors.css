@@ -2,12 +2,12 @@
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    box-sizing: border-box; 
 }
-
 body {
     background-color: #f5f5f5;
+    overflow-x: hidden; 
 }
-
 .header {
     height: 12vh;
     position: fixed;
@@ -17,14 +17,12 @@ body {
     background-color: white;
     z-index: 1000;
 }
-
 .counselors-container {
-    max-width: 800px;
+    max-width: 95%; 
     margin: 0 auto;
     padding: 20px;
     padding-top: 65px;
 }
-
 .back-button {
     display: inline-block;
     padding: 10px 20px;
@@ -33,21 +31,20 @@ body {
     text-decoration: none;
     border-radius: 5px;
     margin-bottom: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 20px; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
-
 .career-title {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
 }
-
 .counselors-list {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    width: 100%; 
 }
-
 .counselor-row {
     display: flex;
     align-items: center;
@@ -55,71 +52,84 @@ body {
     border-radius: 8px;
     padding: 16px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
-
 .profile-img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     margin-right: 16px;
 }
-
 .counselor-info {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
 .name-role {
     display: flex;
     flex-direction: column;
+    margin-bottom: 8px; 
 }
-
 .name {
     font-weight: bold;
     display: flex;
     align-items: center;
 }
-
 .verified-badge {
     width: 16px;
     height: 16px;
     margin-left: 4px;
 }
-
+.email {
+    font-size: 14px;
+    color: #666;
+    margin-top: 2px;
+}
+.details {
+    margin-bottom: 10px; 
+}
+.position {
+    font-weight: bold;
+    margin-bottom: 4px; 
+}
+.specialization {
+    color: #666;
+    font-size: 14px;
+}
+.status {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
 .role {
     color: #666;
     font-size: 14px;
 }
-
 .location {
     color: #666;
     font-size: 14px;
 }
-
-.status {
-    display: flex;
-    align-items: center;
-}
-
 .status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     margin-right: 6px;
 }
-
-.status-dot.active { background-color: #4CAF50; }
-.status-dot.pending { background-color: #FFC107; }
-.status-dot.suspended { background-color: #F44336; }
-
+.status-dot.Active {
+    background-color: #4CAF50; /* Green */
+}
+.status-dot.Pending {
+    background-color: #FFC107; /* Orange */
+}
+.status-dot.Suspended {
+    background-color: #F44336; /* Red */
+}
 .completion {
     display: flex;
     align-items: center;
     width: 120px;
 }
-
 .progress-bar {
     flex: 1;
     height: 4px;
@@ -128,12 +138,10 @@ body {
     overflow: hidden;
     margin-right: 8px;
 }
-
 .progress-fill {
     height: 100%;
     background-color: #2196F3;
 }
-
 .book-btn {
     background-color: #3366cc;
     color: white;
@@ -143,7 +151,6 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
 .book-btn:hover {
     background-color: #254e9e;
 }
@@ -346,5 +353,34 @@ body {
         border-bottom: 1px solid #e6e6e6;
         padding-bottom: 20px;
         margin-bottom: 20px;
+    }
+}
+  
+
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+
+.alert-error {
+    background-color: #f44336;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
     }
 }
