@@ -344,7 +344,7 @@ $('#signupForm').on('submit', function (e) {
 e.preventDefault();
 
 const formData = $(this).serialize();
-$.post('signup.php', formData, function (response) {
+$.post('signupForm', formData, function (response) {
     if (response.trim() === 'OTP_SENT') {
         $('#signupPopup').removeClass('active'); // Hide Signup Popup
         $('#otpPopup').addClass('active'); // Show OTP Popup

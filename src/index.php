@@ -1,7 +1,7 @@
 <?php
 session_start(); // Ensure session_start is at the very top, before any output
 
-$con = mysqli_connect("localhost", "root", "", "users");
+$con = mysqli_connect("localhost", "root", "", "careercouncelors");
 
 if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
