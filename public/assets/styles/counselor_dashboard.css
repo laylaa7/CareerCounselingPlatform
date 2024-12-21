@@ -505,6 +505,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: left;
     border-spacing: 10px;
+    border: none;   
 }
 .appointments-table thead {
     
@@ -618,4 +619,76 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 20px
+}
+
+/* FullCalendar Container */
+#appointments-view {
+    margin-top: 40px;
+}
+
+/* Calendar Header */
+.fc-toolbar {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 5px;
+}
+
+/* Calendar Title */
+.fc-toolbar-title {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Calendar Buttons */
+.fc-button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.fc-button:hover {
+    background-color: #0056b3;
+}
+
+/* Day Cells */
+.fc-daygrid-day {
+    background-color: #f9f9f9;
+}
+
+/* Event Styling */
+.fc-event {
+    background-color: #a8cbd2;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 10px;
+    font-size: 1.2em;
+}
+
+.fc-event:hover {
+    background-color: black;
+}
+
+/* Adjust Event Content */
+.fc-event-title {
+    font-weight: bold;
+    margin: 10px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #appointments-view {
+        max-width: 100%;
+        margin: 20px;
+        padding: 10px;
+    }
+
+    .fc-toolbar-title {
+        font-size: 1.2em;
+    }
 }

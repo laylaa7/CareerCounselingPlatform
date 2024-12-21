@@ -12,7 +12,7 @@ $router->get('/CareerCounseling/CareerCounselingPlatform/counselor/dashboard', '
 
 //API Calls
 $router->post('/CareerCounseling/CareerCounselingPlatform/appointments/changeStatus', 'AppointmentsController@changeStatus');
-$router->post('/CareerCounseling/CareerCounselingPlatform/appointments/delete', 'AppointmentsController@delete');
+$router->post('/CareerCounseling/CareerCounselingPlatform/appointments/delete', 'AppointmentsController@deleteAppointment');
 $router->post('/CareerCounseling/CareerCounselingPlatform/appointments/filter', 'AppointmentsController@getFilteredAppointments');
 
 // Handle the incoming request

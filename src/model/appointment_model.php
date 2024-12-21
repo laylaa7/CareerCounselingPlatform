@@ -8,10 +8,10 @@ class AppointmentsModel {
     }
 
     // Create a new appointment
-    public function createAppointment($st_id, $booking_date, $status) {
-        $query = "INSERT INTO appointment (st_id, booking_date, status) VALUES (?, ?, ?)";
+    public function createAppointment($StudentID, $booking_date, $status) {
+        $query = "INSERT INTO counselingsessions (StudentID, date, notes) VALUES (?, ?, ?)";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("iss", $st_id, $booking_date, $status);
+        $stmt->bind_param("iss", $StudentID, $booking_date, $status);
 
         return $stmt->execute();
     }
@@ -20,31 +20,40 @@ class AppointmentsModel {
         $search = "";
         if($counselor_id != 0){
             $search = "WHERE 
-            appointment.counselor_id = " . $counselor_id;
+            counselingsessions.CounselorID = " . $counselor_id;
         }
         $query = "
             SELECT 
-                appointment.app_id, 
-                appointment.booking_date, 
-                appointment.status, 
-                students.st_id, 
-                students.name AS student_name, 
-                students.email AS student_email, 
-                students.phone AS student_phone, 
-                counselor.counselor_id, 
-                counselor.name AS counselor_name
+            counselingsessions.SessionID, 
+            counselingsessions.date, 
+            counselingsessions.notes, 
+            students.StudentID, 
+            student_users.Username AS name, 
+            student_users.Email AS student_email, 
+            students.phone AS student_phone, 
+            counselors.CounselorID, 
+            counselor_users.Username AS counselor_name, 
+            counselor_users.Email AS counselor_email
             FROM 
-                appointment
+                counselingsessions
             INNER JOIN 
                 students 
             ON 
-                appointment.st_id = students.st_id
+                counselingsessions.StudentID = students.StudentID
             INNER JOIN 
-                counselor 
+                counselors 
             ON 
-                appointment.counselor_id = counselor.counselor_id
-            ".$search."   
-        ";
+                counselingsessions.CounselorID = counselors.CounselorID
+            INNER JOIN 
+                users AS student_users 
+            ON 
+                students.UserID = student_users.UserID
+            INNER JOIN 
+                users AS counselor_users 
+            ON 
+                counselors.UserID = counselor_users.UserID
+            ".$search." ORDER BY counselingsessions.date DESC
+            ";
         
         $result = $this->conn->query($query);
     
@@ -60,9 +69,9 @@ class AppointmentsModel {
         return $appointments;
     }
       
-    // Function to update the status of the appointment
+    // Function to update the notes of the appointment
     public function updateStatus($appointment_id, $new_status) {
-        $query = "UPDATE appointment SET status = ? WHERE app_id = ?";
+        $query = "UPDATE counselingsessions SET notes = ? WHERE SessionID = ?";
         $stmt = $this->conn->prepare($query);
 
         if($stmt) {
@@ -73,9 +82,9 @@ class AppointmentsModel {
         }
     }
 
-    // Read a single appointment by app_id
+    // Read a single counselingsessions by app_id
     public function getAppointmentById($app_id) {
-        $query = "SELECT * FROM appointment WHERE app_id = ?";
+        $query = "SELECT * FROM counselingsessions WHERE SessionID = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $app_id);
         $stmt->execute();
@@ -85,17 +94,18 @@ class AppointmentsModel {
     }
 
     // Update an appointment
-    public function updateAppointment($app_id, $st_id, $booking_date, $status) {
-        $query = "UPDATE appointment SET st_id = ?, booking_date = ?, status = ? WHERE app_id = ?";
+    public function updateAppointment($app_id, $StudentID, $booking_date, $status) {
+        $query = "UPDATE counselingsessions SET StudentID = ?, date = ?, notes = ? WHERE SessionID = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("issi", $st_id, $booking_date, $status, $app_id);
+        $stmt->bind_param("issi", $StudentID, $booking_date, $status, $app_id);
 
         return $stmt->execute();
     }
 
     // Delete an appointment
     public function deleteAppointment($app_id) {
-        $query = "DELETE FROM appointment WHERE app_id = ?";
+        echo "app_id= " . $app_id;
+        $query = "DELETE FROM counselingsessions WHERE SessionID =?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("i", $app_id);
 
@@ -103,22 +113,23 @@ class AppointmentsModel {
     }
 
     public function fetchAppointments($counselor_id, $searchTerm = '', $filterStatus = 'none') {
-        $query = "SELECT appointment.*, students.name AS student_name, students.email AS student_email 
-                  FROM appointment 
-                  INNER JOIN students ON appointment.st_id = students.st_id 
-                  WHERE appointment.counselor_id = ?";
+        $query = "SELECT counselingsessions.*, users.Email AS student_email, students.phone AS student_phone, users.Username AS student_name
+          FROM counselingsessions 
+          INNER JOIN students ON counselingsessions.StudentID = students.StudentID 
+          INNER JOIN users ON students.UserID = users.UserID
+          WHERE counselingsessions.CounselorID = ?";
         
         $params = [$counselor_id];
         $types = "i"; // 'i' for integer
     
         if ($filterStatus !== 'none' && $filterStatus !== "*") {
-            $query .= " AND appointment.status = ?";
+            $query .= " AND counselingsessions.notes = ?";
             $params[] = $filterStatus;
             $types .= "s"; // 's' for string
         }
         
         if (!empty($searchTerm)) {
-            $query .= " AND (students.name LIKE ? OR students.email LIKE ?)";
+            $query .= " AND (users.Username LIKE ? OR users.Email LIKE ?)";
             $searchTerm = '%' . $searchTerm . '%';
             $params[] = $searchTerm;
             $params[] = $searchTerm;

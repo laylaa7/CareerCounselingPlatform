@@ -3,7 +3,7 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 // [TODO] change to the new and final database name 
-$dbname = "cc_trial";
+$dbname = "careercounseling";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
