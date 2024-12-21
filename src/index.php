@@ -1,3 +1,121 @@
+<?php
+session_start(); // Ensure session_start is at the very top, before any output
+
+$con = mysqli_connect("localhost", "root", "", "careercouncelors");
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Handle login
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
+    $username = mysqli_real_escape_string($con, $_POST["username"] ?? "");
+    $password = $_POST["password"] ?? ""; 
+
+    if ($username === "" || $password === "") {
+        echo "Username and password are required.";
+        exit();
+    }
+
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        if (password_verify($password, $row["Password"])) {
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["Email"] = $row["Email"];
+            
+            if ($row["username"] === "Admin") {
+                header("Location: ../AdminDash.php");
+            } else {
+                header("Location: userDashboard.php?login=success");
+            }
+            exit();
+        } else {
+            echo "Invalid username or password.";
+        }
+    } else {
+        echo "Invalid username or password.";
+    }
+}
+
+// Handle signup
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
+    $username = mysqli_real_escape_string($con, $_POST["signupUsername"] ?? "");
+    $email = mysqli_real_escape_string($con, $_POST["signupEmail"] ?? "");
+    $password = mysqli_real_escape_string($con, $_POST["signupPassword"] ?? "");
+
+    if ($username === "" || $email === "" || $password === "") {
+        echo "All fields are required.";
+        exit();
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $check_sql = "SELECT * FROM users WHERE username = ? OR Email = ?";
+    $stmt = mysqli_prepare($con, $check_sql);
+    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        echo "Username or email already exists.";
+    } else {
+        $otp = rand(100000, 999999);
+        $_SESSION["otp"] = $otp;
+        $_SESSION["temp_username"] = $username;
+        $_SESSION["temp_email"] = $email;
+        $_SESSION["temp_password"] = $hashedPassword;
+
+        $subject = "Your OTP Code";
+        $message = "Your OTP for signup verification is: $otp";
+        $headers = "From: noreply@example.com";
+
+        if (mail($email, $subject, $message, $headers)) {
+            echo "OTP_SENT";
+        } else {
+            echo "Error sending OTP. Please try again.";
+        }
+    }
+}
+
+// Handle OTP verification
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["verifyOtp"])) {
+    $entered_otp = $_POST["otp"] ?? "";
+
+    if ($entered_otp == $_SESSION["otp"]) {
+        $username = $_SESSION["temp_username"];
+        $email = $_SESSION["temp_email"];
+        $password = $_SESSION["temp_password"];
+        $userRole = 3;
+
+        $sql = "INSERT INTO users (username, Email, Password, userRole) VALUES (?, ?, ?, ?)";
+        $stmt = mysqli_prepare($con, $sql);
+        mysqli_stmt_bind_param($stmt, "sssi", $username, $email, $password, $userRole);
+
+        if (mysqli_stmt_execute($stmt)) {
+            unset($_SESSION["otp"]);
+            unset($_SESSION["temp_username"]);
+            unset($_SESSION["temp_email"]);
+            unset($_SESSION["temp_password"]);
+
+            header("Location: studentDashboard.php");
+            exit();
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+    } else {
+        echo "Invalid OTP. Please try again.";
+    }
+}
+
+mysqli_close($con);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    box-sizing: border-box; 
+}
+body {
+    background-color: #f5f5f5;
+    overflow-x: hidden; 
 }
 .header {
     height: 12vh;
@@ -12,16 +17,11 @@
     width: 100%; 
     background-color: white; 
     z-index: 1000;
-} 
-
-.body {
-    width: 100%;
-    margin: 0; 
-    padding: 0; 
-    overflow-x: hidden;
-    background-color: #f5f5f5;
 }
 .counselors-container {
+    max-width: 95%; 
+    margin: 0 auto;
+    padding: 20px;
     padding-top: 65px;
     width: 100%; 
     max-width: 1300px; 
@@ -35,8 +35,9 @@
     color: #333;
     text-decoration: none;
     border-radius: 5px;
-    margin: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    margin-top: 20px; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 .career-title {
     font-size: 34px;
@@ -45,9 +46,10 @@
     color: #333;
 }
 .counselors-list {
-    width: 100%;
-    padding: 0 20px;
-    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%; 
 }
 .counselor-row {
     display: flex;
@@ -55,8 +57,10 @@
     padding: 15px;
     margin-bottom: 10px;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
 .profile-img {
     width: 40px;
@@ -70,8 +74,10 @@
     align-items: center;
     justify-content: space-between;
 }
-.name-email {
-    flex: 2;
+.name-role {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px; 
 }
 .name {
     font-weight: bold;
@@ -83,13 +89,34 @@
     margin-left: 2px;
 }
 .email {
+    font-size: 14px;
+    color: #666;
+    margin-top: 2px;
+}
+.details {
+    margin-bottom: 10px; 
+}
+.position {
+    font-weight: bold;
+    margin-bottom: 4px; 
+}
+.specialization {
+    color: #666;
+    font-size: 14px;
+}
+.status {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.role {
     color: #666;
     font-size: 0.9em;
 }
 .position {
     flex: 1;
 }
-.department {
+.location {
     color: #666;
     font-size: 0.9em;
 }
@@ -97,20 +124,21 @@
     flex: 1;
     color: #444;
 }
-.status {
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
 .status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
     margin-right: 5px;
 }
-.status-dot.active { background-color: #4CAF50; }
-.status-dot.pending { background-color: #FFC107; }
-.status-dot.suspended { background-color: #F44336; }
+.status-dot.Active {
+    background-color: #4CAF50; /* Green */
+}
+.status-dot.Pending {
+    background-color: #FFC107; /* Orange */
+}
+.status-dot.Suspended {
+    background-color: #F44336; /* Red */
+}
 .completion {
     flex: 1;
     color: #666;
@@ -175,7 +203,6 @@ book-btn {
     margin-left: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
-
 .book-btn:hover {
     background-color: white; 
     color: black; 
@@ -330,5 +357,34 @@ book-btn {
         border-bottom: 1px solid #e6e6e6;
         padding-bottom: 20px;
         margin-bottom: 20px;
+    }
+}
+  
+
+.alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    z-index: 1000;
+    animation: slideIn 0.5s ease-out;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+
+.alert-error {
+    background-color: #f44336;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
     }
 }
