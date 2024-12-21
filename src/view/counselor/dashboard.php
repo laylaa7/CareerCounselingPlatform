@@ -154,6 +154,22 @@ $connections = [
     window.onload = () => {
         filterAppointments()
     }
+    function changeAppointmentStatus(appointment_id, new_status) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', "/CareerCounseling/CareerCounselingPlatform/appointments/changeStatus", true);  // Adjust the path as necessary
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function () {
+        if (xhr.status == 200) {
+            var statusElement = document.getElementById("stat-" + appointment_id);
+            statusElement.classList.remove("pending", "approved", "denied");
+            statusElement.classList.add(new_status);
+            statusElement.innerHTML = "<p>" + new_status + "</p>";
+        }
+    };
+
+    xhr.send('appointment_id=' + appointment_id + '&new_status=' + new_status);
+}
+    
     function formatDateTime(datetime) {
         const date = new Date(datetime);
 
@@ -217,8 +233,8 @@ $connections = [
                 <td class="status ${appointment.status}" id="stat-${appointment.app_id}"><p>${appointment.status}</p></td>
                 <td class="actions-container">
                     <div class="stat">
-                        <button class="status-buttons approve-button" data-id="${appointment.app_id}" data-status="approved">Approve</button>
-                        <button class="status-buttons reject-button" data-id="${appointment.app_id}" data-status="denied">Reject</button>
+                        <button class="status-buttons approve-button" onclick="changeAppointmentStatus('${appointment.app_id}','approved')">Approve</button>
+                        <button class="status-buttons reject-button" onclick="changeAppointmentStatus('${appointment.app_id}','denied')">Reject</button>
                     </div>
                     <button class="delete" data-id="${appointment.app_id}"><box-icon name='trash' type='solid' color='#fb0303'></box-icon></button>
                 </td>
@@ -237,30 +253,7 @@ $connections = [
         }
     }
 
-    document.querySelectorAll('.actions-container .stat .status-buttons').forEach(button => {
-        button.addEventListener('click', function () {
-            var appointment_id = this.getAttribute('data-id');
-            var new_status = this.getAttribute('data-status');
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', "/CareerCounseling/CareerCounselingPlatform/appointments/changeStatus", true);  // Adjust the path as necessary
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onload = function () {
-                if (xhr.status == 200) {
-                    document.getElementById("stat-" + appointment_id).classList.remove("pending")
-                    document.getElementById("stat-" + appointment_id).classList.remove("approved")
-                    document.getElementById("stat-" + appointment_id).classList.remove("denied")
-
-
-                    document.getElementById("stat-" + appointment_id).classList.add(new_status)
-                    document.getElementById("stat-" + appointment_id).innerHTML = "<p>"+new_status+"</p>"
-                    
-                }
-            };
-
-            xhr.send('appointment_id=' + appointment_id + '&new_status=' + new_status);
-        });
-    });
+    
 
     document.querySelectorAll('.delete').forEach(button => {
     button.addEventListener('click', function () {
