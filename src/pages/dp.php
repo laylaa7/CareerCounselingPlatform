@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db = 'discussions';
+$db = 'careercounseling'; // Updated to the correct database name
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
@@ -13,7 +13,6 @@ $options = [
 ];
 
 try {
-    // Corrected line
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
