@@ -16,6 +16,7 @@ try {
     die("Error initializing AppointmentsController: " . $e->getMessage());
 }
 
+
 // Example usage: Retrieve appointments for the logged-in counselor
 $appointments = [];
 if (isset($_SESSION['counselor_id'])) {
@@ -23,7 +24,7 @@ if (isset($_SESSION['counselor_id'])) {
     $appointments = json_decode($appointmentsJson, true);
 }
 
-$_SESSION['name'] = isset($_POST['name']) ? $_POST['name'] : 'Nour Bassem';
+$_SESSION['name'] = isset($_SESSION['username']) ? $_SESSION['username'] : 'Counselor';
 $_SESSION['counselor_id'] = isset($_POST['counselor_id']) ? $_POST['counselor_id'] : 1;
 $_SESSION['address'] = isset($_POST['address']) ? $_POST['address'] : 'El Sherouk';
 $_SESSION['email'] = isset($_POST['email']) ? $_POST['email'] : 'nour@gmail.com';
@@ -85,7 +86,7 @@ $connections = [
         </div>
 
         <main class="main-content">
-            <div class="greeting">Hey <?php echo htmlspecialchars($_SESSION['name']); ?>!</div>
+            <div class="greeting">Hey <?php echo htmlspecialchars($appointmentsController->getCounselorName($_SESSION['counselor_id'])); ?>!</div>
             <div class="statistics-container">
                 <div style="--shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;">
                     <h1><?php echo count($appointments); ?></h1>
@@ -270,8 +271,8 @@ $connections = [
                 let events = appointments.map(appointment => {
                     return {
                         title: appointment.student_name,
-                        start: new Date(appointment.booking_date).toISOString(),
-                        description: appointment.status
+                        start: new Date(appointment.date).toISOString(),
+                        description: appointment.notes
                     };
                 });
 

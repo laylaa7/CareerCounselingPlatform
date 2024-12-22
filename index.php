@@ -9,7 +9,7 @@ $router = new Router();
 
 //Pages
 $router->get('/CareerCounseling/CareerCounselingPlatform/counselor/dashboard', 'AppointmentsController@index');
-
+$router->get('/CareerCounseling/CareerCounselingPlatform/home/index', 'UserController@index');
 //API Calls
 $router->post('/CareerCounseling/CareerCounselingPlatform/appointments/changeStatus', 'AppointmentsController@changeStatus');
 $router->post('/CareerCounseling/CareerCounselingPlatform/appointments/delete', 'AppointmentsController@deleteAppointment');

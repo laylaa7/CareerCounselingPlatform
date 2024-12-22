@@ -9,6 +9,9 @@ error_reporting(E_ALL);      // Log all errors and warnings
 ini_set('error_log', __DIR__ . '/../logs/php-error.log'); // Define log file
 
 class UserController {
+    public function index(){
+        include_once PROJECT_ROOT . '/view/home/index.php';
+    }
     public function handleRequest() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $action = $_POST['action'] ?? null;
