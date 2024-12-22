@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-$conn = new mysqli("localhost", "root", "", "careercounseling"); // Update to the correct database name
+$conn = new mysqli("localhost", "root", "", "CareerCompass"); // Update to the correct database name
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db = 'careercounseling'; // Updated to the correct database name
+$db = 'CareerCompass'; // Updated to the correct database name
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';

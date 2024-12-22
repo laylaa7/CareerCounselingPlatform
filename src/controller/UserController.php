@@ -9,9 +9,11 @@ error_reporting(E_ALL);      // Log all errors and warnings
 ini_set('error_log', __DIR__ . '/../logs/php-error.log'); // Define log file
 
 class UserController {
-    public function index(){
+    public function index() {
+        header('Content-Type: text/html'); // Set content type to HTML for views
         include_once PROJECT_ROOT . '/view/home/index.php';
     }
+
     public function handleRequest() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $action = $_POST['action'] ?? null;
@@ -30,6 +32,21 @@ class UserController {
                     'status' => 'error',
                     'message' => 'Invalid action'
                 ]);
+            }
+        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $view = $_GET['view'] ?? 'home';
+
+            switch ($view) {
+                case 'home':
+                    include_once PROJECT_ROOT . '/view/home/index.php';
+                    break;
+                
+                default:
+                    echo json_encode([
+                        'status' => 'error',
+                        'message' => 'Invalid view'
+                    ]);
+                    break;
             }
         } else {
             echo json_encode([
@@ -112,4 +129,4 @@ class UserController {
 }
 // Handle incoming requests
 $controller = new UserController();
-$controller->handleRequest();
+// $controller->handleRequest();

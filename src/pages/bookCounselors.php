@@ -5,7 +5,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "careercounseling";
+$dbname = "CareerCompass";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 

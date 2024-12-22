@@ -76,7 +76,7 @@ $connections = [
     <div class="dashboard-container">
         <div class="sidebar">
             <div class="pos-sidebar">
-                <a href="#" class="dash">Dashboard</a>
+                <a href="/CareerCounseling/CareerCounselingPlatform/home/index" class="dash">Dashboard</a>
                 <a href="#" class="dash2">Appointment List</a>
                 <!-- <a href="bookCounselors.php">Calendar</a>
                 <a href="InterviewSimulator.php">Insights</a> -->
