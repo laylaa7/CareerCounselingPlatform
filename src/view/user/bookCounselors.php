@@ -110,13 +110,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Career Counselors</title>
     <style>
-       <?php include "../../public/assets/styles/bookCounselors.css"; ?>
+       <?php include "../../../public/assets/styles/bookCounselors.css"; ?>
     </style>
 </head>
 <body class="body">
     
     <nav class="navbar">
-        <?php include "../../tests/Navbar.php"; ?>
+        <?php include "../../../tests/Navbar.php"; ?>
     </nav>
     
     <div class="calendar-popup" id="calendarPopup">
@@ -176,13 +176,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        <div class="counselors-list">
             <?php foreach ($counselors as $counselor): ?>
                 <div class="counselor-row">
-                    <img src="../../public/assets/images/profile.png" class="profile-img" alt="Profile">
+                    <img src="../../../public/assets/images/profile.png" class="profile-img" alt="Profile">
                                 <div class="counselor-info">
                         <div class="name-role">
                             <div class="name">
                                 <?php echo htmlspecialchars($counselor["Username"]); ?>
                                 <?php if ($counselor["verified"]): ?>
-                                    <img src="../../public/assets/images/verified.png" class="verified-badge" alt="Verified">
+                                    <img src="../../../public/assets/images/verified.png" class="verified-badge" alt="Verified">
                                 <?php endif; ?>
                             </div>
                             <div class="email"><?php echo htmlspecialchars($counselor["Email"]); ?></div>
