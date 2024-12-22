@@ -14,13 +14,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if user is logged in
-// if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] != 0) {
-//     die("Unauthorized access. Please log in.");
-// }
+//Check if user is logged in
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] != 0) {
+    die("Unauthorized access. Please log in.");
+}
 
-// $userId = $_SESSION['user_id'];
-$userId = 3;
+$userId = $_SESSION['user_id'];
+$userId = 1;
 
 // Fetch user info from db
 $sql = "
@@ -121,13 +121,13 @@ $connections = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <style>
-        <?php include "../../public/assets/styles/userDashboard.css"; ?>
+        <?php include "../../../public/assets/styles/userDashboard.css"; ?>
     </style>
 </head>
 <body>
 
     <nav class="navbar">
-        <?php include "../../tests/Navbar.php"; ?>
+        <?php include "../../../tests/Navbar.php"; ?>
     </nav>
 
 <div class="dashboard-container">
@@ -149,9 +149,9 @@ $connections = [
         <div class="slider-container">
             <span class="arrow arrow-left" onclick="plusDivs(-1)">&#10094;</span>
             <div class="slides">
-                <div class="slide banner"><img src="../../public/assets/images/article1.png" alt="art1"></div>
-                <div class="slide banner"><img src="../../public/assets/images/article2.png" alt="art2"></div>
-                <div class="slide banner"><img src="../../public/assets/images/article3.png" alt="art3"></div>
+                <div class="slide banner"><img src="../../../public/assets/images/article1.png" alt="art1"></div>
+                <div class="slide banner"><img src="../../../public/assets/images/article2.png" alt="art2"></div>
+                <div class="slide banner"><img src="../../../public/assets/images/article3.png" alt="art3"></div>
             </div>
             <span class="arrow arrow-right" onclick="plusDivs(1)">&#10095;</span>
             <div class="dots-container">
@@ -180,26 +180,26 @@ $connections = [
                 <div class="profile-section">
                     <h4>About</h4>
                     <div class="profile-item">
-                        <img src="../../public/assets/images/profile.png" alt="Profile Icon">
+                        <img src="../../../public/assets/images/profile.png" alt="Profile Icon">
                         <span><?php echo htmlspecialchars($userData['name']); ?></span>
                     </div>
                     <div class="profile-item">
-                        <img src="../../public/assets/images/department.png" alt="Department Icon">
+                        <img src="../../../public/assets/images/department.png" alt="Department Icon">
                         <span><?php echo htmlspecialchars($userData['department']); ?></span>
                     </div>
                     <div class="profile-item">
-                        <img src="../../public/assets/images/location.png" alt="Location Icon">
+                        <img src="../../../public/assets/images/location.png" alt="Location Icon">
                         <span><?php echo htmlspecialchars($userData['address']); ?></span>
                     </div>
                 </div>
                 <div class="profile-section">
                     <h4>Contacts</h4>
                     <div class="profile-item">
-                        <img src="../../public/assets/images/email.png" alt="Email Icon">
+                        <img src="../../../public/assets/images/email.png" alt="Email Icon">
                         <span><?php echo htmlspecialchars($userData['email']); ?></span>
                     </div>
                     <div class="profile-item">
-                        <img src="../../public/assets/images/phone.png" alt="Phone Icon">
+                        <img src="../../../public/assets/images/phone.png" alt="Phone Icon">
                         <span><?php echo htmlspecialchars($userData['phone']); ?></span>
                     </div>
                 </div>
@@ -251,7 +251,7 @@ $connections = [
                         <?php foreach ($connections as $connection): ?>
                             <div class="connection-item">
                                 <div class="connection-avatar">
-                                    <img src="../../public/assets/images/profile.png" alt="<?php echo htmlspecialchars($connection['name']); ?>">
+                                    <img src="../../../public/assets/images/profile.png" alt="<?php echo htmlspecialchars($connection['name']); ?>">
                                 </div>
                                 <div class="connection-content">
                                     <div class="connection-name"><?php echo htmlspecialchars($connection['name']); ?></div>

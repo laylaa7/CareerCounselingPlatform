@@ -27,6 +27,7 @@ class UserController {
                 $email = $_POST['email'];
                 $password = $_POST['password'];
                 $this->signup($fullName, $email, $password);
+                
             } else {
                 echo json_encode([
                     'status' => 'error',

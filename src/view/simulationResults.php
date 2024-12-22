@@ -37,7 +37,7 @@ try {
     <title>Interview Results Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../public/assets/styles/simulationResults.css">
-    <link rel="stylesheet" href="../../public/assets/styles/counselor_dashboard.css">
+    <!-- <link rel="stylesheet" href="../../public/assets/styles/counselor_dashboard.css"> -->
 </head>
 <body>
 <header>

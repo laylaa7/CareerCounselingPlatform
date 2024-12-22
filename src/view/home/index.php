@@ -79,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/images/favicon.png" rel="icon">
-  <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../../../public/assets/images/favicon.png" rel="icon">
+  <link href="../../../public/assets/images/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https:\\fonts.googleapis.com" rel="preconnect">
@@ -88,18 +88,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
   <link href="https:\\fonts.googleapis.com\css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-    <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../../../public/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../public/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../../public/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../../../public/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../../../public/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/styles/main.css" rel="stylesheet">
-    <link href="/CareerCounseling/CareerCounselingPlatform/public/assets/styles/login.css" rel="stylesheet">
+  <link href="../../../public/assets/styles/main.css" rel="stylesheet">
+    <link href="../../../public/assets/styles/login.css" rel="stylesheet">
 
   <style>
-        <?php include "CareerCounseling/CareerCounselingPlatform/public/assets/styles/login.css" ?>
+        <?php include "../../../public/assets/styles/login.css" ?>
   </style>
   
 
@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
 
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
-        <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/logo.png" alt="Logo">
+        <img src="../../../public/assets/images/logo.png" alt="Logo">
         <h1 class="sitename">Compass</h1>
       </a>
 
@@ -157,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-          <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/hero-img.png" class="img-fluid animated" alt="Hero Image">
+          <img src="../../../public/assets/images/hero-img.png" class="img-fluid animated" alt="Hero Image">
           </div>
         </div>
       </div>
@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
           </div>
 
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-          <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/about.jpg" class="img-fluid" alt="About Image">
+          <img src="../../../public/assets/images/about.jpg" class="img-fluid" alt="About Image">
           </div>
 
         </div>
@@ -210,7 +210,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card">
-            <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/values-1.png" class="img-fluid" alt="Values Image 1">
+            <img src="../../../public/assets/images/values-1.png" class="img-fluid" alt="Values Image 1">
               <h3>Seasoned Professionals</h3>
               <p>Working with the top-tier counselors in egypt to ensure every student's satisfaction.</p>
             </div>
@@ -218,7 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
-            <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/values-2.png" class="img-fluid" alt="Values Image 2">
+            <img src="../../../public/assets/images/values-2.png" class="img-fluid" alt="Values Image 2">
               <h3>Personalized Guidance</h3>
               <p>Creating customizable counseling for each student enrolled in our program.</p>
             </div>
@@ -226,7 +226,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
 
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="card">
-            <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/values-3.png" class="img-fluid" alt="Values Image 3">
+            <img src="../../../public/assets/images/values-3.png" class="img-fluid" alt="Values Image 3">
               <h3>Guidance For Every Career Stage</h3>
               <p>From recent graduates to seasoned professionals.</p>
             </div>
@@ -694,7 +694,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
             <div class="post-item position-relative h-100" data-aos="fade-up" data-aos-delay="200">
 
               <div class="post-img position-relative overflow-hidden">
-              <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/blog/blog-2.jpg" class="img-fluid" alt="Blog Image 2">
+              <img src="../../../public/assets/images/blog/blog-2.jpg" class="img-fluid" alt="Blog Image 2">
                 <span class="post-date">July 17</span>
               </div>
 
@@ -725,7 +725,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
             <div class="post-item position-relative h-100">
 
               <div class="post-img position-relative overflow-hidden">
-              <img src="/CareerCounseling/CareerCounselingPlatform/public/assets/images/blog/blog-3.jpg" class="img-fluid" alt="Blog Image 3">
+              <img src="../../../public/assets/images/blog/blog-3.jpg" class="img-fluid" alt="Blog Image 3">
                 <span class="post-date">September 05</span>
               </div>
 
@@ -938,14 +938,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/php-email-form/validate.js"></script>
-    <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/aos/aos.js"></script>
-    <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-    <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="/CareerCounseling/CareerCounselingPlatform/public/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../../../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../public/assets/vendor/php-email-form/validate.js"></script>
+    <script src="../../../public/assets/vendor/aos/aos.js"></script>
+    <script src="../../../public/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="../../../public/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="../../../public/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="../../../public/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="../../../public/assets/vendor/swiper/swiper-bundle.min.js"></script>
 
 <!-- Main JS File -->
 
@@ -1002,8 +1002,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
 
        
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/CareerCounseling/CareerCounselingPlatform/public/assets/scripts/main.js"></script>
-<script src="/CareerCounseling/CareerCounselingPlatform/public/assets/scripts/login.js"></script>
+<script src="../../../public/assets/scripts/main.js"></script>
+<script src="../../../public/assets/scripts/login.js"></script>
 </body>
 
 </html>
