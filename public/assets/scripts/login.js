@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             } else if (data.role == 1) {
                                 window.location.href = '/career/CounselorDashboard.php';
                             } else if (data.role == 0) {
-                                window.location.href = '/career/UserDashboard.php';
+                                window.location.href = '/discussion/CareerCounselingPlatform/src/pages/userdashboard.php';
                             }
                         } else {
                             alert(data.message || 'An error occurred.');
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const formData = new FormData(this); // Collect form data
             formData.append('action', 'signup'); // Add action key for backend handling
 
-            fetch('/career/CareerCounselingPlatform/src/controller/UserController.php', {
+            fetch('/discussion/CareerCounselingPlatform/src/controller/UserController.php', {
                 method: 'POST',
                 body: formData
             })
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(data => {
                     if (data.status === 'success') {
                         alert('Signup successful!');
-                        window.location.href = '/career/login.php'; // Redirect to login page
+                        window.location.href = '/discussion/CareerCounselingPlatform/src/pages/userdashboard.php'; // Redirect to login page
                     } else {
                         alert(data.message); // Show error message
                     }

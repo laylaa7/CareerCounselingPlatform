@@ -5,7 +5,7 @@ session_start();
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "careercounseling";
+$dbname = "CareerCompass";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,13 +14,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if user is logged in
-// if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] != 0) {
-//     die("Unauthorized access. Please log in.");
-// }
+//Check if user is logged in
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] != 0) {
+    die("Unauthorized access. Please log in.");
+}
 
-// $userId = $_SESSION['user_id'];
-$userId = 3;
+$userId = $_SESSION['user_id'];
+$userId = 1;
 
 // Fetch user info from db
 $sql = "
