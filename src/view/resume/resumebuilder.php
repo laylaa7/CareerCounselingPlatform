@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume Generator</title>
-    <link rel="stylesheet" href="../../public/assets/styles/ResumeBuilder.css">
+    <link rel="stylesheet" href="../../../public/assets/styles/ResumeBuilder.css">
 </head>
 <body>
     <header>
         <nav class="navbar">
-            <?php include "../../tests/Navbar2.php"; ?>
+            <?php include "../../../tests/Navbar2.php"; ?>
         </nav>
     </header>
     <div class="profile-container">
@@ -18,7 +18,7 @@
         <h2>Nour B</h2>
         <hr>
         <ul class="profile-links">
-            <li><a href="bookCounselors.php">Book with our counselors</a></li>
+            <li><a href="../../pages/bookCounselors.php">Book with our counselors</a></li>
             <li><a href="ResumeReview.php">Resume Guide</a></li>
             <li><a href="forum.php">Discussions</a></li>
         </ul>
@@ -30,7 +30,7 @@
         <div class="container">
             <h1>Resume Generator</h1>
             
-            <form id="resumeForm" action="ResumeGenerator.php" method="POST">
+            <form id="resumeForm" action="../../controller/resume/ResumeController.php" method="POST">
                 <!-- Personal Information -->
                 <div class="section">
                     <h2>Personal Information</h2>
@@ -142,6 +142,6 @@
             </div>
         </div>
     </div>
-    <script src="../../public/assets/scripts/ResumeBuilder.js"></script>
+    <script src="../../../public/assets/scripts/ResumeBuilder.js"></script>
 </body>
 </html>

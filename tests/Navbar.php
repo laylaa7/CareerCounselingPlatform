@@ -184,7 +184,7 @@ session_start();
     <div class="profile-nav-section">
         <span class="profile-nav-name"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
         <div class="dropdown" id="profile-dropdown">
-            <img src="../../public/assets/images/profile.png" alt="Profile" class="profile-img">
+            <img src="../../../public/assets/images/profile.png" alt="Profile" class="profile-img">
             <span class="dropdown-arrow">▼</span>
             <div class="dropdown-content">
                 <a href="../../src/pages/UserProfile.php">Edit Profile</a>
