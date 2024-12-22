@@ -1,4 +1,71 @@
+<?php
+session_start(); 
 
+$con = mysqli_connect("localhost", "root", "", "users");
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Handle login
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["login"])) {
+    $username = mysqli_real_escape_string($con, $_POST["username"] ?? "");
+    $password = $_POST["password"] ?? ""; 
+
+    if ($username === "" || $password === "") {
+        echo "Username and password are required.";
+        exit();
+    }
+
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($row = mysqli_fetch_assoc($result)) {
+        if (password_verify($password, $row["Password"])) {
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["Email"] = $row["Email"];
+            
+            if ($row["username"] === "Admin") {
+                header("Location: ../AdminDash.php");
+            } else {
+                header("Location: userDashboard.php?login=success");
+            }
+            exit();
+        } else {
+            echo "Invalid username or password.";
+        }
+    } else {
+        echo "Invalid username or password.";
+    }
+}
+
+// Handle signup
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["signup"])) {
+    $username = mysqli_real_escape_string($con, $_POST["signupUsername"] ?? "");
+    $email = mysqli_real_escape_string($con, $_POST["signupEmail"] ?? "");
+    $password = mysqli_real_escape_string($con, $_POST["signupPassword"] ?? "");
+
+    if ($username === "" || $email === "" || $password === "") {
+        echo "All fields are required.";
+        exit();
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO users (Username, Email, Password, User_Role, Date_Created) VALUES (?, ?, ?, 0, CURDATE())";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "sss", $username, $email, $hashedPassword);
+
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Signup successful!";
+    } else {
+        echo "Error: Could not sign up.";
+    }
+}
+?>
 
 
 <!DOCTYPE html>
@@ -72,8 +139,7 @@
 
     
       </header>
-      <?php include('../shared/loginPopup.php'); ?>
-      <?php include('../shared/signupPopup.php'); ?>
+    
 
   <main class="main">
 
@@ -885,8 +951,39 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<div id="loginPopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2 class="login-title">Login</h2>
+        <form id="loginForm" method="POST">
+    <label for="loginUsername">Username:</label>
+    <input type="text" id="loginUsername" name="username" class="input" placeholder="Enter your username" required /><br><br>
+    <label for="loginPassword">Password:</label>
+    <input type="password" id="loginPassword" name="password" class="input" placeholder="Enter your password" required /><br><br>
+    <input type="submit" value="Login" id="loginSubmit" />
+    
+    <span class="signup-link">Don't have an account? <a href="#" id="signupLink">Sign Up</a></span>
+</form>
+    </div>
+</div>
+</div>
 
-
+<div id="signupPopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <h2 class="login-title">Signup</h2>
+        <form id="signupForm" method="POST">
+            <label for="signupUsername">Username:</label>
+            <input type="text" id="signupUsername" name="signupUsername" class="input" placeholder="Enter your username" required /><br><br>
+            <label for="signupEmail">Email:</label>
+            <input type="email" id="signupEmail" name="signupEmail" class="input" placeholder="Enter your email" required /><br><br>
+            <label for="signupPassword">Password:</label>
+            <input type="password" id="signupPassword" name="signupPassword" class="input" placeholder="Enter your password" required /><br><br>
+            <input type="submit" value="Sign Up" id="signupSubmit" />
+            <span class="login-link">Already have an account? <a href="#" id="loginLink">Log in</a></span>
+        </form>
+    </div>
+</div>
 
             <div id="otpPopup" class="popup" style="display: none;">
                 <div class="popup-content">
