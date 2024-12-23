@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Career Counselling Forum</title>
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="counselor.css">
 
     <link rel="stylesheet" href="../../public/assets/styles/userDashboard.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Added FontAwesome for icons -->
@@ -749,7 +749,7 @@ window.addEventListener('click', function (event) {
 
 </script>
 
- <!-- Ensure this includes your navbar JS -->
+<script src="../../public/assets/scripts/navbar.js"></script> <!-- Ensure this includes your navbar JS -->
 
 </body>
 </html>
