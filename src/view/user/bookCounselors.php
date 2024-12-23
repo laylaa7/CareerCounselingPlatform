@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body class="body">
     
     <nav class="navbar">
-        <?php include "../../../tests/Navbar.php"; ?>
+        <?php include "../../../tests/Navbar2.php"; ?>
     </nav>
     
     <div class="calendar-popup" id="calendarPopup">

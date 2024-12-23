@@ -15,11 +15,11 @@ if ($conn->connect_error) {
 }
 
 //Check if user is logged in
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] != 0) {
-    die("Unauthorized access. Please log in.");
-}
+// if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || $_SESSION['user_role'] != 0) {
+//     die("Unauthorized access. Please log in.");
+// }
 
-$userId = $_SESSION['user_id'];
+// $userId = $_SESSION['user_id'];
 $userId = 1;
 
 // Fetch user info from db
@@ -127,7 +127,7 @@ $connections = [
 <body>
 
     <nav class="navbar">
-        <?php include "../../../tests/Navbar.php"; ?>
+        <?php include "../../../tests/Navbar2.php"; ?>
     </nav>
 
 <div class="dashboard-container">
@@ -136,8 +136,8 @@ $connections = [
             <a href="#" class="dash">Dashboard</a>
             <a href="#" class="dash2">Progress</a>
             <a href="bookCounselors.php">Book with Counsellors</a>
-            <a href="/questions">Interview Guide</a>
-            <a href="ResumeReview.php">Submit CV for Review</a>
+            <a href="../../config/index.php">Interview Guide</a>
+            <a href="../../view/resume/resumebuilder.php">build your Resume</a>
             <a href="forum.php">Discussion Forum</a>
         </div>
     </div>
@@ -224,10 +224,10 @@ $connections = [
                     <?php else: ?>
                         <?php
                         $links = [
-                            "ResumeReview.php",
+                            "../../pages/ResumeReview.php",
                             null, 
-                            "InterviewSimulator.php",
-                            "forum.php"
+                            "../../config/index.php",
+                            "../../pages/UserProfile.php"
                         ];
                         $link = $links[$index] ?? "#";
                         ?>

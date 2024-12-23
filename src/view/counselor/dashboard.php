@@ -1,7 +1,7 @@
 <?php
 // Session simulation
 
-require_once PROJECT_ROOT . "/config/config.php";
+require_once PROJECT_ROOT . "../config/config.php";
 require_once PROJECT_ROOT . "/controller/AppointmentsController.php";
 
 // Start session if not already started
@@ -60,7 +60,7 @@ $connections = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <!-- Use BASE_URL for asset links -->
-    <link rel="stylesheet" href="/CareerCounseling/CareerCounselingPlatform/public/assets/styles/counselor_dashboard.css">
+    <link rel="stylesheet" href="../../../public/assets/styles/counselor_dashboard.css">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <!-- Updated FullCalendar CDN Links -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" rel="stylesheet">
@@ -159,7 +159,7 @@ $connections = [
 
             function changeAppointmentStatus(appointment_id, new_status) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', "/CareerCounseling/CareerCounselingPlatform/appointments/changeStatus", true);
+                xhr.open('POST', "/discussion/CareerCounselingPlatform/appointments/changeStatus", true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function () {
                     if (xhr.status == 200) {
@@ -200,7 +200,7 @@ $connections = [
                 const filter = document.getElementById('filter').value;
 
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/CareerCounseling/CareerCounselingPlatform/appointments/filter', true);
+                xhr.open('POST', '/discussion/CareerCounselingPlatform/appointments/filter', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function () {
                     if (xhr.status == 200) {
@@ -299,7 +299,7 @@ $connections = [
 
             function deleteAppointment(appointment_id) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', '/CareerCounseling/CareerCounselingPlatform/appointments/delete', true);
+                xhr.open('POST', '/discussion/CareerCounselingPlatform/appointments/delete', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xhr.onload = function () {
                     if (xhr.status == 200) {

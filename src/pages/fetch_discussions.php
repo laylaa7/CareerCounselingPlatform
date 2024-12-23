@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db = 'careercounseling'; // Update to the correct database name
+$db = 'test'; // Update to the correct database name
 $user = 'root';
 $pass = '';
 $conn = new mysqli($host, $user, $pass, $db);
