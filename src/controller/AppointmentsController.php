@@ -39,6 +39,13 @@ class AppointmentsController {
         return json_encode($appointments);
     }
 
+    public function getCounselorName($counselor_id){
+        $counselor = $this->model->getCounselorName($counselor_id);
+        
+        $userName = $counselor[0]['user_name'];
+        return $userName;
+    }
+
     // Handle retrieving a specific appointment by ID
     public function getAppointmentById($id) {
         $appointment = $this->model->getAppointmentById($id);

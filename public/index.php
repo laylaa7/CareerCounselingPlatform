@@ -1,5 +1,6 @@
 <?php
 
+
 require_once '../helpers/routing.php';
 
 // Instantiate the Router
@@ -15,3 +16,8 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 
 // Route the request to the correct controller and method
 $router->handleRequest($requestUri, $requestMethod);
+?>
+
+
+
+

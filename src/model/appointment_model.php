@@ -16,6 +16,19 @@ class AppointmentsModel {
         return $stmt->execute();
     }
 
+    public function getCounselorName() {
+        $query = "SELECT CounselorID, users.Username AS user_name FROM counselors INNER JOIN users ON counselors.UserID = users.UserID";
+        $result = $this->conn->query($query);
+        if (!$result) {
+            die("Query failed: " . $this->conn->error);
+        }
+        $counselors = [];
+        while ($row = $result->fetch_assoc()) {
+            $counselors[] = $row;
+        }
+        return $counselors;
+    }
+
     public function getAppointments($counselor_id) {
         $search = "";
         if($counselor_id != 0){
