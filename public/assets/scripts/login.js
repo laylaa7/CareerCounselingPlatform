@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             if (data.role == 2) {
                                 window.location.href = '/career/AdminDash.php';
                             } else if (data.role == 1) {
-                                window.location.href = '/career/CounselorDashboard.php';
+                                window.location.href = '/career/CareerCounselingPlatform/counselor/dashboard';
                             } else if (data.role == 0) {
                                 window.location.href = '/career/UserDashboard.php';
                             }

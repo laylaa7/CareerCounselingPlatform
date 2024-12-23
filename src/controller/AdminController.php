@@ -1,33 +1,50 @@
 <?php
 
-require_once '../src/model/user_model.php';
-require_once '../src/model/appointment_model.php';
+require_once __DIR__ . '/../model/Admin.php';
 
 class AdminController {
+    private $adminModel;
 
-    // Admin Dashboard
-    public function dashboard() {
-       
-        include '../src/view/admin/AdminDash.php';
+    public function __construct() {
+        $this->adminModel = new Admin();
     }
 
-    // Admin Counselors List
-    public function counselors() {
-        $db = Database::getConnection();
-        $userModel = new UserModel($db);
-        $counselors = $userModel->getCounselors(); // Fetch counselors from the model
+    public function handleRequest() {
+        $action = $_GET['action'] ?? 'dashboard';
 
-        include '../src/view/admin/AdminCounselors.php';
+        switch ($action) {
+            case 'dashboard':
+                $this->showDashboard();
+                break;
+            case 'counselors':
+                $this->showCounselors();
+                break;
+            case 'users':
+                $this->showUsers();
+                break;
+            default:
+                echo "Invalid action.";
+        }
     }
 
-    // Admin User List
-    public function userList() {
-        $db = Database::getConnection();
-        $userModel = new UserModel($db);
-        $users = $userModel->getUsers(); // Fetch users from the model
+    private function showDashboard() {
+        $stats = $this->adminModel->getDashboardStats();
+        require __DIR__ . '../../../src/view/admin/AdminDash.php';
+    }
 
-        include '../src/view/admin/AdminUserList.php';
+    public function showCounselors() {
+        require_once __DIR__ . '../../../src/model/Admin.php';
+        $adminModel = new Admin();
+        $counselors = $adminModel->getAllCounselors(); // Fetch counselors from the model
+        require __DIR__ . '../../../src/view/admin/AdminCouselors.php'; // Pass to the view
+    }
+
+    private function showUsers() {
+        $users = $this->adminModel->getAllUsers();
+        require __DIR__ . '../../../src/view/admin/AdminUserList.php';
     }
 }
 
-?>
+// Handle incoming requests
+$controller = new AdminController();
+$controller->handleRequest();
