@@ -1,133 +1,83 @@
 <?php
+session_start();
+$con = mysqli_connect("localhost", "root", "", "users");
 
-require_once __DIR__ . '/../model/User.php';
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-header('Content-Type: application/json'); // Enforce JSON responses
-ini_set('display_errors', 0); // Suppress error output
-ini_set('log_errors', 1);    // Log errors to a file
-error_reporting(E_ALL);      // Log all errors and warnings
-ini_set('error_log', __DIR__ . '/../logs/php-error.log'); // Define log file
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($con, $_POST["username"]);
+    $password = $_POST["password"]; 
 
-class UserController {
-    public function index() {
-        header('Content-Type: text/html'); // Set content type to HTML for views
-        include_once PROJECT_ROOT . '/view/home/index.php';
-    }
+    $sql = "SELECT * FROM users WHERE username = ?";
+    $stmt = mysqli_prepare($con, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    public function handleRequest() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $action = $_POST['action'] ?? null;
-
-            if ($action === 'login') {
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                $this->login($email, $password);
-            } elseif ($action === 'signup') {
-                $fullName = $_POST['fullName'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                $this->signup($fullName, $email, $password);
-                
+    if ($row = mysqli_fetch_assoc($result)) {
+        // Verify the password against the hashed password in the database
+        if (password_verify($password, $row["Password"])) {
+            // Store user information in session
+            $_SESSION["username"] = $row["username"];
+            $_SESSION["Email"] = $row["Email"];
+            
+            // Redirect to the admin dashboard if the user is Admin
+            if ($row["username"] === "Admin") {
+              header("Location: ../AdminDash.php");
             } else {
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Invalid action'
-                ]);
+                header("Location: userDashboard.php?login=success");
             }
-        } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $view = $_GET['view'] ?? 'home';
-
-            switch ($view) {
-                case 'home':
-                    include_once PROJECT_ROOT . '/view/home/index.php';
-                    break;
-                
-                default:
-                    echo json_encode([
-                        'status' => 'error',
-                        'message' => 'Invalid view'
-                    ]);
-                    break;
-            }
+            exit();
         } else {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Invalid request method'
-            ]);
+            echo "Invalid username or password";
         }
+    } else {
+        echo "Invalid username or password";
     }
+}
 
-    public function login() {
-        $username = $_POST['username'] ?? null;
-        $password = $_POST['password'] ?? null;
-    
-        if (!$username || !$password) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Username and Password are required.'
-            ]);
-            return;
-        }
-    
-        $userModel = new User();
-        $user = $userModel->authenticateUser($username, $password);
-    
-        if ($user) {
-            session_start();
-            $_SESSION['user_id'] = $user['UserID'];
-            $_SESSION['user_role'] = $user['User_Role'];
-    
-            echo json_encode([
-                'status' => 'success',
-                'role' => $user['User_Role']
-            ]);
+mysqli_close($con);
+?>
+ 
+
+ //SIGN UPPPPPP PHPPP
+ <?php
+session_start();
+$con = mysqli_connect("localhost", "root", "", "users");
+
+
+if (!$con) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = mysqli_real_escape_string($con, $_POST["signupUsername"]);
+    $email = mysqli_real_escape_string($con, $_POST["signupEmail"]);
+    $password = mysqli_real_escape_string($con, $_POST["signupPassword"]);
+
+    // Check if username or email already exists
+    $check_sql = "SELECT * FROM users WHERE username = '$username' OR Email = '$email'";
+    $check_result = mysqli_query($con, $check_sql);
+    $userRole = 3;
+
+    if (mysqli_num_rows($check_result) > 0) {
+        echo "Username or email already exists";
+    } else {
+      $sql = "INSERT INTO users (username, Email, Password, userRole) VALUES ('$username', '$email', '$password', '$userRole')";
+        
+        if (mysqli_query($con, $sql)) {
+            $_SESSION["username"] = $username;
+            $_SESSION["Email"] = $email;
+            $_SESSION["Password"] = $password;
+            $_SESSION["userRole"] = $userRole;
+            
+            header("Location: index.php?signup=success");
+            exit();
         } else {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'Invalid credentials.'
-            ]);
-        }
-    }
-    // Signup function with role 0
-    public function signup() {
-        $username = $_POST['signupUsername'] ?? null;
-        $email = $_POST['signupEmail'] ?? null;
-        $password = $_POST['signupPassword'] ?? null;
-    
-        if (!$username || !$email || !$password) {
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'All fields are required.'
-            ]);
-            return;
-        }
-    
-        $userModel = new User();
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-    
-        try {
-            $success = $userModel->register($username, $email, $hashedPassword, 0);
-    
-            if ($success) {
-                echo json_encode([
-                    'status' => 'success',
-                    'message' => 'Signup successful!'
-                ]);
-            } else {
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Database error: Could not complete signup.'
-                ]);
-            }
-        } catch (Exception $e) {
-            error_log("Error during signup: " . $e->getMessage());
-            echo json_encode([
-                'status' => 'error',
-                'message' => 'An unexpected error occurred: ' . $e->getMessage()
-            ]);
+            echo "Error: " . mysqli_error($con);
         }
     }
 }
-// Handle incoming requests
-$controller = new UserController();
-// $controller->handleRequest();
+?>
