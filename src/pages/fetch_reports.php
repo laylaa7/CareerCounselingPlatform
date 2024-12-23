@@ -65,7 +65,10 @@ $publicDiscussions = $publicStmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="public-discussions-container">
+<nav class="navbar">
+    <?php include "../../tests/Navbar.php"; ?>
+</nav>
+<div class="public-discussions-container" style="margin-top:10%;">
             <h3 class="public-discussions">Public Discussions</h3>
 
         </div>
